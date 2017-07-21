@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=0.5,maximum-scale=0.5,minimum-scale=0.5, width=640, target-densitydpi=device-dpi">
+
+    <meta http-eqiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <!--如果IE用户安装了Chrome Frame插件，则使用这个插件渲染页面，否则用IE最新的、最好的引擎来渲染页面-->
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>抽奖</title>
+    <link type="text/css" href="css/common/common.css" rel="stylesheet">
+    <!--<link type="text/css" href="css/index.css" rel="stylesheet">-->
+    <!--<script type="text/javascript" src="js/common/jquery-1.7.2.min.js"></script>-->
+    <!--<script type="text/javascript" src="js/common/m.tool.juxinbox.com.js"></script>-->
+
+    <script type="text/javascript" src="js/common/jQuery-1.11.3.js"></script>
+    <script type="text/javascript" src="js/common/jWeChat-Adaptive.js"></script>
+    <script type="text/javascript" src="js/common/m.tool.juxinbox.com.js"></script>
+    <script type="text/javascript" src="js/common/jWeChat-1.0.0.js"></script>
+    <script type="text/javascript" src="123.js"></script>
+
+    <!--<script type="text/javascript" src="js/index.js"></script>-->
+    <script type="text/javascript" src="js/common/common.js"></script>
+    <style>
+    	*{
+    		margin: 0;
+    		padding: 0;
+    	}
+    	.contents{
+    		width: 640px;
+    		min-height: 1065px;
+    		background: url(img/bg_02.png) no-repeat #4f1d6f;
+    		position: absolute;
+    	}
+    	.head{
+    		width: 610px;
+    		height: 71px;
+    		background: url(img/10_02.png);
+    		margin: 0 15px;
+    	}
+    	.jindutiao{
+    		width: 260px;
+    		height: 23px;
+    		border: solid #eaeaea 2px;
+    		border-radius: 50px;
+    		margin: 20px 15px;
+    		float: left;
+    		background: #212121;
+    		
+    	}
+    	.green{
+    		position: absolute;
+    		/*width: 260px;*/
+    		height: 23px;
+    		background: #52b410;
+    		border-radius: 50px;
+    		margin: 22px 17px;
+    	}
+    	.money{
+    		position: absolute;
+    		color: white;
+    		text-align: center;
+    		font-size: 18px;
+    		margin: 22px 17px;
+    		z-index: 9999;
+    		width: 260px;
+    		height: 23px;
+    	}
+    	#maxmoney{
+    		color: white;
+    		font-size: 18px;
+    	}
+    	#minmoney{
+    		color: white;
+    		font-size: 18px;
+    	}
+    	.duihuan-button{
+    		width: 152px;
+    		height: 44px;
+    		float: left;
+    		margin-left: 15px;
+    		margin-top: 9px;
+    	}
+    	.rules{
+    		width:103px ;
+    		height: 83px;
+    		float: left;
+    		margin-left: 23px;
+    	}
+    	.redbox{
+    		width: 640px;
+    		height: 30px;
+    		text-align: center;
+    		margin-top: 160px;
+    		color: white;
+    		font-size: 20px;
+    	}
+    	.redbox span{
+    		font-size: 20px;
+    		color: white;
+    	}
+    	.num{
+    		width: 330px;
+    		height: 51px;
+    		background: url(img/11_03.png);
+    		margin: 20px auto 0px;
+    		text-align: center;
+    		font-size: 24px;
+    		color: white;
+    		line-height: 52px;
+    	}
+    	.num span{
+    		font-size: 30px;
+    		color: #ffe026;
+    	}
+    	.cont{
+    		width: 606px;
+    		height: 536px;
+    		background: url(img/14.png);
+    		margin: -5px auto 0px;
+    	}
+    	table{
+    		position: absolute;
+    		margin: 34px 15px;
+    	}
+    	#lottery{width:570px;height:510px;margin:0px auto;}
+    	.lottery-unit{
+    		width: 182px;
+    		height: 156px;
+    	}
+		/*#lottery table{background-color:yellow;}*/
+		#lottery table td{position:relative;width:170px;height:140px;text-align:center;color:#333;font-index:-999}
+		#lottery table td img{display:block;width:170px;height:140px;padding: 5px;}
+		#lottery table td a{width:170px;height:140px;display:block;text-decoration:none;position:absolute;margin-top:5px;background:url(img/start_02.png) no-repeat;margin-left: 5px;}
+		#lottery table td a:hover{background-image:url(img/start_02.png);}
+		#lottery table td.active .mask{display:block;}
+		.mask{
+    		width:100%;
+    		height:100%;
+    		position:absolute;
+    		left:5px;
+    		top:5px;
+    		background:url(img/1-1_02.png) no-repeat;
+    		opacity: 0.7;
+    		display:none;
+		}
+		.list{
+			width: 640px;
+			height: 469px;
+			position: absolute;
+			background: url(img/11_10.png) no-repeat ;
+		}
+		.con{
+			width: 570px;
+			height: 230px;
+			background: #3f1759;
+			margin: 225px 40px 0px;
+			position: absolute;
+			overflow: auto;
+		}
+		.li{
+			width: 475px;
+			height: 20px;
+			margin: 30px 47px 30px;
+		}
+		.name{
+			color: white;
+			width: 235px;
+			font-size: 24px;
+			text-align: left;
+			float: left;
+		
+		}
+		.sca{
+			width: 240px;
+			text-align: right;
+			float: left;
+			font-size: 24px;
+			color: white;
+		}
+		p{
+			font-size: 24px;
+			width: 430px;
+			margin-left:55px;
+			height: 102px;
+			margin-top:66px;
+			color: #888888;
+			line-height: 50px;
+		}
+		p span{
+			font-size: 24px;
+			color: #e2380a;
+		}
+		.tip1-button{
+			width: 430px;
+			height: 60px;
+			background: #ffb018;
+			border-radius: 50px;
+			text-align: center;
+			color: white;
+			font-size: 24px;
+			line-height: 60px;
+			margin: 36px auto;
+		}
+		.p2{
+			font-size: 24px;
+			width: 430px;
+			margin-left:55px;
+			height: 102px;
+			margin-top:66px;
+			color: #888888;
+			text-align: center;
+			line-height: 50px;
+		}
+		.p2 span{
+			font-size: 24px;
+			color: #e2380a;
+		}
+		.btns{
+			width: 430px;
+			height: 60px;
+			margin: 25px auto;
+		}
+		.btn1{
+			width: 210px;
+			height: 60px;
+			background: #dbdbdb;
+			border-radius: 50px;
+			float: left;
+			font-size: 24px;
+			text-align: center;
+			line-height: 60px;
+			color: #888888;
+		}
+		.btn2{
+			width: 210px;
+			height: 60px;
+			background: #ffb018;
+			border-radius: 50px;
+			float: left;
+			font-size: 24px;
+			text-align: center;
+			line-height: 60px;
+			margin-left: 10px;
+			color:white;
+		}
+		.tel{
+			width: 100px;
+			height: 40px;
+			font-size: 24px;
+			margin-left: 55px;
+			margin-top: 50px;
+			float: left;
+		}
+		.tel-txt{
+			width: 317px;
+			height: 60px;
+			border: solid 1px #888888;
+			border-radius: 5px;
+			margin-top: 28px;
+			text-align: center;
+			font-size: 24px;
+		}
+		.card{
+			width: 100px;
+			height: 40px;
+			font-size: 24px;
+			margin-left: 55px;
+			margin-top: 50px;
+			float: left;
+		}
+		.card-txt{
+			width: 150px;
+			height: 60px;
+			border: solid 1px #888888;
+			margin-top: 25px;
+			border-radius: 5px;
+			float: left;
+		}
+		.card-button{
+			width: 150px;
+			height: 60px;
+			border-radius: 5px;
+			background: #333333;
+			float: left;
+			margin-top: 25px;
+			margin-left: 17px;
+			color: white;
+			font-size: 24px;
+			line-height: 60px;
+			text-align: center;
+		}
+		.tip6-button{
+			width: 430px;
+			height: 60px;
+			background: #ffb018;
+			border-radius: 50px;
+			text-align: center;
+			color: white;
+			font-size: 24px;
+			line-height: 60px;
+			margin: 139px auto;
+		}
+		.close{
+			width: 52px;
+			height: 52px;
+			position: absolute;
+			margin-left: 502px;
+			margin-top: -20px;
+		}
+		.rules-title{
+			width:100%;
+			height:114px;
+			color: white;
+			font-size: 30px;
+			text-align: center;
+			line-height: 167px;
+			margin: 0 auto;
+			float: left;
+		}
+		.rules-close{
+			width: 10px;
+			height: 10px;
+			color: white;
+			font-size: 40px;
+			position: absolute;
+			line-height: 167px;
+			margin-left:88%;
+		}
+		.rules-list{
+			width:90%;
+			height: 100px;
+			margin-left: 5%;
+			margin-top: 26%;
+		}
+		.act-title{
+			width: 140px;
+			height: 40px;
+			background: url(img/15.png);
+			margin-top: 20px;
+			position: absolute;
+			font-size: 24px;
+			color: white;
+			text-align: center;
+			line-height: 40px;
+		}
+		.act-con{
+			width: 90%;
+			color: white;
+			height: 80px;
+			font-size: 24px;
+			line-height: 37px;
+			margin-top: 77px;
+			position: absolute;
+			letter-spacing: 2px;
+		}
+		.tip{
+			width: 90%;
+			font-size: 24px;
+			color: #ffe50d;
+			margin-left: 5%;
+			letter-spacing: 2px;
+			position: absolute;
+			margin-top: 100px;
+			line-height: 37px;
+		}
+		.user{
+			margin-top:9%;
+		}
+		.p1{
+			margin-top: 15%;
+		}
+    </style>
+    <script>
+    	var tel;
+    	var card;
+    	$(function(){
+    		$(".tip6-button").click(function(){
+    			tel=$(".tel-txt").val();
+    			card=$(".card-txt").val();
+    			if(tel.length<11||jxTool.isNumber(tel)==false){
+    				alerw("请输入电话号码");
+    			}else if(card.length<1||jxTool.isNumber(card)==false){
+    				alerw("请输入验证码")
+    			}else{
+    				loading("start");
+    				$.ajax({
+                    url: getRootPath() + "/addUser.do",
+                    data: {
+                        "tel": tel,"card":card
+                    },
+                    dataType: "json",
+                    type: "post",
+                    success: function (data) {
+                    	loading("stop")
+                        if (data.success) {
+                            $(".alertTips2").css("display","none")
+                        } else {
+                            TipShow(data.errMsg, 1000);
+                        }
+                    }
+                });
+    			}
+    		})
+    		$(".close").click(function(){
+    			$(".alertTips6").css("display","none")
+    		})
+    		$(".tip1-button").click(function(){
+    			$(".alertTips1,.alertTips2,.alertTips4,.alertTips5").css("display","none")
+    		})
+    		$(".rules-close").click(function(){
+    			$(".rules-con").css("display","none")
+    		})
+    		$(".rules").click(function(){
+    			$(".rules-con").css("display","block")
+    		})
+    		//进度条
+    		$("#lottery table td a").click(function(){
+    			
+    			if($(".green").width()<260){
+    				$(".green").width($(".green").width()+20)
+    			}else{
+    				$(".green").width($(".green").width()+0)
+    				$(".duihuan-button").click(function(){
+    					$(".alertTips3").css("display","block")
+    				})
+    				$(".btn1").click(function(){
+    					$(".alertTips3").css("display","none")
+    				})
+    				$(".btn2").click(function(){
+    					location.href="success.html"
+    				})
+    			}
+//  			 $(".green").animate({
+//				  left:'+=-30px'},2000,function(){
+//				  });
+    		})
+    	})
+    </script>
+    <script type="text/javascript">
+var lottery={
+    index:-1,    //当前转动到哪个位置，起点位置
+    count:8,    //总共有多少个位置
+    timer:0,    //setTimeout的ID，用clearTimeout清除
+    speed:5,    //初始转动速度
+    times:1,    //转动次数
+    cycle:5,    //转动基本次数：即至少需要转动多少次再进入抽奖环节
+    prize:-1,    //中奖位置
+    init:function(id){
+        if ($("#"+id).find(".lottery-unit").length>0) {
+            $lottery = $("#"+id);
+            $units = $lottery.find(".lottery-unit");
+            this.obj = $lottery;
+            this.count = $units.length;
+            $lottery.find(".lottery-unit-"+this.index).addClass("active");
+        };
+    },
+    roll:function(){
+        var index = this.index;
+        var count = this.count;
+        var lottery = this.obj;
+        $(lottery).find(".lottery-unit-"+index).removeClass("active");
+        index += 1;
+        if (index>count-1) {
+            index = 0;
+        };
+        $(lottery).find(".lottery-unit-"+index).addClass("active");
+        this.index=index;
+        return false;
+    },
+    stop:function(index){
+        this.prize=index; 
+        return false;
+    }
+};
+
+function roll(){
+    lottery.times += 1;
+    lottery.roll();//转动过程调用的是lottery的roll方法，这里是第一次调用初始化
+    if (lottery.times > lottery.cycle+10 && lottery.prize==lottery.index) {
+        clearTimeout(lottery.timer);
+        lottery.prize=-1;
+        lottery.times=0;
+        click=false;
+    }else{
+        if (lottery.times<lottery.cycle) {
+            lottery.speed -= 10;
+        }else if(lottery.times==lottery.cycle) {
+//          var index = Math.random()*(lottery.count)|0;
+			var index=2;
+            lottery.prize = index;        
+        }else{
+            if (lottery.times > lottery.cycle+10 && ((lottery.prize==0 && lottery.index==7) || lottery.prize==lottery.index+1)) {
+                lottery.speed += 110;
+            }else{
+                lottery.speed += 20;
+            }
+        }
+        if (lottery.speed<40) {
+            lottery.speed=40;
+        };
+        //console.log(lottery.times+'^^^^^^'+lottery.speed+'^^^^^^^'+lottery.Prize);
+        lottery.timer = setTimeout(roll,lottery.speed);//循环调用
+    }
+    return false;
+}
+
+var click=false;
+
+window.onload=function(){
+    lottery.init('lottery');
+    $("#lottery a").click(function(){
+        if (click) {//click控制一次抽奖过程中不能重复点击抽奖按钮，后面的点击不响应
+            return false;
+        }else{
+            lottery.speed=100;
+            roll();    //转圈过程不响应click事件，会将click置为false
+            click=true; //一次抽奖完成后，设置click为true，可继续抽奖
+            return false;
+        }
+    });
+};
+
+</script>
+	</head>
+	<body>
+		<div class="zoomer">
+			<div class="contents">
+				<div class="head">
+					<div class="jindutiao"></div>
+					<div class="money">￥<span id="minmoney">0.00</span>/￥<span id="maxmoney">10.00</span></div>
+					<div class="green"></div>
+					<div class="duihuan-button"><img src="img/9.png"></div>
+					<div class="rules"><img src="img/8_03.png"></div>
+				</div>
+				<div class="redbox">今日剩余红包:<span>10000</span></div>
+				<div class="num">您还有&nbsp;&nbsp;<span>1</span>&nbsp;&nbsp;次抽奖机会</div>
+				<div class="cont">
+					<div id="lottery">
+					<table border="0" cellpadding="0" cellspacing="0">
+        				<tr>
+            				<td class="lottery-unit lottery-unit-0"><img src="img/13_03.png"><div class="mask"></div></td>
+            				<td class="lottery-unit lottery-unit-1"><img src="img/13_03.png"><div class="mask"></div></td>
+            				<td class="lottery-unit lottery-unit-2"><img src="img/12_03.png"><div class="mask"></div></td>
+        				</tr>
+        				<tr>
+            				<td class="lottery-unit lottery-unit-7"><img src="img/13_03.png"><div class="mask"></div></td>
+            				<td><a href="#"></a></td>
+            				<td class="lottery-unit lottery-unit-3"><img src="img/13_03.png"><div class="mask"></div></td>
+        				</tr>
+        				<tr>
+            				<td class="lottery-unit lottery-unit-6"><img src="img/12_03.png"><div class="mask"></div></td>
+            				<td class="lottery-unit lottery-unit-5"><img src="img/13_03.png"><div class="mask"></div></td>
+            				<td class="lottery-unit lottery-unit-4"><img src="img/12_03.png"><div class="mask"></div></td>
+        				</tr>
+    				</table>
+    				</div>
+				</div>
+				<div class="list">
+					<div class="con">
+					<marquee direction="up">
+					
+					<marquee loop="-1" direction="up" behaviour="Scroll">
+					
+						<div class="li">
+							<div class="name">jmt123</div>
+							<div class="sca">兑换50元加油红包</div>
+						</div>
+						<div class="li">
+							<div class="name">jmt123</div>
+							<div class="sca">兑换50元加油红包</div>
+						</div>
+						<div class="li">
+							<div class="name">jmt123</div>
+							<div class="sca">兑换50元加油红包</div>
+						</div>
+						<div class="li">
+							<div class="name">jmt123</div>
+							<div class="sca">兑换50元加油红包</div>
+						</div>
+						<div class="li">
+							<div class="name">jmt123</div>
+							<div class="sca">兑换50元加油红包</div>
+						</div>
+					</marquee>
+					</marquee>
+					</div>
+				</div>
+			</div>
+		</div>
+<div class="alertTips1"style="background-color: rgba(10, 10, 10, 0.6); width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: 1100;display: none;">
+    <div class="tips1" style="background: #ffffff; width:540px; height: 314px; border-radius: 10px; position: absolute; top: 50%; left: 50%; margin: -152px -270px">
+       <p>红包金额累计满<span>10</span>元，即可兑换<span>“10元加油支付红包”</span>哦！请继续努力吧~！</p>
+       <div class="tip1-button">确定</div>
+    </div>
+</div>
+<div class="alertTips2"style="background-color: rgba(10, 10, 10, 0.6); width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: 1100;display: none;">
+    <div class="tips1" style="background: #ffffff; width:540px; height: 314px; border-radius: 10px; position: absolute; top: 50%; left: 50%; margin: -152px -270px">
+       <p class="p2">恭喜您获得<span>0.5元红包</span><br>离兑奖10元加油支付红包又近了一步</p>
+       <div class="tip1-button">确定</div>
+    </div>
+</div>
+<div class="alertTips3"style="background-color: rgba(10, 10, 10, 0.6); width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: 1100;display: none;">
+    <div class="tips1" style="background: #ffffff; width:540px; height: 314px; border-radius: 10px; position: absolute; top: 50%; left: 50%; margin: -152px -270px">
+       <p class="p2">确定要兑换吗？</p>
+       <div class="btns">
+       	<div class="btn1">取消</div>
+       	<div class="btn2">确定</div>
+       </div>
+    </div>
+</div>
+<div class="alertTips4"style="background-color: rgba(10, 10, 10, 0.6); width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: 1100;display: none;">
+    <div class="tips1" style="background: #ffffff; width:540px; height: 314px; border-radius: 10px; position: absolute; top: 50%; left: 50%; margin: -152px -270px">
+       <p class="p2">天啊，居然没中奖<br>明天的运气会更好哦~</p>
+       <div class="tip1-button">确定</div>
+    </div>
+</div>
+<div class="alertTips5"style="background-color: rgba(10, 10, 10, 0.6); width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: 1100;display: none;">
+    <div class="tips1" style="background: #ffffff; width:540px; height: 314px; border-radius: 10px; position: absolute; top: 50%; left: 50%; margin: -152px -270px">
+       <p class="p2">抽奖机会用完了哦~</p>
+       <div class="tip1-button">确定</div>
+    </div>
+</div>
+<div class="alertTips6"style="background-color: rgba(10, 10, 10, 0.6); width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: 1100;display: none;">
+    <div class="tips1" style="background: #ffffff; width:540px; height: 514px; border-radius: 10px; position: absolute; top: 50%; left: 50%; margin: -242px -270px">
+       <div class="close"><img src="img/close.png"></div>
+       <p >恭喜您获得<span>0.5元加油支付红包</span>，快填写手机号拿走它吧！</p>
+       <div class="tel">手机号</div>
+       <input type="text" class="tel-txt" maxlength="11"/>
+       <div class="card">验证码</div>
+       <input class="card-txt" type="text"/>
+       <div class="card-button">获取验证码</div>
+       <div class="tip6-button">拿走红包</div>
+    </div>
+</div>
+<div class="rules-con"style="background-color: rgba(10, 10, 10, 0.83); width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: 1100;display: none;">
+    <div class="rules-title">活动规则</div>
+    <div class="rules-close">X</div>
+    <div class="rules-list">
+    	<div class="act-title">活动规则</div>
+    	<div class="act-con">本活动每日限10000人次参与，每人每天限抽奖一次。<br>累计获得红包金额满10元即可兑换“10元加油支付红包”</div>
+    </div>
+    <div class="tip">tips:金额满10元不兑换，将无法继续累计红包金额哦~<br>兑换成功后可重新开始累计</div>
+    <div class="rules-list">
+    	<div class="act-title">活动奖项</div>
+    	<div class="act-con">10元石化加油支付红包</div>
+    </div>
+    <div class="rules-list user">
+    	<div class="act-title ">红包使用</div>
+    	<div class="act-con">成功兑换10元加油红包后，在石化加油时，使用微信扫描工作人员出示的二维码，在支付页面选择使用“10元加油红包”，即可抵扣消费金额</div>
+    </div>
+    <div class="tip p1">tips:想要查看已兑换的加油红包，只要关注“有礼付”公众号，点击底部菜单“我的红包-红包中心”即可查看哦~</div>
+</div>
+	</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1, user-scalable=no,width=320">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<!--基础js-->
+		<script type="text/javascript" src="js/jQuery-1.11.3.js" ></script>
+		<script type="text/javascript" src="js/layout.js" ></script>
+		<!--滚动js-->
+		<link rel="stylesheet" href="css/liMarquee.css" />
+		<script src="js/jquery.liMarquee.js"></script>
+		<!--页面js-->
+		<link rel="stylesheet" href="css/shake.css" />
+		<script type="text/javascript" src="js/shake.js" ></script>
+		<title>中石化扭蛋</title>
+	</head>
+	<body>
+		<!--引导页-->
+		<div class="guide">
+			<img class="img" src="img/guide.png" />
+			<div class="driver">
+				<input id="know" type="checkbox"/>
+				<label>我是老司机，不再显示</label>
+			</div>
+			<div class="know">我知道了</div>
+		</div>
+		
+		<!--loading-->
+		<div class="pop loading">
+			<img class="show" src="img/loading.png" />
+		</div>
+		
+		<!--暴击了-->
+		<div class="pop impact">
+			<div class="centerDiv">
+				<h1>暴击啦</h1>
+				<div class="bg">
+					<label>iphone7</label>
+					<a class="btn close" href="javascript:;">返回</a>
+				</div>
+			</div>
+		</div>
+		
+		<!--中奖了-->
+		<div class="pop win">
+			<div class="centerDiv">
+				<h1>中奖啦</h1>
+				<div class="bg">
+					<label>iphone7</label>
+					<p>恭喜您抽得iphone7一台,请前往</p>
+					<p>游戏中心“我的奖品”查看</p>
+					<a class="btn" href="javascript:;">再抽一次</a>
+					<a class="btn close" href="javascript:;">返回</a>
+				</div>
+			</div>
+		</div>
+		
+		<!--未中奖-->
+		<div class="pop lost">
+			<div class="centerDiv">
+				<h1>很遗憾</h1>
+				<div class="bg">
+					<label>谢谢参与</label>
+					<p>未能抽中奖品，请再接再厉</p>
+					<p>丰厚奖品等着您</p>
+					<a class="btn" href="javascript:;">再抽一次</a>
+					<a class="btn close" href="javascript:;">返回</a>
+				</div>
+				
+			</div>
+		</div>
+		
+		<!--游戏规则-->
+		<div class="pop rule">
+			<div class="centerDiv">
+				<h1>规则说明</h1>
+				<div class="bg">
+					<div class="h420">
+						<p>1.用户每周免费抽奖1次（当免费抽奖的冷却时间结束后，第一次抽奖不消耗钻石）</p>
+						<p>2.每次抽奖需要消耗用户10钻</p>
+						<p>连续抽奖5次不中，暴击能量满格点击<i></i>按钮，随机奖励钻石</p>
+						<p>4.实物类奖品需要您配合填写邮寄信息，奖品将在中奖后10个工作日内寄出，邮费由有礼付承担</p>
+						<p>5.中奖物品可以到我的奖品查看</p>
+						<h2>游戏奖项</h2>
+						<p>iphone 7s、10元加油红包，50元加油红包、随机钻石奖励</p>
+						<label>以上抽奖规则最终解释权归有礼付所有</label>
+					</div>
+					<a class="btn close" href="javascript:;">我知道了</a>
+				</div>
+			</div>
+		</div>
+		
+		<!--钻石不足-->
+		<div class="pop no_money">
+			<div class="centerDiv">
+				
+				<h1>钻石不足</h1>
+				<div class="bg">
+					<a class="close" href="javascript:;"></a>
+					<img class="img" src="img/no_money.png" />
+					<p>钻石不足，可以充值后再来哟</p>
+					<a class="btn" href="javascript:;">去充值</a>
+				</div>
+				
+			</div>
+		</div>
+		
+		<!--充值钻石-->
+		<div class="pop recharge">
+			<div class="centerDiv">
+				
+				<h1>钻石充值</h1>
+				<div class="bg">
+					<a class="close" href="javascript:;"></a>
+					<img class="img" src="img/recharge.png" />
+					<p>是否立即前往充值中心？</p>
+					<a class="btn" href="javascript:;">去充值</a>
+				</div>
+				
+			</div>
+		</div>
+		
+		<!--游戏主界面-->
+		<div class="wrapper shake">
+			<!--活动说明按钮-->
+            <div class="ruleButton"><img src="img/ruleButton.png" /></div>
+            <!--钻石-->
+            <div class="jewel">
+            	<img class="diamond" src="img/jewel.png" />
+            	<label>998</label>
+            	<img class="add" src="img/add.png" />
+            </div>
+            <!--titile-->
+            <img class="title" src="img/title.png" />
+            <!--中奖信息-->
+        	<ul class="prize">
+        		<li>恭喜135****1234 获得"iphone7"</li>
+        		<li>恭喜135****1234 获得"20元加油券"</li>
+        		<li>恭喜135****1234 获得"50元加油券"</li>
+        	</ul>
+        	
+        	<!--奖品左-->
+        	<div class="prize_left">
+        		<div class="prizes1">
+	        		<div class="tip">
+	        			<img src="img/prize1.png" />
+	        			<p>iphone7</p>
+	        		</div>
+	        		<div class="tip">
+	        			<img src="img/prize2.png" />
+	        			<p>加油红包</p>
+	        		</div>
+	        		<div class="tip">
+	        			<img src="img/prize3.png" />
+	        			<p>加油红包</p>
+	        		</div>
+	        	</div>
+        	</div>
+        	
+        	<!--奖品右-->
+        	<div class="prize_right">
+        		<div class="prizes2">
+	        		<div class="tip">
+	        			<img src="img/prize1.png" />
+	        			<p>iphone7</p>
+	        		</div>
+	        		<div class="tip">
+	        			<img src="img/prize2.png" />
+	        			<p>加油红包</p>
+	        		</div>
+	        		<div class="tip">
+	        			<img src="img/prize3.png" />
+	        			<p>加油红包</p>
+	        		</div>
+	        	</div>
+        	</div>
+        	
+            <!--机器-->
+			<div class="machine">
+				<!--机器玻璃-->
+				<div class="top">
+					<img class="glass" src="img/glass.png" />
+					<!--球-->
+					<div class="ball">
+						<img class="ball1" src="img/ball1.png" />
+						<img class="ball2" src="img/ball1.png" />
+						<img class="ball3" src="img/ball1.png" />
+						<img class="ball4" src="img/ball1.png" />
+						<img class="ball5" src="img/ball2.png" />
+						<img class="ball6" src="img/ball2.png" />
+						<img class="ball7" src="img/ball2.png" />
+						<img class="ball8" src="img/ball2.png" />
+						<img class="ball9" src="img/ball3.png" />
+						<img class="ball10" src="img/ball3.png" />
+						<img class="ball11" src="img/ball3.png" />
+						<img class="ball12" src="img/ball3.png" />
+						<img class="ball13" src="img/ball3.png" />
+						<img class="ball14" src="img/ball4.png" />
+						<img class="ball15" src="img/ball4.png" />
+						<img class="ball16" src="img/ball4.png" />
+						<img class="ball17" src="img/ball4.png" />
+					</div>
+				</div>
+				<!--机器身体-->
+				<div class="middle">
+					<!--指针-->
+					<img class="finger" src="img/finger.png" />
+					<!--能量条-->
+					<div class="energy">
+						<div class="energys">
+							<img src="img/energy1.png" />
+							<img src="img/energy2.png" />
+							<img src="img/energy3.png" />
+							<img src="img/energy4.png" />
+							<img src="img/energy5.png" />
+						</div>
+						<!--暴击按钮-->
+						<a class="hit" href="javascript:;"></a>
+					</div>
+					<!--开始按钮-->
+					<div class="start">
+						<img src="img/start.gif" />
+						<audio id="audio" src="css/music.mp3"></audio>
+					</div>
+					<!--装饰旋钮-->
+					<img class="ornament" src="img/ornament.png" />
+					<!--球-->
+					<!--<img class="ball" src="img/ball1.png" />-->
+					<div class="ball"></div>
+				</div>
+			</div>
+		</div>
+		
+	</body>
+</html>

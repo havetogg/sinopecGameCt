@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=0.5,maximum-scale=0.5,minimum-scale=0.5, width=640, target-densitydpi=device-dpi">
+
+    <meta http-eqiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <!--如果IE用户安装了Chrome Frame插件，则使用这个插件渲染页面，否则用IE最新的、最好的引擎来渲染页面-->
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>抽奖</title>
+    <link type="text/css" href="css/common/common.css" rel="stylesheet">
+    <!--<link type="text/css" href="css/index.css" rel="stylesheet">-->
+    <!--<script type="text/javascript" src="js/common/jquery-1.7.2.min.js"></script>-->
+    <!--<script type="text/javascript" src="js/common/m.tool.juxinbox.com.js"></script>-->
+
+    <script type="text/javascript" src="js/common/jQuery-1.11.3.js"></script>
+    <script type="text/javascript" src="js/common/jWeChat-Adaptive.js"></script>
+    <script type="text/javascript" src="js/common/m.tool.juxinbox.com.js"></script>
+    <script type="text/javascript" src="js/common/jWeChat-1.0.0.js"></script>
+    <script type="text/javascript" src="123.js"></script>
+
+    <!--<script type="text/javascript" src="js/index.js"></script>-->
+    <script type="text/javascript" src="js/common/common.js"></script>
+    <style>
+    	*{
+    		margin: 0;
+    		padding: 0;
+    	}
+    	.contents{
+    		width: 640px;
+    		min-height: 1110px;
+    		position: absolute;
+    		background:url(img/tip-bg_02.png)no-repeat #c92a41;
+    	}
+    	.rules-title{
+			width:100%;
+			height:114px;
+			color: white;
+			font-size: 30px;
+			text-align: center;
+			line-height: 121px;
+			margin: 0 auto;
+			float: left;
+		}
+		.rules-close{
+			width: 10px;
+			height: 10px;
+			color: white;
+			font-size: 40px;
+			position: absolute;
+			line-height: 121px;
+			margin-left:88%;
+		}
+		.rules-list{
+			width:90%;
+			height: 100px;
+			margin-left: 5%;
+			margin-top: 16%;
+		}
+		.act-title{
+			width: 140px;
+			height: 40px;
+			background: url(img/15.png);
+			margin-top: 20px;
+			position: absolute;
+			font-size: 24px;
+			color: white;
+			text-align: center;
+			line-height: 40px;
+		}
+		.act-con{
+			width: 90%;
+			color: white;
+			height: 80px;
+			font-size: 20px;
+			line-height: 37px;
+			margin-top: 77px;
+			position: absolute;
+			letter-spacing: 2px;
+		}
+		.tip{
+			width: 90%;
+			height:88px;
+			font-size: 20px;
+			color: #ffe50d;
+			margin-left: 5%;
+			letter-spacing: 2px;
+			margin-top: 116px;
+			line-height: 37px;
+		}
+		.user{
+			margin-top:8%;
+		}
+		.jiangpin{
+			margin-top:0%;
+		}
+		.p1{
+			margin-top: 15%;
+		}
+		
+.saoma{
+	width: 405px;
+	height: 192px;
+	background: url(img/bg-ma.png);
+	margin: 118px auto 0px;
+}
+.saoma img{
+	width: 136px;
+	height: 136px;
+	margin: 18px 13px;
+	float: left;
+}
+.sanma-con{
+	width: 118px;
+	height: 70px;
+	color: white;
+	font-size: 20px;
+	float: left;
+	margin: 56px 0px 0px 68px;
+	line-height: 31px;
+	letter-spacing: 2px;
+}
+.big-ma img{
+	width: 100%;
+	position: absolute;
+	margin-top: -99%;
+	opacity: 0;
+}
+p{
+	color: white;
+	width: 640px;
+	height: 30px;
+	text-align: center;
+	font-size: 18px;
+	letter-spacing: 1px;
+	margin-top: 12px;
+}
+a{
+	font-size: 22px;
+	color: #ffffff;
+	opacity:0.6;
+	width:104px;
+	margin: 30px 268px;
+	position: absolute;
+}
+    </style>
+    <script>
+    	$(function(){
+    		$(".rules-close").click(function(){
+    			window.history.go(-1);
+    		})
+    	})
+    </script>
+	</head>
+	
+	<body>
+		<div class="zoomer">
+			<div class="contents">
+				<div class="rules-title">活动规则</div>
+    <div class="rules-close">X</div>
+    <div class="rules-list">
+    	<div class="act-title">活动规则</div>
+    	<div class="act-con">本活动每日限10000人次参与，每人每天限抽奖一次。<br>累计获得红包金额满10元即可兑换“10元加油支付红包”。<br>红包兑换后将在24小时内激活。
+    	</div>
+    </div>
+    <div class="tip">tips:金额满10元不兑换，将无法继续累计红包金额哦~<br>兑换成功后可重新开始累计</div>
+    <div class="rules-list jiangpin">
+    	<div class="act-title">活动奖项</div>
+    	<div class="act-con">10元石化加油支付红包</div>
+    </div>
+    <div class="rules-list user">
+    	<div class="act-title ">红包使用</div>
+    	<div class="act-con">成功兑换10元加油红包后，在石化加油时，使用微信扫描工作人员出示的二维码，在支付页面选择使用“10元加油红包”，即可抵扣消费金额</div>
+    </div>
+    <div class="saoma">
+    	<img src="img/17.png">
+    	<div class="sanma-con">长按二维码查询红包</div>
+    </div>
+	<p>本活动红包支持全省易捷便利店扫码支付和部分加油站</p>
+    <a href="location.html">点我查询</a>
+    <div class="big-ma"><img src="img/17.png"></div>
+			</div>
+		</div>
+	</body>
+</html>

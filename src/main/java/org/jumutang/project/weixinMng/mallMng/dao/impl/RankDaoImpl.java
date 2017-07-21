@@ -1,0 +1,213 @@
+package org.jumutang.project.weixinMng.mallMng.dao.impl;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.jumutang.project.base.Page;
+import org.jumutang.project.tools.StringUtil;
+import org.jumutang.project.weixinMng.mallMng.dao.IRankDao;
+import org.jumutang.project.weixinMng.mallMng.model.RankMode;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.PreparedStatementSetter;
+import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class RankDaoImpl implements IRankDao {
+
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+	
+	@Override
+	public List<RankMode> findList(Map<String, String> queryParam, final Page page) {
+		// TODO Auto-generated method stub
+		StringBuffer sqlBuffer = new StringBuffer();
+		sqlBuffer.append(" SELECT ID, RANK_NAME, RETURN_DIAMOND, RETURN_GOLD, CREAT_TIME, DELETE_FLAG");
+		sqlBuffer.append("	FROM t_rank");
+		sqlBuffer.append("	WHERE DELETE_FLAG=0");
+		
+		final String QUERY_NAME=queryParam.get("QUERY_NAME");
+		if(!StringUtil.isEmpty(QUERY_NAME)){
+			sqlBuffer.append(" AND NAME like CONCAT('%',?,'%') ");
+		}
+		
+//		sqlBuffer.append(" ORDER BY NAME ASC ");
+
+		return jdbcTemplate.query(sqlBuffer.toString(), new PreparedStatementSetter() {
+			
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				// TODO Auto-generated method stub
+				int i = 1;
+				if(!StringUtil.isEmpty(QUERY_NAME)){
+					ps.setString(i++, QUERY_NAME);
+				}
+			}
+		}, new ResultSetExtractor<List<RankMode>>() {
+
+			@Override
+			public List<RankMode> extractData(ResultSet rs) throws SQLException, DataAccessException {
+				// TODO Auto-generated method stub
+				List<RankMode> list=new ArrayList<RankMode>();
+				if(page==null){
+					while(rs.next()){
+						RankMode bean= new RankMode();
+						bean.setID(rs.getString("ID"));
+						bean.setRANK_NAME(rs.getString("RANK_NAME"));
+						bean.setRETURN_DIAMOND(rs.getString("RETURN_DIAMOND"));
+						bean.setRETURN_GOLD(rs.getString("RETURN_GOLD"));
+						bean.setCREAT_TIME(rs.getString("CREAT_TIME"));
+						bean.setDELETE_FLAG(rs.getString("DELETE_FLAG"));
+						
+						list.add(bean);
+					}
+				}else{
+					int num=0;
+					if(rs.absolute(page.getStartRow()+1)){
+						do{
+							RankMode bean= new RankMode();
+							bean.setID(rs.getString("ID"));
+							bean.setRANK_NAME(rs.getString("RANK_NAME"));
+							bean.setRETURN_DIAMOND(rs.getString("RETURN_DIAMOND"));
+							bean.setRETURN_GOLD(rs.getString("RETURN_GOLD"));
+							bean.setCREAT_TIME(rs.getString("CREAT_TIME"));
+							bean.setDELETE_FLAG(rs.getString("DELETE_FLAG"));
+							
+							list.add(bean);
+							num++;
+							if(num>=page.getPageSize()){
+								break;
+							}
+						}while(rs.next());
+					}
+				}
+				
+				return list;
+			}
+		});
+	}
+	
+	@Override
+	public RankMode findInfo(final Integer id) {
+		StringBuffer sqlBuffer = new StringBuffer();
+		sqlBuffer.append(" SELECT ID, RANK_NAME, RETURN_DIAMOND, RETURN_GOLD, CREAT_TIME, DELETE_FLAG");
+		sqlBuffer.append("	FROM t_rank");
+		sqlBuffer.append("	WHERE ID=?");
+		
+		return this.jdbcTemplate.query(sqlBuffer.toString(), new PreparedStatementSetter() {
+
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+					int i = 1;
+					ps.setInt(i++, id);	
+			}
+
+		}, new ResultSetExtractor<RankMode>() {
+
+			@Override
+			public RankMode extractData(ResultSet rs) throws SQLException, DataAccessException {
+				if (rs.next()) {
+					RankMode bean= new RankMode();
+
+					bean.setID(rs.getString("ID"));
+					bean.setRANK_NAME(rs.getString("RANK_NAME"));
+					bean.setRETURN_DIAMOND(rs.getString("RETURN_DIAMOND"));
+					bean.setRETURN_GOLD(rs.getString("RETURN_GOLD"));
+					bean.setCREAT_TIME(rs.getString("CREAT_TIME"));
+					bean.setDELETE_FLAG(rs.getString("DELETE_FLAG"));
+					return bean;
+				}else{
+					return null;
+				}
+			}
+		});
+	}
+
+	@Override
+	public int saveInfo(final RankMode rankMode) {
+		// TODO Auto-generated method stub
+		final StringBuffer sqlBuffer = new StringBuffer();
+		sqlBuffer.append(" INSERT INTO t_rank(ID, RANK_NAME, RETURN_DIAMOND, RETURN_GOLD, CREAT_TIME, DELETE_FLAG) ");
+		sqlBuffer.append(" VALUES(?,?,?,?,?,?)");
+
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		jdbcTemplate.update(new PreparedStatementCreator() {
+
+			public PreparedStatement createPreparedStatement(java.sql.Connection con) throws SQLException {
+				PreparedStatement ps = con.prepareStatement(sqlBuffer.toString(), Statement.RETURN_GENERATED_KEYS);
+				int i = 1;
+				ps.setString(i++, rankMode.getID());
+				ps.setString(i++, rankMode.getRANK_NAME());
+				ps.setString(i++, rankMode.getRETURN_DIAMOND());
+				ps.setString(i++, rankMode.getRETURN_GOLD());
+				ps.setString(i++, rankMode.getCREAT_TIME());
+				ps.setString(i++, rankMode.getDELETE_FLAG());
+				
+				return ps;
+			}
+		}, keyHolder);
+
+		return keyHolder.getKey().intValue();
+
+	}
+
+	@Override
+	public void updateInfo(final RankMode rankMode) {
+		// TODO Auto-generated method stub
+		final StringBuffer sqlBuffer = new StringBuffer();
+		sqlBuffer.append(" UPDATE t_rank ");
+		sqlBuffer.append(" SET ID=?,RANK_NAME=?,RETURN_DIAMOND=?,RETURN_GOLD=?,CREAT_TIME=?,DELETE_FLAG=?");
+		sqlBuffer.append(" WHERE ID = ?");
+
+		jdbcTemplate.update(new PreparedStatementCreator() {
+
+			public PreparedStatement createPreparedStatement(java.sql.Connection con) throws SQLException {
+				PreparedStatement ps = con.prepareStatement(sqlBuffer.toString());
+				int i = 1;
+				ps.setString(i++, rankMode.getID());
+				ps.setString(i++, rankMode.getRANK_NAME());
+				ps.setString(i++, rankMode.getRETURN_DIAMOND());
+				ps.setString(i++, rankMode.getRETURN_GOLD());
+				ps.setString(i++, rankMode.getCREAT_TIME());
+				ps.setString(i++, rankMode.getDELETE_FLAG());
+				ps.setString(i++, rankMode.getID());
+				
+				return ps;
+			}
+		});
+
+	}
+
+	@Override
+	public void deleteInfo(final Integer id) {
+		// TODO Auto-generated method stub
+		final StringBuffer sqlBuffer = new StringBuffer();
+		sqlBuffer.append(" UPDATE t_rank ");
+		sqlBuffer.append(" SET DELETE_FLAG = 1 ");
+		sqlBuffer.append(" WHERE ID = ?");
+
+		jdbcTemplate.update(new PreparedStatementCreator() {
+
+			public PreparedStatement createPreparedStatement(java.sql.Connection con) throws SQLException {
+				PreparedStatement ps = con.prepareStatement(sqlBuffer.toString());
+				int i = 1;
+				ps.setInt(i++, id);
+				
+				return ps;
+			}
+		});
+
+	}
+
+
+}

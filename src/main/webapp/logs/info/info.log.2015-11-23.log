@@ -1,0 +1,79 @@
+INFO main org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'spring-mvc': initialization started
+INFO main org.springframework.web.context.support.XmlWebApplicationContext - Refreshing WebApplicationContext for namespace 'spring-mvc-servlet': startup date [Mon Nov 23 11:54:09 CST 2015]; parent: Root WebApplicationContext
+INFO main org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [spring-mvc.xml]
+INFO main org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+INFO main org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/testC/addUser],methods=[GET || POST]}" onto public java.lang.String org.jumutang.sinopecGameCt.web.controller.TestController.addUser(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,javax.servlet.http.HttpSession,java.lang.String,java.lang.String,java.lang.Integer)
+INFO main org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/testC/downLoadForExcel],methods=[GET || POST]}" onto public void org.jumutang.sinopecGameCt.web.controller.TestController.downLoadForExcel(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,javax.servlet.http.HttpSession)
+INFO main org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/testC/queryUser],methods=[GET || POST]}" onto public java.lang.String org.jumutang.sinopecGameCt.web.controller.TestController.queryUser(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,javax.servlet.http.HttpSession)
+INFO main org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: WebApplicationContext for namespace 'spring-mvc-servlet': startup date [Mon Nov 23 11:54:09 CST 2015]; parent: Root WebApplicationContext
+INFO main org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: WebApplicationContext for namespace 'spring-mvc-servlet': startup date [Mon Nov 23 11:54:09 CST 2015]; parent: Root WebApplicationContext
+INFO main org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'spring-mvc': initialization completed in 1713 ms
+INFO pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test1，每隔10秒执行一次
+ERROR pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test1，每隔10秒执行一次
+INFO pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test1，每隔10秒执行一次
+ERROR pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test1，每隔10秒执行一次
+INFO pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test2，每隔20秒执行一次
+ERROR pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test2，每隔20秒执行一次
+INFO pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test1，每隔10秒执行一次
+ERROR pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test1，每隔10秒执行一次
+INFO pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test1，每隔10秒执行一次
+ERROR pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test1，每隔10秒执行一次
+INFO pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test2，每隔20秒执行一次
+ERROR pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test2，每隔20秒执行一次
+INFO pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test1，每隔10秒执行一次
+ERROR pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test1，每隔10秒执行一次
+INFO pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test1，每隔10秒执行一次
+ERROR pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test1，每隔10秒执行一次
+INFO pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test2，每隔20秒执行一次
+ERROR pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test2，每隔20秒执行一次
+INFO pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test1，每隔10秒执行一次
+ERROR pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test1，每隔10秒执行一次
+INFO pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test1，每隔10秒执行一次
+ERROR pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test1，每隔10秒执行一次
+INFO pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test2，每隔20秒执行一次
+ERROR pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test2，每隔20秒执行一次
+INFO pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test1，每隔10秒执行一次
+ERROR pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test1，每隔10秒执行一次
+INFO pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test1，每隔10秒执行一次
+ERROR pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test1，每隔10秒执行一次
+INFO pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test2，每隔20秒执行一次
+ERROR pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test2，每隔20秒执行一次
+INFO pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test1，每隔10秒执行一次
+ERROR pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test1，每隔10秒执行一次
+INFO pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test1，每隔10秒执行一次
+ERROR pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test1，每隔10秒执行一次
+INFO pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test2，每隔20秒执行一次
+ERROR pool-3-thread-1 org.jumutang.sinopecGameCt.task.TestTask - ==============>>>心跳任务test2，每隔20秒执行一次
+INFO Timer-1 org.springframework.web.context.support.XmlWebApplicationContext - Closing WebApplicationContext for namespace 'spring-mvc-servlet': startup date [Mon Nov 23 11:54:09 CST 2015]; parent: Root WebApplicationContext
+INFO Timer-1 org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'spring-mvc': initialization started
+INFO Timer-1 org.springframework.web.context.support.XmlWebApplicationContext - Refreshing WebApplicationContext for namespace 'spring-mvc-servlet': startup date [Mon Nov 23 11:56:12 CST 2015]; parent: Root WebApplicationContext
+INFO Timer-1 org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [spring-mvc.xml]
+INFO Timer-1 org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+INFO Timer-1 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/testC/addUser],methods=[GET || POST]}" onto public java.lang.String org.jumutang.sinopecGameCt.web.controller.TestController.addUser(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,javax.servlet.http.HttpSession,java.lang.String,java.lang.String,java.lang.Integer)
+INFO Timer-1 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/testC/downLoadForExcel],methods=[GET || POST]}" onto public void org.jumutang.sinopecGameCt.web.controller.TestController.downLoadForExcel(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,javax.servlet.http.HttpSession)
+INFO Timer-1 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/testC/queryUser],methods=[GET || POST]}" onto public java.lang.String org.jumutang.sinopecGameCt.web.controller.TestController.queryUser(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,javax.servlet.http.HttpSession)
+INFO Timer-1 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: WebApplicationContext for namespace 'spring-mvc-servlet': startup date [Mon Nov 23 11:56:12 CST 2015]; parent: Root WebApplicationContext
+INFO Timer-1 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: WebApplicationContext for namespace 'spring-mvc-servlet': startup date [Mon Nov 23 11:56:12 CST 2015]; parent: Root WebApplicationContext
+INFO Timer-1 org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'spring-mvc': initialization completed in 1487 ms
+INFO Timer-1 org.springframework.web.context.support.XmlWebApplicationContext - Closing WebApplicationContext for namespace 'spring-mvc-servlet': startup date [Mon Nov 23 11:56:12 CST 2015]; parent: Root WebApplicationContext
+INFO Timer-1 org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'spring-mvc': initialization started
+INFO Timer-1 org.springframework.web.context.support.XmlWebApplicationContext - Refreshing WebApplicationContext for namespace 'spring-mvc-servlet': startup date [Mon Nov 23 11:59:49 CST 2015]; parent: Root WebApplicationContext
+INFO Timer-1 org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [spring-mvc.xml]
+INFO Timer-1 org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+INFO Timer-1 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/testC/addUser],methods=[GET || POST]}" onto public java.lang.String org.jumutang.sinopecGameCt.web.controller.TestController.addUser(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,javax.servlet.http.HttpSession,java.lang.String,java.lang.String,java.lang.Integer)
+INFO Timer-1 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/testC/downLoadForExcel],methods=[GET || POST]}" onto public void org.jumutang.sinopecGameCt.web.controller.TestController.downLoadForExcel(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,javax.servlet.http.HttpSession)
+INFO Timer-1 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/testC/queryUser],methods=[GET || POST]}" onto public java.lang.String org.jumutang.sinopecGameCt.web.controller.TestController.queryUser(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,javax.servlet.http.HttpSession)
+INFO Timer-1 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: WebApplicationContext for namespace 'spring-mvc-servlet': startup date [Mon Nov 23 11:59:49 CST 2015]; parent: Root WebApplicationContext
+INFO Timer-1 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: WebApplicationContext for namespace 'spring-mvc-servlet': startup date [Mon Nov 23 11:59:49 CST 2015]; parent: Root WebApplicationContext
+INFO Timer-1 org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'spring-mvc': initialization completed in 936 ms
+INFO Timer-1 org.springframework.web.context.support.XmlWebApplicationContext - Closing WebApplicationContext for namespace 'spring-mvc-servlet': startup date [Mon Nov 23 11:59:49 CST 2015]; parent: Root WebApplicationContext
+INFO Timer-1 org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'spring-mvc': initialization started
+INFO Timer-1 org.springframework.web.context.support.XmlWebApplicationContext - Refreshing WebApplicationContext for namespace 'spring-mvc-servlet': startup date [Mon Nov 23 12:00:17 CST 2015]; parent: Root WebApplicationContext
+INFO Timer-1 org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [spring-mvc.xml]
+INFO Timer-1 org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+INFO Timer-1 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/testC/addUser],methods=[GET || POST]}" onto public java.lang.String org.jumutang.sinopecGameCt.web.controller.TestController.addUser(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,javax.servlet.http.HttpSession,java.lang.String,java.lang.String,java.lang.Integer)
+INFO Timer-1 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/testC/downLoadForExcel],methods=[GET || POST]}" onto public void org.jumutang.sinopecGameCt.web.controller.TestController.downLoadForExcel(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,javax.servlet.http.HttpSession)
+INFO Timer-1 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/testC/queryUser],methods=[GET || POST]}" onto public java.lang.String org.jumutang.sinopecGameCt.web.controller.TestController.queryUser(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,javax.servlet.http.HttpSession)
+INFO Timer-1 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: WebApplicationContext for namespace 'spring-mvc-servlet': startup date [Mon Nov 23 12:00:17 CST 2015]; parent: Root WebApplicationContext
+INFO Timer-1 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: WebApplicationContext for namespace 'spring-mvc-servlet': startup date [Mon Nov 23 12:00:17 CST 2015]; parent: Root WebApplicationContext
+INFO Timer-1 org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'spring-mvc': initialization completed in 1283 ms

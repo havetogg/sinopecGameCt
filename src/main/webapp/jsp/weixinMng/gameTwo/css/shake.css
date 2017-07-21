@@ -1,0 +1,493 @@
+﻿@charset "utf-8";
+/*CSS Reset*/
+*{margin:0;padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+h1,h2,h3,h4,h5,h6{font-size:100%;}
+ul,ol,li{list-style:none; margin: 0; padding: 0;}
+em,i{font-style:normal;}
+img{border:none;}
+a,a:hover{text-decoration:none;/*transition: all 0.2s linear;*/}
+a,input{-webkit-tap-highlight-color:rgba(255,0,0,0);}
+input,img {vertical-align: middle;}
+.clearfix:after{display:block;content:'';clear:both;visibility:hidden;}
+.none{display:none;}
+.no-spacing{margin:0;padding:0;}
+.margin-center{margin:0 auto;text-align:center;}
+body{font-family: "微软雅黑";width: 100%;}
+body,html{ height: 100%; background: #0d041b;}
+*{box-sizing: border-box;}
+/*1rem=40px*/
+
+/*摇一摇游戏*/
+.shake{ height: 100%; min-height: 25.2rem; background: url(../img/bg.png) no-repeat; background-size: 16rem 25.2rem; padding-top: 0.6rem;}
+.shake .ruleButton{ width: 1.8rem; height: 2.1rem; position: absolute; top: 0; right: 0.4rem;}
+.shake .ruleButton img{ width: 1.8rem; height: 2.1rem;}
+.shake .jewel{ width: 4.25rem; height: 0.8rem; background: #1e264f; border-radius: 0.5rem; overflow: hidden; margin-left: 0.6rem;}
+.shake .jewel .diamond{ width: 0.75rem; height: 0.6rem; margin: 0.1rem 0.3rem; float: left; display: block;}
+.shake .jewel label{ float: left; color: #fff; font-size: 0.5rem; line-height: 0.8rem; display: block;}
+.shake .jewel .add{ width: 0.6rem; height: 0.6rem; display: block; float: right; margin: 0.1rem;}
+.shake .title{width: 11rem; height: 2.05rem; display: block; margin: 0.5rem auto 0.25rem;}
+
+.shake .prize{ width: 92%; height: 20px !important; background: rgba(0,0,0,0.3); border-radius: 0.5rem; margin: 0.4rem auto 0.7rem;}
+.shake .prize li{ width: 200px; height: 20px; line-height: 20px; margin: 0 6px; display: inline-block; color: #fff; font-size: 12px;}
+
+.shake .prize_left{ width: 52px; height: 182px; background: url(../img/prize_left.png) no-repeat; background-size: 52px 182px; position: absolute; top: 5.3rem; left: 0; padding-top: 33px;}
+.shake .prize_left .prizes1{ width: 42px; height: 134px; background: none;}
+.shake .prize_left .prizes1 .tip{ width: 42px; height: 48px; margin-bottom: 6px;}
+.shake .prize_left .prizes1 .tip img{ width: 32px; height: 32px; display: block; margin: 0 auto;}
+.shake .prize_left .prizes1 .tip p{ width: 100%; text-align: center; height: 16px; line-height: 16px; display: block; font-size: 9px; color: #fff;}
+
+.shake .prize_right{ width: 52px; height: 182px; background: url(../img/prize_right.png) no-repeat; background-size: 52px 182px; position: absolute; top: 5.3rem; right: 0; padding-top: 33px;}
+.shake .prize_right .prizes2{ width: 42px; height: 134px; margin-left: 10px; background: none;}
+.shake .prize_right .prizes2 .tip{ width: 42px; margin-bottom: 6px;}
+.shake .prize_right .prizes2 .tip img{ width: 32px; height: 32px; display: block; margin: 0 auto;}
+.shake .prize_right .prizes2 .tip p{ width: 100%; text-align: center; height: 16px; line-height: 16px; display: block; font-size: 9px; color: #fff;}
+.shake .prizes1,
+.shake .prizes2{ background: none; height: 100%;}
+
+@media screen and (min-width: 360px) {
+	.shake .prize_left{ transform:scale(1.125,1.125); top: 5.8rem; left: 0.15rem;}
+	.shake .prize_right{ transform:scale(1.125,1.125); top: 5.8rem; right: 0.15rem;}
+}
+@media screen and (min-width: 375px) {
+	.shake .prize_left{ transform:scale(1.1719,1.1719); top: 6rem; left: 0.2rem;}
+	.shake .prize_right{ transform:scale(1.1719,1.1719); top: 6rem; right: 0.2rem;}
+}
+@media screen and (min-width: 400px) {
+	.shake .prize_left{ transform:scale(1.25,1.25); top: 6rem; left: 0.25rem;}
+	.shake .prize_right{ transform:scale(1.25,1.25); top: 6rem; right: 0.25rem;}
+}
+@media screen and (min-width: 414px) {
+	.shake .prize_left{ transform:scale(1.2938,1.2938); top: 6.2rem; left: 0.3rem;}
+	.shake .prize_right{ transform:scale(1.2938,1.2938); top: 6.2rem; right: 0.3rem;}
+}
+
+.machine{ position: relative;}
+.machine .top{ width: 10rem; height: 7.5rem; background: rgba(94,208,228,0.3); border-radius: 5rem 5rem 0 0; margin: 0 auto; overflow: hidden; position: relative;}
+.machine .top .glass{ width: 10rem; height: 7.5rem; position: absolute; top: 0; left: 0; z-index: 10;}
+.machine .top .ball{ width: 9.5rem; height: 7rem; position: relative; margin: 0.25rem; border-radius: 5rem 5rem 0 0; overflow: hidden;}
+.machine .top .ball img{ width: 1.5rem; height: 1.5rem; position: absolute;}
+.machine .top .ball .ball1{ left: 0; top: 6rem; transform:rotate(0deg); z-index: 1;}
+.machine .top .ball .ball2{ left: 3.5rem; top: 4.125rem; transform:rotate(-10deg); z-index: 2;}
+.machine .top .ball .ball3{ left: 5.1rem; top: 4.25rem; transform:rotate(-80deg); z-index: 5;}
+.machine .top .ball .ball4{ left: 6rem; top: 5.25rem; transform:rotate(10deg); z-index: 1;}
+.machine .top .ball .ball5{ left: 0.75rem; top: 4.75rem; transform:rotate(-70deg); z-index: 1;}
+.machine .top .ball .ball6{ left: 3.25rem; top: 6rem; transform:rotate(-20deg); z-index: 1;}
+.machine .top .ball .ball7{ left: 4.25rem; top: 3.25rem; transform:rotate(-140deg); z-index: 1;} 
+.machine .top .ball .ball8{ left: 8rem; top: 6rem; transform:rotate(0deg); z-index: 1;}
+.machine .top .ball .ball9{ left: 1.25rem; top: 5.5rem; transform:rotate(20deg); z-index: 1;}
+.machine .top .ball .ball10{ left: 2rem; top: 4rem; transform:rotate(-40deg); z-index: 1;}
+.machine .top .ball .ball11{ left: 4.25rem; top: 5.25rem; transform:rotate(0deg); z-index: 1;}
+.machine .top .ball .ball12{ left: 6.65rem; top: 6rem; transform:rotate(-40deg); z-index: 3;}
+.machine .top .ball .ball13{ left: 7.15rem; top: 4.5rem; transform:rotate(10deg); z-index: 3;}
+.machine .top .ball .ball14{ left: 1.75rem; top: 6rem; transform:rotate(-90deg); z-index: 0;}
+.machine .top .ball .ball15{ left: 2.5rem; top: 5rem; transform:rotate(0deg); z-index: 0;}
+.machine .top .ball .ball16{ left: 5rem; top: 6.1rem; transform:rotate(10deg); z-index: 5;}
+.machine .top .ball .ball17{ left: 6.5rem; top: 3.75rem; transform:rotate(-100deg); z-index: 0;}
+
+.machine .top .ball.play .ball1{animation:toPlay1 2s linear;}
+.machine .top .ball.play .ball2{animation:toPlay2 2s linear;}
+.machine .top .ball.play .ball3{animation:toPlay3 2s linear;}
+.machine .top .ball.play .ball4{animation:toPlay4 2s linear;}
+.machine .top .ball.play .ball5{animation:toPlay5 2s linear;}
+.machine .top .ball.play .ball6{animation:toPlay6 2s linear;}
+.machine .top .ball.play .ball7{animation:toPlay7 2s linear;}
+.machine .top .ball.play .ball8{animation:toPlay8 2s linear;}
+.machine .top .ball.play .ball9{animation:toPlay9 2s linear;}
+.machine .top .ball.play .ball10{animation:toPlay10 2s linear;}
+.machine .top .ball.play .ball11{animation:toPlay11 2s linear;}
+.machine .top .ball.play .ball12{animation:toPlay12 2s linear;}
+.machine .top .ball.play .ball13{animation:toPlay13 2s linear;}
+.machine .top .ball.play .ball14{animation:toPlay14 2s linear;}
+.machine .top .ball.play .ball15{animation:toPlay15 2s linear;}
+.machine .top .ball.play .ball16{animation:toPlay16 2s linear;}
+.machine .top .ball.play .ball17{animation:toPlay17 2s linear;}
+
+@keyframes toPlay1
+{
+0% { left: 0rem; top: 6rem; transform:rotate(0deg);}
+10% { left: 1rem; top: 1rem;}
+30% { left: 8.2rem; top: 4rem;}
+40% { left: 6.5rem; top: 6rem;}
+50% { left: 4.8rem; top: 3rem;}
+60% { left: 3.2rem; top: 6rem;}
+70% { left: 1.6rem; top: 4.5rem;}
+80% { left: 1rem; top: 6rem;}
+90% { left: 0rem; top: 5rem;}
+100%{ left: 0rem; top: 6rem; transform:rotate(1080deg);}
+}
+
+@keyframes toPlay2
+{
+0% { left: 3.5rem; top: 4.125rem; transform:rotate(-10deg);}
+10% { left: 2rem; top: 0.5rem;}
+20% { left: 0rem; top: 3.5rem;}
+30% { left: 2rem; top: 6rem;}
+40% { left: 4rem; top: 3rem;}
+50% { left: 6.5rem; top: 1rem;}
+60% { left: 8.2rem; top: 3.5rem;}
+70% { left: 6rem; top: 6rem;}
+80% { left: 3.5rem; top: 4rem;}
+90% { left: 3rem; top: 3.5rem;}
+100% { left: 3.5rem; top: 4.125rem; transform:rotate(-1090deg);}
+}
+
+@keyframes toPlay3
+{
+0% { left: 5.1rem; top: 4.25rem; transform:rotate(-80deg);}
+8% { left: 2.6rem; top: 6rem;}
+20% { left: 0.6rem; top: 1.25rem;}
+30% { left: 0rem; top: 6rem;}
+40% { left: 2rem; top: 1rem;}
+50% { left: 4rem; top: 6rem;}
+60% { left: 6rem; top: 1.3rem;}
+70% { left: 8rem; top: 6rem;}
+80% { left: 6rem; top: 1.5rem;}
+90% { left: 5rem; top: 3rem;}
+100% { left: 5.1rem; top: 4.25rem; transform:rotate(1000deg);}
+}
+
+@keyframes toPlay4
+{
+0% { left: 6rem; top: 5.25rem; transform:rotate(10deg);}
+10% { left: 8rem; top: 3.25rem;}
+20% { left: 6rem; top: 1.25rem;}
+30% { left: 4rem; top: 3.25rem;}
+40% { left: 2rem; top: 5.25rem;}
+45% { left: 1rem; top: 6.25rem;}
+50% { left: 0rem; top: 5.25rem;}
+60% { left: 2rem; top: 3.25rem;}
+70% { left: 4rem; top: 1.25rem;}
+75% { left: 4.5rem; top: 2.25rem;}
+85% { left: 5rem; top: 3.25rem;}
+95% { left: 5.5rem; top: 4.25rem;}
+100% { left: 6rem; top: 5.25rem; transform:rotate(-1070deg);}
+}
+
+@keyframes toPlay5
+{
+0% { left: 0.75rem; top: 4.75rem; transform:rotate(-70deg);}
+10% { left: 3.75rem; top: 1.75rem;}
+15% { left: 5.25rem; top: 0.25rem;}
+25% { left: 8.25rem; top: 3.25rem;}
+35% { left: 5.25rem; top: 6rem;}
+45% { left: 2.25rem; top: 3rem;}
+50% { left: 0.75rem; top: 1.5rem;}
+60% { left: 0.75rem; top: 4.5rem;}
+65% { left: 0.75rem; top: 6rem;}
+75% { left: 3.75rem; top: 1.5rem;}
+85% { left: 2.75rem; top: 4.5rem;}
+90% { left: 1.25rem; top: 3.25rem;}
+100% { left: 0.75rem; top: 4.75rem; transform:rotate(1010deg);}
+}
+
+@keyframes toPlay6
+{
+0% { left: 3.25rem; top: 6rem; transform:rotate(-20deg);}
+10% { left: 4.25rem; top: 5rem;}
+20% { left: 5.25rem; top: 4rem;}
+30% { left: 6.25rem; top: 3rem;}
+40% { left: 7.25rem; top: 2rem;}
+50% { left: 8.25rem; top: 3rem;}
+60% { left: 7.25rem; top: 4rem;}
+70% { left: 6.25rem; top: 5rem;}
+80% { left: 5.25rem; top: 6rem;}
+90% { left: 4.25rem; top: 5rem;}
+100% { left: 3.25rem; top: 6rem; transform:rotate(-1110deg);}
+}
+
+@keyframes toPlay7
+{
+0% { left: 4.25rem; top: 3.25rem; transform:rotate(-140deg);}
+10% { left: 2.25rem; top: 4.25rem;}
+20% { left: 0.25rem; top: 5.25rem;}
+30% { left: 2.25rem; top: 6.25rem;}
+40% { left: 4.25rem; top: 5.25rem;}
+50% { left: 6.25rem; top: 4.25rem;}
+60% { left: 8.25rem; top: 3.25rem;}
+70% { left: 6.25rem; top: 2.25rem;}
+80% { left: 4.25rem; top: 1.25rem;}
+90% { left: 4.25rem; top: 2.25rem;}
+100% { left: 4.25rem; top: 3.25rem; transform:rotate(940deg);}
+}
+
+@keyframes toPlay8
+{
+0% { left: 8rem; top: 6rem; transform:rotate(0deg);}
+10% { left: 6.5rem; top: 4rem;}
+20% { left: 5rem; top: 2rem;}
+30% { left: 3.5rem; top: 0rem;}
+40% { left: 2rem; top: 2rem;}
+50% { left: 0.5rem; top: 4rem;}
+60% { left: 2rem; top: 6rem;}
+70% { left: 3.5rem; top: 3rem;}
+80% { left: 5rem; top: 4rem;}
+90% { left: 6.5rem; top: 5rem;}
+100% { left: 8rem; top: 6rem; transform:rotate(-1080deg);}
+}
+
+@keyframes toPlay9
+{
+0% { left: 1.25rem; top: 5.5rem; transform:rotate(20deg);}
+10% { left: 3.25rem; top: 3.5rem;}
+20% { left: 5.25rem; top: 5.5rem;}
+30% { left: 7.25rem; top: 3.5rem;}
+40% { left: 5.25rem; top: 5.5rem;}
+50% { left: 3.25rem; top: 3.5rem;}
+60% { left: 5.25rem; top: 5.5rem;}
+70% { left: 4.25rem; top: 3.5rem;}
+80% { left: 3.25rem; top: 4.5rem;}
+90% { left: 2.25rem; top: 5.5rem;}
+100% { left: 1.25rem; top: 5.5rem; transform:rotate(1100deg);}
+}
+
+@keyframes toPlay10
+{
+0% { left: 2rem; top: 4rem; transform:rotate(-40deg);}
+10% { left: 4rem; top: 6rem;}
+20% { left: 6rem; top: 4rem;}
+30% { left: 8rem; top: 2rem;}
+40% { left: 6rem; top: 0rem;}
+50% { left: 4rem; top: 2rem;}
+60% { left: 2rem; top: 4rem;}
+70% { left: 0rem; top: 6rem;}
+80% { left: 1rem; top: 5rem;}
+90% { left: 2rem; top: 4rem;}
+100% { left: 2rem; top: 4rem; transform:rotate(-1120deg);}
+}
+
+@keyframes toPlay11
+{
+0% { left: 4.25rem; top: 5.25rem; transform:rotate(0deg);}
+10% { left: 2.25rem; top: 3.25rem;}
+20% { left: 0.25rem; top: 1.25rem;}
+30% { left: 0.25rem; top: 3.25rem;}
+40% { left: 0.25rem; top: 5.25rem;}
+50% { left: 2.25rem; top: 3.25rem;}
+60% { left: 4.25rem; top: 5.25rem;}
+70% { left: 6.25rem; top: 3.25rem;}
+80% { left: 5.25rem; top: 4rem;}
+90% { left: 4.25rem; top: 5.5rem;}
+100% { left: 4.25rem; top: 5.25rem; transform:rotate(1080deg);}
+}
+
+@keyframes toPlay12
+{
+0% { left: 6.65rem; top: 6rem; transform:rotate(-40deg);}
+10% { left: 5.65rem; top: 4rem;}
+20% { left: 4.65rem; top: 2rem;}
+30% { left: 3.65rem; top: 0rem;}
+40% { left: 2.65rem; top: 2rem;}
+50% { left: 0.65rem; top: 4rem;}
+60% { left: 2.65rem; top: 6rem;}
+70% { left: 4.65rem; top: 4rem;}
+80% { left: 6.65rem; top: 6rem;}
+90% { left: 5.65rem; top: 5rem;}
+100% { left: 6.65rem; top: 6rem; transform:rotate(-1120deg);}
+}
+
+@keyframes toPlay13
+{
+0% { left: 7.15rem; top: 4.5rem; transform:rotate(10deg);}
+10% { left: 8.15rem; top: 5.5rem;}
+20% { left: 7.15rem; top: 4.5rem;}
+30% { left: 6.15rem; top: 3.5rem;}
+40% { left: 5.15rem; top: 2.5rem;}
+50% { left: 4.15rem; top: 1.5rem;}
+60% { left: 3.15rem; top: 0.5rem;}
+70% { left: 2.15rem; top: 1.5rem;}
+80% { left: 4.15rem; top: 2.5rem;}
+90% { left: 6.15rem; top: 3.5rem;}
+100% { left: 7.15rem; top: 4.5rem; transform:rotate(1090deg);}
+}
+
+@keyframes toPlay14
+{
+0% { left: 1.75rem; top: 6rem; transform:rotate(-90deg);}
+10% { left: 3.75rem; top: 4rem;}
+20% { left: 5.75rem; top: 2rem;}
+25% { left: 6.75rem; top: 1rem;}
+35% { left: 8.75rem; top: 3rem;}
+40% { left: 7.75rem; top: 4rem;}
+50% { left: 5.75rem; top: 6rem;}
+60% { left: 3.75rem; top: 4rem;}
+70% { left: 1.75rem; top: 2rem;}
+80% { left: 2.75rem; top: 4rem;}
+90% { left: 1.75rem; top: 5rem;}
+100% { left: 1.75rem; top: 6rem; transform:rotate(990deg);}
+}
+
+@keyframes toPlay15
+{
+0% { left: 2.5rem; top: 5rem; transform:rotate(0deg);}
+10% { left: 4.5rem; top: 4rem;}
+20% { left: 6.5rem; top: 3rem;}
+30% { left: 8rem; top: 4rem;}
+40% { left: 6.5rem; top: 2rem;}
+50% { left: 4.5rem; top: 3rem;}
+60% { left: 2.5rem; top: 4rem;}
+70% { left: 0.5rem; top: 6rem;}
+80% { left: 1rem; top: 5rem;}
+90% { left: 2rem; top: 6rem;}
+100% { left: 2.5rem; top: 5rem; transform:rotate(-1080deg);}
+}
+
+@keyframes toPlay16
+{
+0% { left: 5rem; top: 6.1rem; transform:rotate(10deg);}
+10% { left: 7rem; top: 4rem;}
+20% { left: 5rem; top: 2rem;}
+30% { left: 3rem; top: 0rem;}
+40% { left: 1rem; top: 2rem;}
+50% { left: 3rem; top: 4rem;}
+60% { left: 5rem; top: 6rem;}
+70% { left: 7rem; top: 5rem;}
+80% { left: 5rem; top: 4rem;}
+90% { left: 5rem; top: 5rem;}
+100% { left: 5rem; top: 6.1rem; transform:rotate(1090deg);}
+}
+
+@keyframes toPlay17
+{
+0% { left: 6.5rem; top: 3.75rem; transform:rotate(-100deg);}
+10% { left: 4.5rem; top: 4.75rem;}
+20% { left: 2.5rem; top: 5.75rem;}
+30% { left: 0.5rem; top: 6.75rem;}
+40% { left: 0.5rem; top: 5.75rem;}
+50% { left: 2.5rem; top: 4.75rem;}
+60% { left: 4.5rem; top: 3.75rem;}
+70% { left: 6.5rem; top: 2.75rem;}
+80% { left: 7.5rem; top: 1.75rem;}
+90% { left: 7rem; top: 2.75rem;}
+100% { left: 6.5rem; top: 3.75rem; transform:rotate(-1180deg);}
+}
+
+.machine .middle{ width: 16rem; height: 12.6rem; background: url(../img/machine.png) no-repeat; background-size: 16rem 12.6rem; margin-top: -0.81rem; position: relative; z-index: 10;}
+.machine .middle .finger{ width: 0.4rem; height: 1.4rem; position: absolute; top: 0.4rem; left: 50%; margin-left: -0.2rem;}
+.machine .middle .finger.play{animation:toRound 2s linear;}
+@keyframes toRound
+{
+0% {transform:rotate(0deg);}
+10% {transform:rotate(90deg);}
+20% {transform:rotate(0deg);}
+30% {transform:rotate(-90deg);}
+40% {transform:rotate(0deg);}
+50% {transform:rotate(90deg);}
+60% {transform:rotate(0deg);}
+70% {transform:rotate(-90deg);}
+80% {transform:rotate(0deg);}
+90% {transform:rotate(90deg);}
+100% {transform:rotate(0deg);}
+}
+.machine .energy{ width: 2.05rem; min-height: 4rem; position: absolute; top: 4.2rem; left: 3.25rem;}
+.machine .energy .hit{ width: 2.05rem; height: 1.4rem; background: url(../img/hit.png) no-repeat; background-size: 2.05rem 1.4rem; display: block;}
+.machine .energy .hit.has_hit{background: url(../img/hit2.png) no-repeat; background-size: 2.05rem 1.4rem; }
+.machine .energy .energys{ width: 1.25rem; height: 2.45rem; background: url(../img/energy.png) no-repeat; background-size: 1.25rem 2.45rem; margin: 0 auto 0.15rem; padding-top: 0.1rem;}
+.machine .energy .energys img{ width: 1.25rem; height: 0.45rem; display: block; opacity: 0;}
+.machine .energy .energys img.show{ opacity: 1;}
+.machine .middle .start{ width: 5.1rem; height: 2.6rem; position: relative; top: 4rem; left: 50%; margin-left: -2.55rem;}
+.machine .middle .start img{ width: 5.1rem; height: 2.6rem; display: block;}
+.machine .middle .ornament{ width: 2.15rem; height: 2.15rem; display: block; position: absolute; top: 4.2rem; right: 3.2rem;}
+.machine .middle .ornament.play{animation:toRight .4s linear;}
+@keyframes toRight
+{
+0% {transform:rotate(0deg);}
+50% {transform:rotate(90deg);}
+100% {transform:rotate(0deg);}
+}
+#audio{ display: none;}
+
+.machine .middle .ball{ width: 1.5rem; height: 1.5rem; position: absolute; left: 50%; margin-left: -0.75rem; bottom: 2.2rem;  opacity: 0;transform: scale(0.5, 0.5); background: url(../img/ball1.png) no-repeat; background-size: 1.5rem 1.5rem;}
+.machine .middle .ball.ball2{ background: url(../img/ball2.png) no-repeat; background-size: 1.5rem 1.5rem;}
+.machine .middle .ball.ball3{ background: url(../img/ball3.png) no-repeat; background-size: 1.5rem 1.5rem;}
+.machine .middle .ball.ball4{ background: url(../img/ball4.png) no-repeat; background-size: 1.5rem 1.5rem;}
+.machine .middle .ball.play{	
+	opacity: 1;
+	transform: scale(1, 1);
+	animation:toblock .8s linear;
+}
+@keyframes toblock
+{
+0% {transform: scale(0, 0); opacity: 0; bottom: 3.5rem; }
+15% { bottom: 3rem;}
+30% { bottom: 3.5rem;}
+45% { bottom: 3rem;}
+60% { bottom: 3.5rem;}
+75% { bottom: 3rem;}
+90% { bottom: 2.8rem;}
+100% {transform: scale(1, 1); opacity: 1; bottom: 2.2rem;}
+}
+
+/*弹框*/
+.pop{ width: 100%; height: 100%; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); display: none; z-index: 100;}
+
+.loading{}
+.loading img{ width: 2rem; height: 2rem; display: block; position: absolute; top: 50%; left: 50%; margin: -1rem 0 0 -1rem; animation: toRotate 1.8s linear; animation-iteration-count:infinite;}
+@keyframes toRotate
+{
+from {transform:rotate(0deg);}
+to {transform:rotate(360deg);}
+}
+
+.impact{}
+.impact .centerDiv{ width: 11.5rem; height: 10rem; position: absolute; top: 50%; left: 50%; margin-left: -5.75rem; margin-top: -5rem; border-radius: 0.2rem; overflow: hidden;}
+.impact .centerDiv .bg{ background: #fdffec; padding-top: 1rem; height: 7.75rem;}
+.impact .centerDiv h1{ width: 100%; height: 2.25rem; background: #f24831 url(../img/pop.png) no-repeat center center; background-size: 5.7rem 2.25rem; text-align: center; line-height: 2.25rem; font-size: 0.75rem; font-weight: normal; color: #fff;}
+.impact .centerDiv label{ width: 9rem; height: 3.1rem; line-height: 2.55rem; background: url(../img/win.png) no-repeat; background-size: 9rem 3.1rem; display: block; text-align: center; font-size: 0.75rem; color: #ffef65; font-weight: bold;  margin:0 auto 1rem;}
+.impact .centerDiv .btn{ width: 9.2rem; height: 1.825rem; line-height: 1.5rem; text-align: center; font-size: 0.6rem; color: #ff1562; background: url(../img/btn.png) no-repeat; background-size: 9.2rem 1.825rem; display: block; margin: 0.4rem auto 0;}
+
+.win{}
+.win .centerDiv{ width: 11.5rem; height: 15rem; position: absolute; top: 50%; left: 50%; margin-left: -5.75rem; margin-top: -7.5rem; border-radius: 0.2rem; overflow: hidden;}
+.win .centerDiv .bg{ background: #fdffec; padding-top: 1rem;}
+.win .centerDiv h1{ width: 11.5rem; height: 2.25rem; background: #f24831 url(../img/pop.png) no-repeat center center; background-size: 5.7rem 2.25rem; text-align: center; line-height: 2.25rem; font-size: 0.75rem; font-weight: normal; color: #fff;}
+.win .centerDiv label{ width: 9rem; height: 3.1rem; line-height: 2.55rem; background: url(../img/win.png) no-repeat; background-size: 9rem 3.1rem; display: block; text-align: center; font-size: 0.75rem; color: #ffef65; font-weight: bold; margin:0 auto 1rem;}
+.win .centerDiv p{ color: #757575; font-size: 0.6rem; text-align: center; height: 1.1rem; line-height: 1.1rem;}
+.win .centerDiv .btn{ width: 9.2rem; height: 1.825rem; line-height: 1.5rem; text-align: center; font-size: 0.6rem; color: #ff1562; background: url(../img/btn.png) no-repeat; background-size: 9.2rem 1.825rem; display: block; margin: 0.4rem auto 0;}
+
+.lost{}
+.lost .centerDiv{ width: 11.5rem; height: 15rem; position: absolute; top: 50%; left: 50%; margin-left: -5.75rem; margin-top: -7.5rem; border-radius: 0.2rem; overflow: hidden;}
+.lost .centerDiv .bg{ background: #fdffec; padding-top: 1rem; height: 12.75rem;}
+.lost .centerDiv h1{ width: 100%; height: 2.25rem; background: #f24831 url(../img/pop.png) no-repeat center center; background-size: 5.7rem 2.25rem; text-align: center; line-height: 2.25rem; font-size: 0.75rem; font-weight: normal; color: #fff;}
+.lost .centerDiv label{ width: 9rem; height: 3.1rem; line-height: 2.55rem; background: url(../img/lost.png) no-repeat; background-size: 9rem 3.1rem; display: block; text-align: center; font-size: 0.75rem; color: #a3a3a3; font-weight: bold; margin: 0 auto 1rem;}
+.lost .centerDiv p{ color: #757575; font-size: 0.6rem; text-align: center; height: 1.1rem; line-height: 1.1rem;}
+.lost .centerDiv .btn{ width: 9.2rem; height: 1.825rem; line-height: 1.5rem; text-align: center; font-size: 0.6rem; color: #ff2954; background: url(../img/btn.png) no-repeat; background-size: 9.2rem 1.825rem; display: block; margin: 0.4rem auto 0;}
+
+.rule{}
+.rule .centerDiv{ width: 11.5rem; height: 17rem; position: absolute; top: 50%; left: 50%; margin-left: -5.75rem; margin-top: -8.5rem; border-radius: 0.2rem; overflow: hidden;}
+.rule .centerDiv .bg{ background: #fdffec; padding-top: 1rem;  height: 12.75rem;}
+.rule .centerDiv .h420{ width: 100%; height: 8.5rem; overflow: auto; -webkit-overflow-scrolling: touch;}
+.rule .centerDiv h1{ width: 100%; height: 2.25rem; background: #f24831 url(../img/pop.png) no-repeat center center; background-size: 5.7rem 2.25rem; text-align: center; line-height: 2.25rem; font-size: 0.75rem; font-weight: normal; color: #fff;}
+.rule .centerDiv h2{ text-align: center; font-size: 0.75rem; color: #f24831; font-weight: normal; margin: 0.3rem 0;}
+.rule .centerDiv label{ text-align: center; display: block; font-size: 0.5rem; color: #ff6101; margin-top: 0.4rem;}
+.rule .centerDiv p{ color: #757575; font-size: 0.6rem; line-height: 1.1rem;  padding:0 0.9rem;}
+.rule .centerDiv p i{ width: 1.52rem; height: 1.08rem; background: url(../img/hit2.png) no-repeat; background-size: 1.52rem 1.08rem; display: block; float: left; margin-right: 0.2rem;}
+.rule .centerDiv .btn{ width: 9.2rem; height: 1.825rem; line-height: 1.5rem; text-align: center; font-size: 0.6rem; color: #ff2954; background: url(../img/btn.png) no-repeat; background-size: 9.2rem 1.825rem; display: block; margin: 1rem auto 0;}
+
+.no_money{}
+.no_money .centerDiv{ width: 11.5rem; height: 11.5rem; position: absolute; top: 50%; left: 50%; margin-left: -5.75rem; margin-top: -5.75rem; border-radius: 0.2rem; overflow: hidden;}
+.no_money .centerDiv .bg{ background: #fdffec; padding-top: 1rem; height: 9.25rem;}
+.no_money .centerDiv .close{ width: 1.2rem; height: 1.2rem; background: url(../img/close.png) no-repeat; background-size: 1.2rem 1.2rem; position: absolute; top: 0.4rem; right: 0.5rem;}
+.no_money .centerDiv h1{ width: 100%; height: 2.25rem; background: #f24831 url(../img/pop.png) no-repeat center center; background-size: 5.7rem 2.25rem; text-align: center; line-height: 2.25rem; font-size: 0.75rem; font-weight: normal; color: #fff;}
+.no_money .centerDiv .img{ width: 4.5rem; height: 3.25rem; margin: 0 0 0.5rem 3rem; display: block;}
+.no_money .centerDiv p{ color: #757575; font-size: 0.6rem; line-height: 1.1rem;  padding:0 0.9rem; text-align: center;}
+.no_money .centerDiv .btn{ width: 9.2rem; height: 1.825rem; line-height: 1.5rem; text-align: center; font-size: 0.6rem; color: #ff2954; background: url(../img/btn.png) no-repeat; background-size: 9.2rem 1.825rem; display: block; margin: 1rem auto 0;}
+
+.recharge{}
+.recharge .centerDiv{ width: 11.5rem; height: 11.5rem; position: absolute; top: 50%; left: 50%; margin-left: -5.75rem; margin-top: -5.75rem; border-radius: 0.2rem; overflow: hidden;}
+.recharge .centerDiv .bg{ background: #fdffec; padding-top: 1rem; height: 9.25rem;}
+.recharge .centerDiv .close{ width: 1.2rem; height: 1.2rem; background: url(../img/close.png) no-repeat; background-size: 1.2rem 1.2rem; position: absolute; top: 0.4rem; right: 0.5rem;}
+.recharge .centerDiv h1{ width: 100%; height: 2.25rem; background: #f24831 url(../img/pop.png) no-repeat center center; background-size: 5.7rem 2.25rem; text-align: center; line-height: 2.25rem; font-size: 0.75rem; font-weight: normal; color: #fff;}
+.recharge .centerDiv .img{ width: 3.5rem; height: 3.25rem; margin: 0 auto 0.5rem; display: block;}
+.recharge .centerDiv p{ color: #757575; font-size: 0.6rem; line-height: 1.1rem;  padding:0 0.9rem; text-align: center;}
+.recharge .centerDiv .btn{ width: 9.2rem; height: 1.825rem; line-height: 1.5rem; text-align: center; font-size: 0.6rem; color: #ff2954; background: url(../img/btn.png) no-repeat; background-size: 9.2rem 1.825rem; display: block; margin: 1rem auto 0;}
+
+/*引导页*/
+.guide{ width: 100%; height: 100%; position: absolute; top: 0; left: 0; background: rgba(0,0,0,0.5); z-index: 100; padding-top: 5.4rem; display: none;}
+.guide .img{ width: 14.75rem; height: 15.1rem; display: block; margin-left: 0.55rem;}
+.guide .driver{ width: 100%; text-align: center; line-height: 0.6rem; position: absolute; left: 0; bottom: 3.75rem; padding-left: 5rem;}
+.guide .driver input{ width: 0.6rem; height: 0.6rem; border: 1px solid #888; background: #fff; border-radius: 0.2rem; outline: none; float: left; margin-right: 0.2rem;}
+.guide .driver label{ font-size: 0.5rem; color: #fff; float: left;}
+.guide .know{ width: 10.35rem; height: 1.6rem; line-height: 1.5rem; text-align: center; border: 1px solid #fff; color: #fff; font-size: 0.6rem; position: absolute; bottom: 1.5rem; left: 50%; margin-left: -5.2rem; border-radius: 0.2rem;}
+
+
+

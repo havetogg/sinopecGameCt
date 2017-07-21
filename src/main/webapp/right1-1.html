@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/style.css" />
+		<script type="text/javascript" src="js/common/jquery-1.9.0.min.js" ></script>
+		<script type="text/javascript" src="js/main.js" ></script>
+		<style>
+	        .content{
+	
+	            background: url("img/bgs_03.png") no-repeat;
+	            background-size:100%;
+	            position: absolute;
+	        }
+	        .con{
+	            width: 456px;
+	            height: 214px;
+	            margin: 149px auto;
+	        }
+	    
+	    </style>
+	</head>
+	<body>
+		<div class="content">
+		    <div class="con"><img src="img/content.png" alt=""/></div>
+		</div>
+		
+		<div class="footer">
+			光大商城管理系统  |  技术支持<span>聚目堂 </span>  |  版本号：V1.0<br>
+					Copyright © 2016光大商城管理系统 苏ICP备115741300号
+		</div>
+		<script>
+	        $(function(){
+	            var bigw = document.documentElement.clientWidth;
+	            var bigh = document.documentElement.clientHeight;
+	            $(".content").height(bigh);
+	            $(".content").width(bigw);
+	        })
+	    </script>
+	</body>
+</html>

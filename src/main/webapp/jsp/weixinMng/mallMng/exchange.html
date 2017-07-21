@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1, user-scalable=no,width=320">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<script type="text/javascript" src="js/common/layout.js" ></script>
+		<script type="text/javascript" src="js/common/jQuery-1.11.3.js" ></script>
+		<link rel="stylesheet" href="css/exchange.css" />
+		<title>兑换中心</title>
+	</head>
+	<body class="bg1 pt20">
+		<!--loading-->
+		<div class="pop loading">
+			<img class="show" src="img/loading.png" />
+		</div>
+		
+		<!--兑换失败-->
+		<div class="pop failure">
+			<div class="centerDiv">
+				<h1>兑换失败</h1>
+				<p>您的兑换码输入有误</p>
+				<p>请核对后重新填写</p>
+				<a class="close" href="javascritp:;">确 定</a>
+			</div>
+		</div>
+		<!--主界面-->
+		<div class="wrapper">
+			<div class="exchange">
+				<input type="text" placeholder="请输入兑换码" />
+				<p>请在此输入兑换码兑换奖品</p>
+				<a class="toExchange" href="javascript:;">兑 换</a>
+			</div>
+		</div>
+		<script>
+			//关闭弹窗
+			$(".close").on("click",function(){
+				$(this).parent().parent().fadeOut();
+			})
+			
+			//验证成功
+			function exchangeSuccess(){
+				window.location.href="";
+			}
+			
+			//验证不成功
+			function exchangeFailure(){
+				$(".failure").fadeIn();
+			}
+			//$(".loading").fadeOut();
+		</script>
+	</body>
+</html>

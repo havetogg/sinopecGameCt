@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<meta name="viewport" content="initial-scale=0.5,maximum-scale=0.5,minimum-scale=0.5, user-scalable=no,width=640">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" href="css/game.css" />
+		<script type="text/javascript" src="js/jQuery-1.11.3.js" ></script>
+		<script type="text/javascript" src="js/layout.js" ></script>
+		<script type="text/javascript" src="js/game.js" ></script>
+		<title>加油达人</title>
+	</head>
+	<body>
+		<div class="wrapper">
+			<!--游戏开始页-->
+			<div class="index">
+				<!--钻石不足弹窗-->
+				<div class="pop noDiamond">
+					<div class="centerDiv">
+						<a class="close" href="javascript:;"></a>
+						<p>您的钻石不够啦</p>
+						<p>请去大厅充值</p>
+						<a class="buy" href="javascript:;">确定</a>
+					</div>
+				</div>
+				
+				<!--游戏次数不足弹窗-->
+				<div class="pop noTimes">
+					<div class="centerDiv">
+						<a class="close" href="javascript:;"></a>
+						<p>今天的机会用完啦</p>
+						<p>明天再来挑战吧</p>
+						<a class="buy" href="javascript:;">确定</a>
+					</div>
+				</div>
+				
+				<!--购买成功弹窗-->
+				<div class="pop success">
+					<div class="centerDiv">
+						<a class="close" href="javascript:;"></a>
+						<p>购买成功!</p>
+						<p>请尽情挑战吧!</p>
+						<a class="buy" href="javascript:;">确定</a>
+					</div>
+				</div>
+				
+				<!--购买游戏机会弹窗-->
+				<div class="pop buyTime">
+					<div class="centerDiv">
+						<a class="close" href="javascript:;"></a>
+						<img class="logo" src="img/diamond2.png" />
+						<p>购买一次挑战机会将消耗</p>
+						<p>100枚钻石，确认购买吗？</p>
+						<a class="buy" href="javascript:;"></a>
+					</div>
+				</div>
+				
+				<!--购买游戏机会弹窗-->
+				<div class="pop chart_list">
+					<div class="centerDiv">
+						<a class="close" href="javascript:;"></a>
+						<img class="logo" src="img/chart_list.png" />
+						<table>
+							<colgroup>
+								<col width="15%" />
+								<col width="40%" />
+								<col width="22%" />
+								<col width="23%" />
+							</colgroup>
+							<thead>
+								<tr>
+									<td>排名</td>
+									<td>玩家</td>
+									<td>分数</td>
+									<td>奖励</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><img src="img/no1.png" /></td>
+									<td>
+										<img src="img/user_head.png" />
+										<span>JMT1234567</span>
+									</td>
+									<td>999999</td>
+									<td>30</td>
+								</tr>
+								<tr>
+									<td><img src="img/no2.png" /></td>
+									<td>
+										<img src="img/user_head.png" />
+										<span>JMT1234567</span>
+									</td>
+									<td>999999</td>
+									<td>30</td>
+								</tr>
+								<tr>
+									<td><img src="img/no3.png" /></td>
+									<td>
+										<img src="img/user_head.png" />
+										<span>JMT1234567</span>
+									</td>
+									<td>999999</td>
+									<td>30</td>
+								</tr>
+								<tr>
+									<td>NO.4</td>
+									<td>
+										<img src="img/user_head.png" />
+										<span>JMT1234567</span>
+									</td>
+									<td>999999</td>
+									<td>30</td>
+								</tr>
+								<tr>
+									<td>NO.5</td>
+									<td>
+										<img src="img/user_head.png" />
+										<span>JMT1234567</span>
+									</td>
+									<td>999999</td>
+									<td>30</td>
+								</tr>
+								<tr>
+									<td>NO.6</td>
+									<td>
+										<img src="img/user_head.png" />
+										<span>JMT1234567</span>
+									</td>
+									<td>999999</td>
+									<td>30</td>
+								</tr>
+								<tr>
+									<td>NO.7</td>
+									<td>
+										<img src="img/user_head.png" />
+										<span>JMT1234567</span>
+									</td>
+									<td>999999</td>
+									<td>30</td>
+								</tr>
+								<tr>
+									<td>NO.8</td>
+									<td>
+										<img src="img/user_head.png" />
+										<span>JMT1234567</span>
+									</td>
+									<td>999999</td>
+									<td>30</td>
+								</tr>
+								<tr>
+									<td>NO.9</td>
+									<td>
+										<img src="img/user_head.png" />
+										<span>JMT1234567</span>
+									</td>
+									<td>999999</td>
+									<td>30</td>
+								</tr>
+								<tr>
+									<td>NO.10</td>
+									<td>
+										<img src="img/user_head.png" />
+										<span>JMT1234567</span>
+									</td>
+									<td>999999</td>
+									<td>30</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				
+				<div class="head">
+					<!--动画-->
+					<div class="talk">
+						<img src="img/talk.png" />
+					</div>
+					<!--排行榜-->
+					<a class="chart" href="javascript:;"></a>
+					<!--金币-->
+					<div class="gold">888888</div>
+					<!--钻石-->
+					<div class="diamond">888888</div>
+					<dl class="info">
+						<!--<dd>今日剩余</dd>
+						<dt>
+							<label>2次</label>
+							<div class="game_add"></div>
+						</dt>
+						<dd>挑战机会</dd>-->
+					</dl>
+				</div>
+				<div class="btn">
+					<!--开始游戏-->
+					<div class="tip">
+						<a class="toGame" href="game2.html">
+							<label>剩余<span>3</span>次</label>
+						</a>
+						<div class="game_add"></div>
+					</div>
+					
+					<!--游戏说明-->
+					<div class="tip">
+						<a class="toExplain" href="game.html">
+							<label>剩余<span>3</span>次</label>
+						</a>
+						<div class="game_add"></div>
+					</div>
+					
+					<!--返回大厅-->
+					<a class="toHome" href="javascript:;"></a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

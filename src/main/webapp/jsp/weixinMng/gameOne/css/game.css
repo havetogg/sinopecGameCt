@@ -1,0 +1,475 @@
+@charset "utf-8";
+/*CSS Reset*/
+*{margin:0;padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+h1,h2,h3,h4,h5,h6{font-size:100%;}
+ul,ol,li{list-style:none; margin: 0; padding: 0;}
+em,i{font-style:normal;}
+img{border:none;}
+a,a:hover{text-decoration:none;/*transition: all 0.2s linear;*/}
+a,input{-webkit-tap-highlight-color:rgba(255,0,0,0);}
+input,img {vertical-align: middle;}
+.clearfix:after{display:block;content:'';clear:both;visibility:hidden;}
+.none{display:none;}
+.no-spacing{margin:0;padding:0;}
+.margin-center{margin:0 auto;text-align:center;}
+body{font-family: "微软雅黑";width: 100%;}
+body,html{ height: 100%;}
+*{box-sizing: border-box;}
+/*1rem=20px*/
+
+/*公共*/
+.wrapper{ width: 100%; height: 100%; max-width: 32rem;}
+.gold{ width: 7rem; height: 1.6rem; line-height: 1.6rem; font-size: 0.9rem; color: #fff; background: rgba(0,0,0,0.4) url(../img/gold.png) no-repeat 0.6rem center; position: absolute; top: 1rem; left: 1.25rem; border-radius: 1rem; padding-left: 2.5rem; z-index: 20; background-size: 1.5rem 1.5rem;}
+.diamond{ width: 7rem; height: 1.6rem; line-height: 1.6rem; font-size: 0.9rem; color: #fff; background: rgba(0,0,0,0.4) url(../img/diamond.png) no-repeat 0.6rem center; position: absolute; top: 3.5rem; left: 1.25rem; border-radius: 1rem; padding-left: 2.5rem; z-index: 20; background-size: 1.5rem 1.5rem;}
+
+.pop{ width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: none; position: absolute; top: 0; left: 0; z-index: 50;}
+.close{ width: 2.4rem; height: 2.4rem; background: url(../img/close.png) no-repeat; background-size: 2.4rem 2.4rem; position: absolute; top: 1rem; right: 1rem;}
+#audio{ display: none;}
+
+/*首页*/
+.index{ height: 100%; background: #3d3c3c; position: relative;}
+.head{ width: 32rem; height: 32.5rem; background: url(../img/index_bg.png) no-repeat; background-size: 32rem 32.5rem; position: relative;}
+.head .chart{ width: 4.8rem; height: 4.8rem; background: url(../img/chart.png) no-repeat; background-size: 4.8rem 4.8rem; display: block; position: absolute; top: 1rem; right: 1rem; outline: none;}
+.head .talk{ width: 14.4rem; height: 9.2rem; position: absolute; top: 0.7rem; left: 9.5rem; animation: toBig 2.5s infinite;}
+.head .talk img{ width: 100%;}
+@keyframes toBig {
+  0% {
+    transform: scale(1);
+  }
+  5% {
+    transform: scale(1.2);
+  }
+  10% {
+    transform: scale(1.1);
+  }
+  15% {
+    transform: scale(1.3);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.index .btn{ padding-top: 1.2rem;}
+.index .btn .tip{ width: 21.3rem; height: 4.3rem; margin: 0 auto; display: block; position: relative;}
+.index .btn .tip .game_add{ width: 1.9rem; height: 2.1rem; background: url(../img/game_add.png) no-repeat; background-size: 1.9rem 2.1rem; display: block; position: absolute; right: -2.6rem; top: 1.1rem;}
+.index .btn a{ width: 21.3rem; height: 4.3rem; display: block; margin: 0.7rem auto; color: #fff; font-size: 0.9rem;}
+.index .btn a label{ width: 2.5rem; height: 2.9rem; line-height: 1.1rem; margin-left: 16.5rem; display: block; padding: 0.7rem 0.2rem 0; text-align: center;}
+.index .btn a label span{ display: inline-block;}
+.index .btn a.toGame{ background: url(../img/btn1.png) no-repeat; background-size: 21.3rem 4.3rem;}
+.index .btn a.toExplain{ background: url(../img/btn2.png) no-repeat; background-size: 21.3rem 4.3rem;}
+.index .btn a.toHome{ background: url(../img/btn3.png) no-repeat; background-size: 21.3rem 4.3rem;}
+
+.index .info{ width: 5rem; height: 7.5rem; font-size: 20px; color: #fff; text-align: center; position: absolute; bottom: 5rem; left: 14.5rem;}
+.index .info dd{ height:1.5rem; line-height: 1.5rem;}
+.index .info dt{ height: 2.1rem; line-height: 2.1rem; color: #ffea00; font-size: 1.5rem; margin: 0.8rem 0;}
+.index .info dt label{ display: inline-block; height: 2.1rem; line-height: 2.1rem; float: left; margin-left: 0.45rem;}
+
+.buyTime{}
+.buyTime .centerDiv{ width: 23.5rem; height: 27rem; background: #fff2db; position: absolute; top: 50%; left: 50%; margin-top: -13.5rem; margin-left: -11.75rem; border-radius: 0.5rem; padding-top: 4.4rem;}
+.buyTime .centerDiv .logo{ width: 9rem; height: 7.5rem; margin: 0 auto 1.5rem; display: block;}
+.buyTime .centerDiv p{ text-align: center; font-size: 1.2rem; color: #d84627; line-height: 2.1rem;}
+.buyTime .centerDiv .buy{ width: 19.8rem; height: 4.8rem; margin: 3rem auto 0; display: block; background: url(../img/buy.png) no-repeat; background-size: 19.8rem 4.8rem;}
+
+.success{}
+.success .centerDiv{ width: 23.5rem; height: 20rem; background: #fff2db; position: absolute; top: 50%; left: 50%; margin-top: -10rem; margin-left: -11.75rem; border-radius: 0.5rem; padding-top: 6rem;}
+.success .centerDiv p{ text-align: center; font-size: 1.2rem; color: #d84627; line-height: 2.1rem;}
+.success .centerDiv .buy{ width: 19.8rem; height: 4.8rem; line-height: 4.8rem; text-align: center; margin: 3rem auto 0; display: block; background: url(../img/btn.png) no-repeat; background-size: 19.8rem 4.8rem; font-size: 1.5rem; color: #fff; font-weight: bold; letter-spacing: 0.25rem;}
+
+.noTimes{}
+.noTimes .centerDiv{ width: 23.5rem; height: 20rem; background: #fff2db; position: absolute; top: 50%; left: 50%; margin-top: -10rem; margin-left: -11.75rem; border-radius: 0.5rem; padding-top: 6rem;}
+.noTimes .centerDiv p{ text-align: center; font-size: 1.2rem; color: #d84627; line-height: 2.1rem;}
+.noTimes .centerDiv .buy{ width: 19.8rem; height: 4.8rem; line-height: 4.8rem; text-align: center; margin: 3rem auto 0; display: block; background: url(../img/btn.png) no-repeat; background-size: 19.8rem 4.8rem; font-size: 1.5rem; color: #fff; font-weight: bold; letter-spacing: 0.25rem;}
+
+.noGold{}
+.noGold .centerDiv{ width: 23.5rem; height: 20rem; background: #fff2db; position: absolute; top: 50%; left: 50%; margin-top: -10rem; margin-left: -11.75rem; border-radius: 0.5rem; padding-top: 6rem;}
+.noGold .centerDiv p{ text-align: center; font-size: 1.2rem; color: #d84627; line-height: 2.1rem;}
+.noGold .centerDiv .buy{ width: 19.8rem; height: 4.8rem; line-height: 4.8rem; text-align: center; margin: 3rem auto 0; display: block; background: url(../img/btn.png) no-repeat; background-size: 19.8rem 4.8rem; font-size: 1.5rem; color: #fff; font-weight: bold; letter-spacing: 0.25rem;}
+
+.noDiamond{}
+.noDiamond .centerDiv{ width: 23.5rem; height: 20rem; background: #fff2db; position: absolute; top: 50%; left: 50%; margin-top: -10rem; margin-left: -11.75rem; border-radius: 0.5rem; padding-top: 6rem;}
+.noDiamond .centerDiv p{ text-align: center; font-size: 1.2rem; color: #d84627; line-height: 2.1rem;}
+.noDiamond .centerDiv .buy{ width: 19.8rem; height: 4.8rem; line-height: 4.8rem; text-align: center; margin: 3rem auto 0; display: block; background: url(../img/btn.png) no-repeat; background-size: 19.8rem 4.8rem; font-size: 1.5rem; color: #fff; font-weight: bold; letter-spacing: 0.25rem;}
+
+.chart_list{}
+.chart_list .centerDiv{ width: 28.5rem; height: 45rem; background: #fff2db; position: absolute; top: 50%; left: 50%; margin-top: -22.5rem; margin-left: -14.25rem; border-radius: 0.5rem; padding: 1.25rem 1rem;}
+.chart_list .centerDiv .logo{ width: 12.6rem; height: 4.5rem; margin: 0 auto 0; display: block;}
+.chart_list table{ width: 100%; font-size: 1rem; color: #e04629; margin-top: 1rem;}
+.chart_list table td{ border-bottom: 1px solid #f3deb9; height: 3.5rem; line-height: 3.5rem; text-align: center; }
+.chart_list table thead td{ background: #f3deb9; height: 2rem; line-height: 2rem; border-right: 0.5rem solid #fff2db;}
+.chart_list table thead td:last-child{ border-right: none;}
+.chart_list table tbody td{ margin-right: 0.5rem;}
+.chart_list table tbody td img{ width: 2.1rem; height: 2.1rem; margin-right: 0.25rem;}
+.chart_list table tbody tr td:first-child img{ width: 1.7rem; height: 2rem; margin: 0;}
+.chart_list table tbody tr td:nth-child(2){ text-align: left;}
+.chart_list table tbody tr td:nth-child(2) img{width: 2.1rem; height: 2.1rem; margin-right: 0.25rem; border-radius: 1.5rem;}
+.chart_list table tbody td:last-child{  margin-right: 0; background: url(../img/diamond3.png) no-repeat 1.1rem center; background-size: 1.5rem 1.5rem; padding-left: 1.3rem;}
+
+/*游戏页面*/
+.Countdown{ display: block;}
+.Countdown .centerDiv{ position: relative; width: 100%; height: 100%; display: none;}
+.Countdown .centerDiv .num{ width: 6rem; height: 6rem; text-align: center; line-height: 5rem; border: 0.5rem solid #ffcd1a; background: #ed5231; color: #fff; font-size: 3rem; position: absolute; left: 50%; top: 50%; margin-left: -3rem; margin-top: -3rem; border-radius: 3rem;}
+.Countdown .centerDiv img{ width: 11.5rem; height: 6rem; position: absolute; top: 50%; left: 50%; margin-left: -5.75rem; margin-top: -3rem; opacity: 0;}
+.Countdown .centerDiv img.show{ animation: go 1s;}
+@keyframes go
+{
+	0% { -webkit-transform:scale(1,1); opacity: 1;}
+	100%{ -webkit-transform:scale(2,2); opacity: 0;}
+}
+.Countdown .introduce{ padding: 2.6rem 0; position: relative; width: 100%; height: 100%;}
+.Countdown .introduce h1{ font-size: 1.5rem; text-align: center; color: #fff}
+.Countdown .introduce .tip{ width: 29.5rem; padding: 1rem; background: rgba(0,0,0,0.5); margin: 1.5rem 1.1rem 0;}
+.Countdown .introduce .tip p{ line-height: 1.75rem; font-size: 1.2rem; color: #fff;}
+.Countdown .introduce .tip p span{ color: #ffe222;}
+.Countdown .introduce .img1{ margin-top: 1.6rem; width: 100%;}
+.Countdown .introduce .img2{ margin-top: 3.1rem; width: 100%;}
+.Countdown .introduce .driver{ width: 100%; text-align: center; line-height: 1.2rem; position: absolute; left: 0; bottom: 7.3rem;}
+.Countdown .introduce .driver input{ width: 1.2rem; height: 1.2rem; border: 0.05rem solid #888; background: #fff; border-radius: 0.3rem;}
+.Countdown .introduce .driver label{ font-size: 0.9rem; color: #fff;}
+.Countdown .introduce .next{ width: 20.7rem; height: 3.2rem; line-height: 3rem; text-align: center; border: 0.1rem solid #fff; color: #fff; font-size: 1.2rem; position: absolute; bottom: 3rem; left: 5rem; border-radius: 0.3rem;}
+.Countdown .introduce .know{ width: 20.7rem; height: 3.2rem; line-height: 3rem; text-align: center; border: 0.1rem solid #fff; color: #fff; font-size: 1.2rem; position: absolute; bottom: 3rem; left: 5rem; border-radius: 0.3rem;}
+
+.game{ width: 100%; height: 100%; background: url(../img/game.png) no-repeat; background-size: 100% 100%; position: relative;}
+
+.buyPark{}
+.buyPark .centerDiv{ width: 23.5rem; height: 27rem; background: #fff2db; position: absolute; top: 50%; left: 50%; margin-top: -13.5rem; margin-left: -11.75rem; border-radius: 0.5rem; padding-top: 4.4rem;}
+.buyPark .centerDiv .img{ width: 8.7rem; height: 7.9rem; margin: 2rem auto; display: block; background: url(../img/buyPark.png) no-repeat; background-size: 8.7rem 7.9rem; font-size: 1.8rem; color: #fff; text-align: center; font-weight: bold; padding-top: 3.4rem;}
+.buyPark .centerDiv p{ text-align: center; font-size: 1.2rem; color: #d84627; line-height: 2.1rem;}
+.buyPark .centerDiv .buy{ width: 19.8rem; height: 4.8rem; line-height: 4.8rem; margin: 0 auto; display: block; background: url(../img/btn.png) no-repeat; background-size: 19.8rem 4.8rem; font-size: 1.5rem; text-align: center; font-weight: bold; color: #fff;}
+
+.buyTank{}
+.buyTank .centerDiv{ width: 23.5rem; height: 27rem; background: #fff2db; position: absolute; top: 50%; left: 50%; margin-top: -13.5rem; margin-left: -11.75rem; border-radius: 0.5rem; padding-top: 3rem;}
+.buyTank .centerDiv .img{ width: 7.5rem; height: 9.15rem; margin: 2rem auto; display: block; background: url(../img/tank_add.png) no-repeat; background-size: 7.5rem 9.15rem; font-size: 1rem; color: #f8bb39; text-align: center; font-weight: bold; padding: 1.4rem 1.5rem 0 2.25rem; line-height: 1rem;}
+.buyTank .centerDiv p{ text-align: center; font-size: 1.2rem; color: #d84627; line-height: 2.1rem;}
+.buyTank .centerDiv .buy{ width: 19.8rem; height: 4.8rem; line-height: 4.8rem; margin: 0 auto; display: block; background: url(../img/btn.png) no-repeat; background-size: 19.8rem 4.8rem; font-size: 1.5rem; text-align: center; font-weight: bold; color: #fff;}
+
+.game.wrong{ animation: wrong 0.5s;}
+@keyframes wrong
+{
+	0% { -webkit-transform:scale(1.1,1.1);}
+	25% { -webkit-transform:scale(1,1);}
+	50% { -webkit-transform:scale(1.1,1.1);}
+	100%{ -webkit-transform:scale(1,1);}
+}
+.game .building{ width: 32rem; height: 9.5rem; position: absolute; top: 5.25rem; left: 0; z-index: 10;}
+.game .building img{ width: 9.1rem; height: 9.5rem; left: 0; top: 0; position: absolute;}
+.game .building img:last-child{ left: 22.9rem;}
+.game .hp{ width: 8.5rem; height: 2.3rem; position: absolute; top: 1.2rem; right: 0;}
+.game .hp img{ width: 2.3rem; height: 2.3rem; margin-right: 0.5rem; float: right;}
+
+.park{ width: 14.5rem; height: 14.5rem; padding: 0.4rem; margin: 0 auto;}
+.park .tip{ width: 6.2rem; height: 4rem; border: 0.2rem solid #fff; float: left; margin-right: 1.3rem; margin-bottom: 1rem; position: relative;}
+.park .tip:first-child{ background: url(../img/park_no.png) no-repeat; background-size: 100% 100%;}
+.park .tip:nth-child(2n){ margin-right: 0;}
+.park .tip dl{ color: #fff; text-align: center; position: relative; z-index: 10;}
+.park .tip dt{ font-size: 0.9rem;}
+.park .tip dd{ font-size: 1.8rem;}
+.park .tip.not_pay .add{ width: 1.5rem; height: 1.7rem; position: absolute; top: 1.5rem; left: 2.25rem; display: block; }
+.park .tip .add{ width: 1.5rem; height: 1.7rem; position: absolute; top: 1.5rem; left: 2.25rem; display: none; z-index: 30;}
+.park .tip.not_pay .car{ display: none;}
+.park .tip .car{ position: absolute; width: 6.6rem; height: 5.25rem; bottom: -0.6rem; left: -0.4rem; z-index: 20; line-height:0; font-size:0; }
+.park .tip .car .car92{ width: 6.6rem; height: 5.25rem; background: url(../img/car92.png) no-repeat center center; background-size: 6.05rem 4.55rem; display: none;}
+.park .tip .car .car95{ width: 6.6rem; height: 5.25rem; background: url(../img/car95.png) no-repeat center center; background-size: 5.95rem 5.25rem; display: none;}
+.park .tip .car .car98{ width: 6.6rem; height: 5.25rem; background: url(../img/car98.png) no-repeat center center; background-size: 6.6rem 5.15rem; display: none;}
+.park .tip .car .car92.show,
+.park .tip .car .car95.show,
+.park .tip .car .car98.show{ display: block; z-index: 30;}
+
+
+.tanks{ width: 32rem; height: 20rem; position: relative;}
+.tanks .left{ width: 16rem; position: absolute; top: 1.75rem; left: 0;}
+.tanks .left .tank{ width: 16rem; height: 8.5rem; background: url(../img/tank.png) no-repeat 0.8rem 0; background-size: 6.5rem 8.5rem; margin-bottom: 2.5rem; padding-top: 0.7rem; position: relative;}
+.tanks .left .tank img{ width: 2.8rem; height: 2.8rem; position: absolute; top: 3.85rem; left: 3rem; display: none;}
+.tanks .left .tank.begin img.game_begin{ display: block;}
+.tanks .left .tank.end img.game_end{ display: block;}
+.tanks .left .tank label{ width: 3.75rem; height: 2.1rem; line-height: 2.1rem; font-size: 0.9rem; color: #ffd03b; text-align: center; display: block; margin-left: 2.6rem;}
+.tanks .left .tank .car{ position: absolute; width: 6.6rem; height: 5.25rem; top: 3rem; left: 9rem;}
+.tanks .left .tank .car .car92{ width: 6.6rem; height: 5.25rem; background: url(../img/car92.png) no-repeat center center; background-size: 6.05rem 4.55rem; display: none;}
+.tanks .left .tank .car .car95{ width: 6.6rem; height: 5.25rem; background: url(../img/car95.png) no-repeat center center; background-size: 5.95rem 5.25rem; display: none;}
+.tanks .left .tank .car .car98{ width: 6.6rem; height: 5.25rem; background: url(../img/car98.png) no-repeat center center; background-size: 6.6rem 5.15rem; display: none;}
+.tanks .left .tank .car .car92.show,
+.tanks .left .tank .car .car95.show,
+.tanks .left .tank .car .car98.show{ display: block;}
+
+.tanks .right{ width: 16rem; position: absolute; top: 1.75rem; right: 0;}
+.tanks .right .tank{ width: 16rem; height: 8.5rem; background: url(../img/tank2.png) no-repeat 8.8rem 0; background-size: 6.5rem 8.5rem; margin-bottom: 2.5rem; padding-top: 0.7rem; position: relative;}
+.tanks .right .tank img{ width: 2.8rem; height: 2.8rem; position: absolute; top: 3.85rem; right: 3rem; display: none;}
+.tanks .right .tank .add{ display: none;}
+.tanks .right .tank.not_pay .add{ width: 6.5rem; height: 6.5rem; background: url(../img/tank_notBuy.png) no-repeat; background-size: 6.5rem 6.5rem; display: block; position: absolute; top: 1rem; right: 0.8rem; outline: none;}
+.tanks .right .tank.begin img.game_begin{ display: block;}
+.tanks .right .tank.end img.game_end{ display: block;}
+.tanks .right .tank label{ width: 3.75rem; height: 2.1rem; line-height: 2.1rem; font-size: 0.9rem; color: #ffd03b; text-align: center; display: block; margin-left: 10rem;}
+.tanks .right .tank.not_pay{ background: none;}
+.tanks .right .tank.not_pay img,
+.tanks .right .tank.not_pay label,
+.tanks .right .tank.not_pay .car{ display: none;}
+.tanks .right .tank .car{ position: absolute; width: 6.6rem; height: 5.25rem; top: 3rem; left: 0.5rem;}
+.tanks .right .tank .car .car92{ width: 6.6rem; height: 5.25rem; background: url(../img/car92.png) no-repeat center center; background-size: 6.05rem 4.55rem; display: none;}
+.tanks .right .tank .car .car95{ width: 6.6rem; height: 5.25rem; background: url(../img/car95.png) no-repeat center center; background-size: 5.95rem 5.25rem; display: none;}
+.tanks .right .tank .car .car98{ width: 6.6rem; height: 5.25rem; background: url(../img/car98.png) no-repeat center center; background-size: 6.6rem 5.15rem; display: none;}
+.tanks .right .tank .car .car92.show,
+.tanks .right .tank .car .car95.show,
+.tanks .right .tank .car .car98.show{ display: block;}
+
+.petrol{}
+.petrol .centerDiv{ width: 100%; height: 100%; background: url(../img/tank_b.png) no-repeat; background-size: 32rem 50.4rem; position: relative; padding-top: 6.4rem;}
+.petrol .centerDiv .close{ width: 4rem; height: 4rem; background: url(../img/close2.png) no-repeat; background-size: 4rem 4rem; position: absolute; top: 1.2rem; right: 2.4rem;}
+.petrol .time{ width: 7rem; height: 2rem; line-height: 2rem; position: absolute; top: 1.75rem; left: 12.5rem; color: #fff; font-size: 30px; font-weight: bold; text-align: center;}
+.petrol .demand{ width: 15rem; height: 6rem; margin-left: 7.9rem;}
+.petrol .demand p{ text-align: center; height: 2.3rem; line-height: 2.3rem; font-size: 1.2rem; color: #fff; letter-spacing: 0.2rem; margin-bottom: 0.6rem;}
+.petrol .demand p label{ color: #f8bb39;}
+.petrol .demand .money,
+.petrol .demand .bulk{ display: none; height: 3rem; line-height: 3rem; font-size: 1.2rem; color: #fff; text-align: center; padding-left: 1.5rem;}
+.petrol .demand .money.on,
+.petrol .demand .bulk.on{ display: block; transition: all 0.2s linear;}
+.petrol .demand .money label,
+.petrol .demand .bulk label{ display: block; float: left;}
+.petrol .demand .input{ width: 8rem; height: 2.8rem; text-align: center; font-size: 1.8rem; color: #f8bb39; font-weight: bold; border: 0.1rem solid #f8bb39; background: #53252d; outline: none; border-radius: 0.25rem; margin: 0 0.5rem; float: left;}
+
+.petrol .card{ width: 21.5rem; height: 4.4rem; background: url(../img/card.png) no-repeat; background-size: 21.5rem 4.4rem; margin-left: 4.7rem; margin-top: 3.4rem; position: relative;} 
+.petrol .card .hint{ width: 21.5rem; height: 4.4rem; border: 0.25rem solid #ffcc1a; position: absolute; top: 0; left: 0; border-radius: 0.5rem; display: none;}
+.petrol .card .hint.show{ animation: toHint 1.5s infinite;}
+@keyframes toHint
+{
+	0% { opacity: 1;}
+	50% { opacity: 0;}
+	100%{ opacity: 1;}
+}
+
+.petrol .card.on{ background: url(../img/card2.png) no-repeat; background-size: 21.5rem 4.4rem;transition: all 0.2s linear;}
+.petrol .touch{ width: 5.5rem; height: 9.5rem; border-radius: 0.5rem; background: #ed5231 url(../img/touch.png) no-repeat center 1rem; background-size: 5.1rem 5.7rem; position: absolute; right: 0; top: 14.3rem; font-size: 1.1rem; color: #f5ddb4; text-align: center; padding-top: 7rem;}
+.petrol .touch:active,
+.petrol .touch:focus{ background: #ed5231 url(../img/touch2.png) no-repeat center 1rem; background-size: 5.1rem 5.7rem;}
+
+.petrol .keyboard{ width:21.3rem; height: 17.9rem; margin-left: 4.8rem; margin-top: 1rem;}
+.petrol .keyboard tr{ border-bottom: 0.2rem solid #ed5231;}
+.petrol .keyboard tr:last-child{ border-bottom: none;}
+.petrol .keyboard td{ width: 4.8rem; height: 4.3rem; border-right:0.7rem solid #ed5231 ;}
+.petrol .keyboard td:nth-child(4n){ border-right: none;}
+.petrol .keyboard td img{ width: 4.8rem; height: 4.3rem;}
+.petrol .keyboard .toMoney,
+.petrol .keyboard .toBulk,
+.petrol .keyboard .collate{ position: relative;}
+.petrol .keyboard .toMoney .hint,
+.petrol .keyboard .toBulk .hint,
+.petrol .keyboard .collate .hint{  width: 4.8rem; height: 4.3rem; border: 0.25rem solid #ffcc1a; position: absolute; top: 0; left: 0; border-radius: 0.5rem; display: none;}
+.petrol .keyboard .toMoney .hint.show,
+.petrol .keyboard .toBulk .hint.show,
+.petrol .keyboard .collate .hint.show{ animation: toHint 1.5s infinite;}
+
+.petrol .meter{ width: 21.3rem; height: 2.5rem; background: url(../img/meter.png) no-repeat; background-size: 21.3rem 2.5rem; margin: 0.75rem 0 0 4.8rem; position: relative;}
+.petrol .meter i{width: 0.3rem; height: 1.7rem; position: absolute; top: 0.4rem; left: 50%; display: block; background: #de342a;}
+.petrol .press{ width: 21.3rem; height: 4.3rem; margin: 0.7rem 0 0 4.8rem; background: url(../img/press.png) no-repeat; background-size: 21.3rem 4.3rem;}
+.petrol .press.over{ background: url(../img/press2.png) no-repeat; background-size: 21.3rem 4.3rem;}
+
+.gameOver{}
+.gameOver .centerDiv{width: 23.4rem; height: 42.2rem; background: url(../img/gameOver.png) no-repeat; background-size: 23.4rem 42.2rem; position: absolute; top: 50%; left: 50%; margin-left: -11.7rem; margin-top: -21.1rem; padding-top: 9rem;}
+.gameOver .centerDiv ul{ width: 21.3rem; height: 17.5rem; background: #d84627; border-radius: 1rem; margin: 0 auto 1rem; font-size: 1.2rem; color: #fff; padding: 1rem 1.6rem;}
+.gameOver .centerDiv ul li{ height: 2.5rem; line-height: 2.5rem; padding: 0 2rem 0 1rem; clear: both;}
+.gameOver .centerDiv ul li p{color: #ffcc1a;}
+.gameOver .centerDiv ul li:nth-child(5n){ border-top: 1px solid #fff;}
+.gameOver .centerDiv ul li:nth-child(5n) span{ font-size: 1.5rem;}
+.gameOver .centerDiv ul li:last-child{ color: #ffcc1a;}
+.gameOver .centerDiv ul li:last-child span{ font-size: 1.5rem;}
+.gameOver .centerDiv ul li label{ float: left;}
+.gameOver .centerDiv ul li span{ float: right; text-align: right;}
+.gameOver .centerDiv a{ width: 21.3rem; height: 4.3rem; margin: 0.7rem auto; display: block;}
+.gameOver .centerDiv a img{ width: 21.3rem; height: 4.3rem;}
+.gameOver .centerDiv .profit{ width: 21.3rem; height: 3rem; line-height: 3rem; background: #d84627; border-radius: 1rem; margin: 0 auto 1rem; font-size: 1.2rem; color: #fff; padding: 0 1.6rem; overflow: hidden;}
+.gameOver .centerDiv .profit label{ float: left; width: 6rem; display: block; height: 3rem; line-height: 3rem;}
+.gameOver .centerDiv .profit .jewel{ float: left;}
+.gameOver .centerDiv .profit .jewel img{ width: 2rem; height: 2rem; display: block; float: left; margin: 0.5rem;}
+.gameOver .centerDiv .profit .red{ float: left; margin-left: 2rem;}
+.gameOver .centerDiv .profit .red img{ width: 1.5rem; height: 2rem; display: block; float: left; margin: 0.5rem;}
+
+.getGold{ width: 10rem; position: absolute; height: 2.5rem; text-align: center; line-height: 2.5rem; color: #fff; font-size: 1.2rem; position: absolute; left: 50%; top: 50%; margin-left: -5rem; margin-top: -1.25rem; z-index: 20; opacity: 0;}
+.getGold.show{ animation: myTop 4s;}
+@keyframes myTop
+{
+	0% {opacity: 1; top: 50%; -webkit-transform:scale(1,1);}
+	25% {opacity: 1; top: 50%; -webkit-transform:scale(1,1);}
+	100% {opacity: 0; top: 10%; -webkit-transform:scale(1.3,1.3);}
+}
+.getGold img{ display: block; float: left; width: 2rem; height: 2rem; margin: 0.25rem 0.5rem;}
+.getGold span{ display: inline; float: left;}
+.getGold .face{ width: 2rem; height: 2rem; display: inline-block; float: left;}
+.getGold .face img{ display: none; margin: 0.25rem 0;}
+.getGold .face img.on{ display: block;}
+
+.getJewel{ width: 2.4rem; position: absolute; height: 2.5rem; left: 50%; top: 50%; margin-left: -1.2rem; margin-top: -1.25rem; z-index: 20; opacity: 0;}
+.getJewel.show{ animation: myTop 4s;}
+.getJewel img{width: 2.4rem; height: 2.5rem;}
+
+.getRed{ width: 1.9rem; position: absolute; height: 2.6rem; position: absolute; left: 50%; top: 50%; margin-left: -1rem; margin-top: -1.3rem; z-index: 20; opacity: 0;}
+.getRed.show{ animation: myTop 4s;}
+.getJewel img{width: 1.9rem; height: 2.6rem;}
+
+/*游戏引导*/
+.guide2{ width: 22.7rem; height: 34.5rem; background: rgba(0,0,0,0.6); position: absolute; top: 4.5rem; left: 4.1rem; z-index: 20; border-radius: 0.2rem;}
+.guide2 .tip{ width: 5rem; height: 7.7rem; position: absolute; top: 10.8rem; right: -5rem; background: rgba(0,0,0,0.6); border-radius: 0.2rem;}
+.guide2 .tip1{ position: absolute; top: 12.1rem; left: 7.7rem; opacity: 1; animation: showTip1 4s;}
+.guide2 .tip2{ position: absolute; top: 0.5rem; left: 6.5rem; opacity: 1; animation: showTip2 4s;}
+.guide2 .tip3{ position: absolute; top: 19.25rem; right: 0.7rem; opacity: 1; animation: showTip3 4s;}
+.guide2 .tip4{ position: absolute; bottom:9rem ; left: 5.4rem; opacity: 1; animation: showTip4 4s;}
+.guide2 .tip5{ position: absolute; bottom: 1rem; left: 13rem; opacity: 1; animation: showTip5 4s;}
+.guide2 .tip6{ position: absolute; top: 12.8rem; right: -4.5rem; opacity: 1; animation: showTip6 4s;}
+@keyframes showTip1
+{
+	12.5% { opacity: 0;}
+	25% 	{ opacity: 1;}
+	37.5% { opacity: 1;}
+	50% 	{ opacity: 1;}
+	62.5% { opacity: 1;}
+	75% 	{ opacity: 1;}
+	87.5% { opacity: 1;}
+	100% 	{ opacity: 1;}
+}
+@keyframes showTip2
+{
+	12.5% { opacity: 0;}
+	25% 	{ opacity: 0;}
+	37.5% { opacity: 1;}
+	50% 	{ opacity: 1;}
+	62.5% { opacity: 1;}
+	75% 	{ opacity: 1;}
+	87.5% { opacity: 1;}
+	100% 	{ opacity: 1;}
+}
+@keyframes showTip3
+{
+	12.5% { opacity: 0;}
+	25% 	{ opacity: 0;}
+	37.5% { opacity: 0;}
+	50% 	{ opacity: 1;}
+	62.5% { opacity: 1;}
+	75% 	{ opacity: 1;}
+	87.5% { opacity: 1;}
+	100% 	{ opacity: 1;}
+}
+@keyframes showTip4
+{
+	12.5% { opacity: 0;}
+	25% 	{ opacity: 0;}
+	37.5% { opacity: 0;}
+	50% 	{ opacity: 0;}
+	62.5% { opacity: 1;}
+	75% 	{ opacity: 1;}
+	87.5% { opacity: 1;}
+	100% 	{ opacity: 1;}
+}
+@keyframes showTip5
+{
+	12.5% { opacity: 0;}
+	25% 	{ opacity: 0;}
+	37.5% { opacity: 0;}
+	50% 	{ opacity: 0;}
+	62.5% { opacity: 0;}
+	75% 	{ opacity: 1;}
+	87.5% { opacity: 1;}
+	100% 	{ opacity: 1;}
+}
+@keyframes showTip6
+{
+	12.5% { opacity: 0;}
+	25% 	{ opacity: 0;}
+	37.5% { opacity: 0;}
+	50% 	{ opacity: 0;}
+	62.5% { opacity: 0;}
+	75% 	{ opacity: 0;}
+	87.5% { opacity: 1;}
+	100% 	{ opacity: 1;}
+}
+
+.guide{ width: 100%; height: 100%; background: url(../img/guide.png) no-repeat; position: relative;  z-index: 20; background-size: 100%; 100%; display: none;}
+.guide .tip1{ position: absolute; top: 16.5rem; left: 11.7rem; animation: show2Tip1 4s;}
+.guide .tip2{ position: absolute; top: 5rem; left: 10.5rem; animation: show2Tip2 4s;}
+.guide .tip3{ position: absolute; top: 23.7rem; right: 6rem; animation: show2Tip3 4s;}
+.guide .tip4{ position: absolute; bottom:20.2rem; left: 8.8rem; animation: show2Tip4 4s;}
+.guide .tip5{ position: absolute; bottom: 12.1rem; left: 16.8rem; animation: show2Tip5 4s;}
+.guide .tip6{ position: absolute; top: 17.3rem; right: 0.25rem; animation: show2Tip6 4s;}
+.guide .tip7{ position: absolute; bottom: 7rem; left: 5.9rem; animation: show2Tip7 4s;}
+.guide .driver{ width: 100%; text-align: center; line-height: 1.2rem; position: absolute; left: 0; bottom: 4.7rem;}
+.guide .driver input{ width: 1.2rem; height: 1.2rem; border: 0.05rem solid #888; background: #fff; border-radius: 0.3rem;}
+.guide .driver label{ font-size: 0.9rem; color: #fff;}
+.guide .know{ width: 20.7rem; height: 3.2rem; line-height: 3rem; text-align: center; border: 0.1rem solid #fff; color: #fff; font-size: 1.2rem; position: absolute; bottom: 0.4rem; left: 5rem; border-radius: 0.3rem;}
+@keyframes show2Tip1
+{
+	12.5% { opacity: 0;}
+	25% 	{ opacity: 1;}
+	37.5% { opacity: 1;}
+	50% 	{ opacity: 1;}
+	62.5% { opacity: 1;}
+	75% 	{ opacity: 1;}
+	87.5% { opacity: 1;}
+	100% 	{ opacity: 1;}
+}
+@keyframes show2Tip2
+{
+	12.5% { opacity: 0;}
+	25% 	{ opacity: 0;}
+	37.5% { opacity: 1;}
+	50% 	{ opacity: 1;}
+	62.5% { opacity: 1;}
+	75% 	{ opacity: 1;}
+	87.5% { opacity: 1;}
+	100% 	{ opacity: 1;}
+}
+@keyframes show2Tip3
+{
+	12.5% { opacity: 0;}
+	25% 	{ opacity: 0;}
+	37.5% { opacity: 0;}
+	50% 	{ opacity: 1;}
+	62.5% { opacity: 1;}
+	75% 	{ opacity: 1;}
+	87.5% { opacity: 1;}
+	100% 	{ opacity: 1;}
+}
+@keyframes show2Tip4
+{
+	12.5% { opacity: 0;}
+	25% 	{ opacity: 0;}
+	37.5% { opacity: 0;}
+	50% 	{ opacity: 0;}
+	62.5% { opacity: 1;}
+	75% 	{ opacity: 1;}
+	87.5% { opacity: 1;}
+	100% 	{ opacity: 1;}
+}
+@keyframes show2Tip5
+{
+	12.5% { opacity: 0;}
+	25% 	{ opacity: 0;}
+	37.5% { opacity: 0;}
+	50% 	{ opacity: 0;}
+	62.5% { opacity: 0;}
+	75% 	{ opacity: 1;}
+	87.5% { opacity: 1;}
+	100% 	{ opacity: 1;}
+}
+@keyframes show2Tip6
+{
+	12.5% { opacity: 0;}
+	25% 	{ opacity: 0;}
+	37.5% { opacity: 0;}
+	50% 	{ opacity: 0;}
+	62.5% { opacity: 0;}
+	75% 	{ opacity: 0;}
+	87.5% { opacity: 1;}
+	100% 	{ opacity: 1;}
+}
+@keyframes show2Tip7
+{
+	12.5% { opacity: 0;}
+	25% 	{ opacity: 0;}
+	37.5% { opacity: 0;}
+	50% 	{ opacity: 0;}
+	62.5% { opacity: 0;}
+	75% 	{ opacity: 0;}
+	87.5% { opacity: 0;}
+	100% 	{ opacity: 1;}
+}

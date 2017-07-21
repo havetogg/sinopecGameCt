@@ -1,0 +1,81 @@
+@charset "utf-8";
+/*CSS Reset*/
+*{margin:0;padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+h1,h2,h3,h4,h5,h6{font-size:100%;}
+ul,ol,li{list-style:none; margin: 0; padding: 0;}
+em,i{font-style:normal;}
+img{border:none;}
+a,a:hover{text-decoration:none;/*transition: all 0.2s linear;*/}
+a,input{-webkit-tap-highlight-color:rgba(255,0,0,0);}
+input,img {vertical-align: middle;}
+.clearfix:after{display:block;content:'';clear:both;visibility:hidden;}
+.none{display:none;}
+.no-spacing{margin:0;padding:0;}
+.margin-center{margin:0 auto;text-align:center;}
+body{font-family: "微软雅黑";width: 100%;}
+body,html{ background: #fff;}
+*{box-sizing: border-box;}
+/*1rem=40px*/
+
+/*公共*/
+.wrapper{ width: 16rem; height: 100%;}
+.pop{ width: 100%; height: 100%; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); display: none; z-index: 100;}
+.bg1{ background: #f0f0f4;}
+.pt20{ padding-top: 0.5rem;}
+.loading{ display: none;}
+.loading img{ width: 2rem; height: 2rem; display: block; position: absolute; top: 50%; left: 50%; margin: -1rem 0 0 -1rem; animation: toRotate 1.8s linear; animation-iteration-count:infinite;}
+@keyframes toRotate
+{
+from {transform:rotate(0deg);}
+to {transform:rotate(360deg);}
+}
+input{-webkit-appearance:none;}
+input::-webkit-input-placeholder { /* WebKit browsers */
+　　color:#ccc;
+}
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+　　color:#ccc;
+}
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+　　color:#ccc;
+}
+input:-ms-input-placeholder { /* Internet Explorer 10+ */
+　　color:#ccc;
+}
+
+/*兑换中心*/
+.exchange{ width: 15rem; padding:1.35rem 0.5rem; background: #fff; margin:0 0.5rem 0.5rem;}
+.exchange input{ width: 14rem; height: 1.75rem; line-height: 1rem; border: 0.025rem solid #ccc; border-radius: 0.1rem; font-size: 0.6rem; color: #666; padding: 0.35rem 0.5rem; outline: none;}
+.exchange p{ width: 100%; font-size: 0.5rem; color: #888; line-height: 1.1rem; margin: 0.5rem 0 0.9rem 0;}
+.exchange a.toExchange{ width: 14rem; text-align: center; height: 1.75rem; line-height: 1.75rem; border: none; outline: none; border-radius: 0.1rem; margin: 0 auto; font-size: 0.6rem; color: #fff; background: #ff5224; display: block;}
+
+.failure{}
+.failure .centerDiv{ width: 13.5rem; height: 10.25rem; background: #fff; position: absolute; top: 50%; left: 50%; margin-top: -5.125rem; margin-left: -6.75rem; border-radius: 0.2rem; padding-top: 1.25rem;}
+.failure .centerDiv h1{ font-size: 0.75rem; color: #000; text-align: center; font-weight: normal; height: 1rem; line-height: 1rem; margin-bottom: 1.9rem;}
+.failure .centerDiv p{ font-size: 0.6rem; color: #888; text-align: center; line-height: 0.9rem;}
+.failure a.close{ width: 12.5rem; text-align: center; height: 1.75rem; line-height: 1.75rem; border: none; outline: none; border-radius: 0.1rem; margin: 1.5rem auto 0; font-size: 0.6rem; color: #fff; background: #ff5224; display: block;}
+
+.exchangeSuccess{}
+.exchangeSuccess .top{ width: 16rem; height: 6.75rem; background: url(../img/exchange.png) no-repeat; background-size: 16rem 6.75rem; padding-top: 0.8rem;}
+.exchangeSuccess .top .logo{ width: 1.75rem; height: 1.75rem; margin: 0 auto 0.5rem; display: block;}
+.exchangeSuccess .top p{ text-align: center; font-size: 0.6rem; color: #fff; height: 0.75rem; line-height: 0.75rem;}
+.exchangeSuccess .top .btn{ width: 3.8rem; height: 1.15rem; border: 0.025rem solid #fff; border-radius: 0.1rem; text-align: center; line-height: 1.1rem; font-size: 0.6rem; color: #fff; display: block; margin: 0.8rem auto 0;}
+
+.exchangeSuccess .main{ width: 100%; padding: 0.5rem 1rem;}
+.exchangeSuccess .main .tip{ height: 0.65rem; padding: 0 0.25rem; line-height: 0.65rem; background: #ff5224; font-size: 0.45rem; color: #fff; border-radius: 0.1rem; margin-bottom: 0.25rem; display: inline-block;}
+.exchangeSuccess .main p{ line-height: 0.75rem; font-size: 0.5rem; color: #888;}
+.exchangeSuccess .main p a{ color: #218ded;}
+.exchangeSuccess .main .img{ margin-top: 0.4rem; overflow: hidden;}
+.exchangeSuccess .main .img img{ width: 3rem; height: 3rem; display: block; margin-right: 0.6rem; float: left;}
+.exchangeSuccess .main .img p{ width: 8rem; display: block; float: left;}
+.exchangeSuccess .main .img p:nth-child(2){ margin-top: 0.8rem;}
+.exchangeSuccess .main .btn{ width: 3.8rem; height: 1.15rem; line-height: 1.1rem; text-align: center; border: 0.025rem solid #ff5224; font-size: 0.6rem; color: #ff5224; display: block; border-radius: 0.1rem; margin-top: 0.4rem;}
+
+/*支持站点*/
+.address{ padding: 0.5rem;}
+.address .logo{ width: 5.1rem; height: 1.2rem; display: block; margin: 0 auto 0.7rem;}
+.address .tips{ width: 100%; line-height: 0.75rem; padding-left: 1.8rem; background: url(../img/tips.png) no-repeat left top; background-size: 1.4rem 0.65rem; font-size: 0.5rem; color: #888; margin-bottom: 0.8rem;}
+.address .tip{ width: 15rem; padding: 0.5rem; background: #fff; margin-bottom: 0.25rem;}
+.address .tip h1{ font-size: 0.6rem; color: #ff5224; text-align: center; font-weight: normal; line-height: 0.8rem; margin-bottom: 0.3rem;}
+.address .tip p{ line-height: 0.75rem; text-align: justify; font-size: 0.5rem; color: #888;}

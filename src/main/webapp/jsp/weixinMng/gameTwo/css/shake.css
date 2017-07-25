@@ -460,7 +460,7 @@ to {transform:rotate(360deg);}
 .rule .centerDiv h2{ text-align: center; font-size: 0.75rem; color: #f24831; font-weight: normal; margin: 0.3rem 0;}
 .rule .centerDiv label{ text-align: center; display: block; font-size: 0.5rem; color: #ff6101; margin-top: 0.4rem;}
 .rule .centerDiv p{ color: #757575; font-size: 0.6rem; line-height: 1.1rem;  padding:0 0.9rem;}
-.rule .centerDiv p i{ width: 1.52rem; height: 1.08rem; background: url(../img/hit2.png) no-repeat; background-size: 1.52rem 1.08rem; display: block; float: left; margin-right: 0.2rem;}
+.rule .centerDiv p i{ width: 1.5rem; height: 1rem; background: url(../img/hit2.png) no-repeat; background-size: 1.5rem 1rem; display: block; float: left; margin-right: 0.2rem;}
 .rule .centerDiv .btn{ width: 9.2rem; height: 1.825rem; line-height: 1.5rem; text-align: center; font-size: 0.6rem; color: #ff2954; background: url(../img/btn.png) no-repeat; background-size: 9.2rem 1.825rem; display: block; margin: 1rem auto 0;}
 
 .no_money{}

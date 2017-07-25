@@ -83,7 +83,7 @@ public class PrizeController extends BaseController{
     @Value("#{propertyFactoryBean['update_red_url']}")
     protected String updateRedUrl;
 
-    //用户抽奖功能
+    //用户随机抽奖功能
     @RequestMapping(value = "/randomPrize")
     @ResponseBody
     public String randomPrize(HttpServletRequest request , HttpServletResponse response , HttpSession session){
@@ -305,6 +305,13 @@ public class PrizeController extends BaseController{
             webSocket.sendMsg("恭喜 "+mobile+" 获得"+prizeName);
         }
         return JSON.toJSONString(jsonObject);
+    }
+
+    //用户某件奖品是否中奖
+    @RequestMapping(value = "/singlePrize")
+    @ResponseBody
+    public String  singlePrize(HttpServletRequest request , HttpServletResponse response , HttpSession session){
+        return null;
     }
 
     //兑换红包跳转中石化

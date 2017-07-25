@@ -64,7 +64,7 @@ $(document).ready(function() {
      		success : function(data, textStatus) {
                	if(-1==data.timeout){
                		// session已经过期了
-               		alert("ajax-timeout");
+               		//alert("ajax-timeout");
                		return;
                	}
      			if(data.code==1){
@@ -85,7 +85,7 @@ $(document).ready(function() {
              //调用出错执行的函数
              error: function(XMLHttpRequest, textStatus, errorThrown){
                    //请求出错处理
-                 alert("系统异常!"+textStatus);
+                 //alert("系统异常!"+textStatus);
              } 
      	});
 
@@ -111,7 +111,7 @@ $(document).ready(function() {
      		success : function(data, textStatus) {
                	if(-1==data.timeout){
                		// session已经过期了
-               		alert("ajax-timeout");
+               		//alert("ajax-timeout");
                		return;
                	}
      			if(data.code==1){
@@ -129,7 +129,7 @@ $(document).ready(function() {
              //调用出错执行的函数
              error: function(XMLHttpRequest, textStatus, errorThrown){
                    //请求出错处理
-                 alert("系统异常!"+textStatus);
+                 //alert("系统异常!"+textStatus);
              } 
      	});
 
@@ -154,7 +154,7 @@ $(document).ready(function() {
      		success : function(data, textStatus) {
                	if(-1==data.timeout){
                		// session已经过期了
-               		alert("ajax-timeout");
+               		//alert("ajax-timeout");
                		return;
                	}
      			if(data.code==1){
@@ -174,7 +174,7 @@ $(document).ready(function() {
              //调用出错执行的函数
              error: function(XMLHttpRequest, textStatus, errorThrown){
                    //请求出错处理
-                 alert("系统异常!"+textStatus);
+                 //alert("系统异常!"+textStatus);
              } 
      	});
 		
@@ -197,7 +197,7 @@ $(document).ready(function() {
      		success : function(data, textStatus) {
                	if(-1==data.timeout){
                		// session已经过期了
-               		alert("ajax-timeout");
+               		//alert("ajax-timeout");
                		return;
                	}
      			if(data.code==1){
@@ -215,7 +215,7 @@ $(document).ready(function() {
              //调用出错执行的函数
              error: function(XMLHttpRequest, textStatus, errorThrown){
                    //请求出错处理
-                 alert("系统异常!"+textStatus);
+                 //alert("系统异常!"+textStatus);
              } 
      	});
 		
@@ -257,7 +257,7 @@ function Play() {
 					success : function(data, textStatus) {
 			         	if(-1==data.timeout){
 			         		// session已经过期了
-			         		alert("ajax-timeout");
+			         		//alert("ajax-timeout");
 			         		return;
 			         	}
 						if(data.code==1){
@@ -271,7 +271,7 @@ function Play() {
 			       //调用出错执行的函数
 			       error: function(XMLHttpRequest, textStatus, errorThrown){
 			             //请求出错处理
-			           alert("系统异常!"+textStatus);
+			           //alert("系统异常!"+textStatus);
 			       } 
 				});	
 				
@@ -599,20 +599,20 @@ function gameSubmit(get_diamond,get_gold,gas_times,oper_nice,oper_not_nice,get_s
  		success : function(data, textStatus) {
            	if(-1==data.timeout){
            		// session已经过期了
-           		alert("ajax-timeout");
+           		//alert("ajax-timeout");
            		return;
            	}
  			if(data.code==1){
  				// 提交完之后,展示结果
  				$(".gameOver").fadeIn();
  			}else{
- 				alerw(data.msg);
+ 				//alerw(data.msg);
  			}
  		},
          //调用出错执行的函数
          error: function(XMLHttpRequest, textStatus, errorThrown){
                //请求出错处理
-             alert("系统异常!"+textStatus);
+             //alert("系统异常!"+textStatus);
          } 
  	});
 }

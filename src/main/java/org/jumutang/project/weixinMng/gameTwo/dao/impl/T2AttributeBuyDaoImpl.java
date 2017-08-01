@@ -42,7 +42,7 @@ public class T2AttributeBuyDaoImpl implements IT2AttributeBuyDao{
                 PreparedStatement ps = con.prepareStatement(stringBuffer.toString(), Statement.RETURN_GENERATED_KEYS);
                 int i = 1;
                 ps.setString(i++,t2AttributeBuyMode.getUserId());
-                ps.setString(i++, t2AttributeBuyMode.getPayDiamond());
+                ps.setString(i++,t2AttributeBuyMode.getPayDiamond());
                 return ps;
             }
         }, keyHolder);

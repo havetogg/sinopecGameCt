@@ -37,8 +37,27 @@ function getUrlParam(name) {
 }
 //var totalMoneys = getUrlParam("name");   页面获取参数
 
-
-
+//t弹框页面
+var html2= "  <div  id=\"ad_id2\" class=\"advertisement_bg\">"
+    + "        <div class=\"tip-cont1-\">"
+    + "            <img src=\""+getRootPath()+"/jsp/weixinMng/mallMng/img/ad_bg2.png\" alt=\"\">"
+    // + "        <a class=\"ad_toBTN\" href=\"https://prodone.juxinbox.com/sinopecGameCt/weixinMng/ManageC/rechargeIn.htm\">去充值</a>"
+    + "            <div class=\"ad_little_img\"><img src=\""+getRootPath()+"/jsp/weixinMng/mallMng/img/closebtn.png\" alt=\"\" onclick=\"closeAd('ad_id2')\"></div>"
+    + "        </div>"
+    + "  </div>";
+function ad_tip2(state) {
+    if(state == 'show'){
+        document.body.style.position='fixed';
+        $('.zoomer').prepend(html2);
+    }else if(state=='hide'){
+        $('#ad_id2').remove();
+        document.body.style.position='absolute';
+    }
+}
+function closeAd(id) {
+    $("#"+id).hide();
+    document.body.style.position='absolute';
+}
 //分享功能
 $(function () {
 

@@ -52,7 +52,7 @@ public class GameMngServiceImpl implements IGameMngService{
 		 List<GameMngMode> gameList = gameMngDao.findList(queryParam);
 		 for (GameMngMode gameMngMode : gameList) {
 			 String game_id = gameMngMode.getID();
-			 if("2".equals(game_id)){
+			 if("2".equals(game_id)||"3".equals(game_id)){
 			 	continue;
 			 }
 			 queryParam.put("GAME_ID", game_id);

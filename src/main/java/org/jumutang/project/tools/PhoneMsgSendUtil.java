@@ -59,6 +59,6 @@ public class PhoneMsgSendUtil {
 
 	public static void main(String[] args) throws UnsupportedEncodingException {
 		PhoneMsgSendUtil aPhoneMsgSendUtil = new PhoneMsgSendUtil();
-		aPhoneMsgSendUtil.sendMessage("13851558832", "7880");
+		aPhoneMsgSendUtil.sendMessage("18094233235", "7880");
 	}
 }

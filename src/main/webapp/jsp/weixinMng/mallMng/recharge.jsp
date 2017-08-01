@@ -268,20 +268,35 @@
 		    <c:forEach items="${CHANGEMNGLIST}" var="obj" varStatus="status">
 				<c:choose>
 				    <c:when test="${obj.YH_FLAG==1}">
-				    	<li class="flex rechargeList_bg">
-			                <div class="flex-3 verticalCenter">
-			                    <img src="${contentPath }/jsp/weixinMng/mallMng/img/diamond.png" alt="" class="DiamondssssImg">
-			                    <label class="numbers">X${obj.DIAMOND_NUMB}</label>
-			                </div>
-			                <div class="shu"></div>
-			                <div class="flex-5 center">
-			                    <div class="Diamondssss12">
-			                        <div class="Diamondssss_cut">优惠</div>
-			                                                                         ￥${obj.PAY_MONEY}</div>
-			                    <img src="${contentPath }/jsp/weixinMng/mallMng/img/exchangeBtn.png" alt="" onclick="exchangeBtn('${obj.ID}')">
-			                </div>
-			            </li>
-				    </c:when>
+                    <li class="flex rechargeList_bg">
+                        <div class="flex-3 verticalCenter">
+                            <img src="${contentPath }/jsp/weixinMng/mallMng/img/diamond.png" alt="" class="DiamondssssImg">
+                            <label class="numbers">X${obj.DIAMOND_NUMB}</label>
+                        </div>
+                        <div class="shu"></div>
+                        <div class="flex-5 center">
+                            <div class="Diamondssss12">
+                                <div class="Diamondssss_cut">优惠</div>
+                                ￥${obj.PAY_MONEY}</div>
+                            <img src="${contentPath }/jsp/weixinMng/mallMng/img/exchangeBtn.png" alt="" onclick="exchangeBtn('${obj.ID}')">
+                        </div>
+                        <c:if test="${status.index == 5}">
+                            <div class="rechargeTip">
+                                充值满100元，即送2张50元加油红包
+                            </div>
+                        </c:if>
+                        <c:if test="${status.index == 6}">
+                            <div class="rechargeTip">
+                                充值满190元，即送3张50元加油红包
+                            </div>
+                        </c:if>
+                        <c:if test="${status.index == 7}">
+                            <div class="rechargeTip">
+                                充值满300元，即送6张50元加油红包
+                            </div>
+                        </c:if>
+                    </li>
+                </c:when>
 				    <c:otherwise>
                        <li class="flex rechargeList_bg">
 			                <div class="flex-3 verticalCenter">

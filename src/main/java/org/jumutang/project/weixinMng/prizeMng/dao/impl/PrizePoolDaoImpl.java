@@ -56,10 +56,10 @@ public class PrizePoolDaoImpl implements IPrizePoolDao{
     @Override
     public int updatePrizePool(PrizePool prizePool) {
         final StringBuffer sqlBuffer = new StringBuffer();
-        sqlBuffer.append(" UPDATE t_prize_pool ");
-        sqlBuffer.append(" SET ");
+        sqlBuffer.append("UPDATE t_prize_pool");
+        sqlBuffer.append(" SET");
         if(StringUtils.isNotBlank(prizePool.getPrizePool())){
-            sqlBuffer.append("  prize_pool = prize_pool+"+prizePool.getPrizePool());
+            sqlBuffer.append(" prize_pool = prize_pool+"+prizePool.getPrizePool());
         }
         if(StringUtils.isNotBlank(prizePool.getUsedPool())){
             sqlBuffer.append(" used_pool = used_pool+"+prizePool.getUsedPool());

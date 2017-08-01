@@ -14,10 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.jumutang.basicbox.model.JSONResultModel;
 import org.jumutang.project.base.BaseController;
-import org.jumutang.project.tools.BigDecimalTool;
-import org.jumutang.project.tools.DateUtil;
-import org.jumutang.project.tools.PropertiesUtil;
-import org.jumutang.project.tools.TenpayUtil;
+import org.jumutang.project.tools.*;
 import org.jumutang.project.weixinMng.mallMng.model.ChangeMngMode;
 import org.jumutang.project.weixinMng.mallMng.model.Change_goldMngMode;
 import org.jumutang.project.weixinMng.mallMng.model.MallUserMode;
@@ -113,8 +110,7 @@ public class ChangeMngController extends BaseController {
 			return JSONObject.fromObject(jsonResultModel).toString();
 		}
 	}
-	
-	
+
     //跳转支付页面链接
     static String proUrl="http://www.linkgift.cn/giftpay_wap/giftpay/liftpayment/orderPay.html";
 
@@ -149,7 +145,7 @@ public class ChangeMngController extends BaseController {
         String openId=userbean.getOPEN_ID();//有礼付openId
         
         // 方便测试,把这几个参数换成测试的了
-        String TEST_FLAG =PropertiesUtil.get("TEST_FLAG");
+        /*String TEST_FLAG =PropertiesUtil.get("TEST_FLAG");
         if("1".equals(TEST_FLAG)){
         	if("o4FD4vxoK4fkzzis0R9QoVF-RxFQ".equals(userbean.getOPEN_ID())){
         		// 朱
@@ -166,7 +162,7 @@ public class ChangeMngController extends BaseController {
                 userId=userbean.getTHIRD_PART_ID();//有礼付userId
                 openId=userbean.getOPEN_ID();//有礼付openId
             }
-        }
+        }*/
         
         String redPkgId="";//红包ID
         String redPkgValue="";//红包面额
@@ -186,6 +182,9 @@ public class ChangeMngController extends BaseController {
     @ResponseBody
     public void toPayPage_return(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException {
     	_LOGGER.info("sinopecGameCt进入测试回调方法==================================================");
+    	//201707280949417819850
+    	String ip = IPUtil.getRemoteHost(request);
+		_LOGGER.info("ip地址为=================================================="+ip);
         String code=request.getParameter("code");//1:成功  其他都是失败
         String mess=request.getParameter("mess");//成功返回订单id，失败返回提示信息
         String ORDER_NO=request.getParameter("ORDER_NO");//成功返回订单id，失败返回提示信息

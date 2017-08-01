@@ -7,7 +7,7 @@
     <meta content="yes" name="apple-mobile-web-app-capable">
     <meta content="black" name="apple-mobile-web-app-status-bar-style">
     <meta content="telephone=no" name="format-detection">
-    <title>中石化游戏中心</title>
+    <title>游戏中心</title>
     <link type="text/css" href="css/common/common.css" rel="stylesheet">
     <link type="text/css" href="css/app.css" rel="stylesheet">
     <link type="text/css" href="css/liMarquee.css" rel="stylesheet">
@@ -33,6 +33,7 @@
                 drag: false,
             });
         })
+//        ad_tip2('show');
         var num=0;
         var num1=0;
         function personInfo() {
@@ -114,6 +115,8 @@
         }
         function hideDiamodMall() {
             $('.mall_block_bg').hide();
+
+
         }
         function myPrize() {
             window.location.href="./myPrize.html";
@@ -125,7 +128,10 @@
                 animationSpeed: 1100, //滚动时间ms
                 touch: true //是否支持触屏滑动
             });
-        })
+        });
+        $(function() {
+            ad_tip2('show');
+        });
     </script>
 </head>
 <body>
@@ -221,13 +227,13 @@
         <div class="flexslider">
             <ul class="slides">
                 <li>
-                    <img  src="img/index_banner.png" alt="1" width="100%"/>
-                </li>
-                <li>
                     <img  src="img/index_banner2.png" alt="1" width="100%"/>
                 </li>
                 <li>
                     <img  src="img/index_banner3.png" alt="1" width="100%"/>
+                </li>
+                <li>
+                    <img  src="img/index_banner.png" alt="1" width="100%"/>
                 </li>
             </ul>
         </div>

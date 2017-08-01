@@ -162,10 +162,22 @@ public class GameOneController extends BaseController {
 			if("4".equals(BUYUSERMODETYPE)){
 				//新手
 				today_GAME_BUY = gameonebean.getTODAY_GAME_BUY4(); // 今天购买的次数
-				needDom= today_GAME_BUY+2;           //新人模式：在2钻石的基数上，每次购买价格加一钻石（当天内）
+				//needDom= today_GAME_BUY+2;           //新人模式：在2钻石的基数上，每次购买价格加一钻石（当天内）
+				if(today_GAME_BUY>=4){
+					needDom = (int)Math.pow(2,4+2);
+				}else{
+					needDom = (int)Math.pow(2,today_GAME_BUY+2);
+				}
 			}else if ("5".equals(BUYUSERMODETYPE)) {
 				today_GAME_BUY = gameonebean.getTODAY_GAME_BUY5(); // 今天购买的次数
-				needDom= today_GAME_BUY+5;           //购买需要的钻石
+				//needDom= today_GAME_BUY+5;           //购买需要的钻石
+				//needDom= (today_GAME_BUY+1)*8;
+				if(today_GAME_BUY>=4){
+					needDom = (int)Math.pow(2,4+3);
+				}else{
+					needDom = (int)Math.pow(2,today_GAME_BUY+3);
+				}
+
 			}
 			
 			String remain_DIAMOND = userbean.getREMAIN_DIAMOND();
@@ -503,4 +515,14 @@ public class GameOneController extends BaseController {
 		GameOneMode gameOneMode_bean = gameOneService.findUer_GameOneInfo(userinfo, gameOneid);
 		return gameOneMode_bean;
 	}
+
+
+	public static void main(String args []){
+
+		// 8 16 32 64 128
+		//2[3]
+		int a = 8;
+		System.out.println(a);
+	}
+
 }

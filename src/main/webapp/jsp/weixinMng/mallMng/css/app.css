@@ -591,10 +591,27 @@ body {
 }
 .rechargeList .shu{
     width: 1px;
+    height: 70px;
     background-color: #ffffff;
+    position: relative;
+    top: 10px;
+}
+.rechargeTip{
+    background: url(../img/rechargeTip_bg.png);
+    width: 412px;
+    background-repeat: no-repeat;
+    position: absolute;
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+    line-height: 32px;
+    height: 32px;
+    bottom: 0;
+    left: 90px;
 }
 .rechargeList ul{}
 .rechargeList ul li{
+    position: relative;
     padding: 20px;
     width: 88%;
     margin: 0px auto 20px;
@@ -603,8 +620,8 @@ body {
 }
 .rechargeList_bg{
     background: url(../img/blue_bg.png);
-    height: 90px;
-    width: 594%;
+    height: 102px;
+    width: 594px;
     background-repeat: no-repeat;
 }
 .rechargeList .numbers{
@@ -664,12 +681,12 @@ body {
     position: relative;
 }
 .Diamondssss_cut{
-    font-size: 18px;
+    font-size: 16px;
     color: #fff;
     background-color: #e53080;
     display: inline-block;
-    height: 30px;
-    line-height: 30px;
+    height: 25px;
+    line-height: 25px;
     vertical-align: bottom;
     text-align: center;
     width: 95px;
@@ -679,7 +696,8 @@ body {
 .rechargeList ul li .center{
     text-align: center;
     position: relative;
-    top: 10px;
+    top: 20px;
+
 }
 .recharge_top_banner{
     background: url(../img/recharge_topBg.png);
@@ -1310,7 +1328,73 @@ body {
 
 }
 
+/*弹框*/
+.advertisement_bg {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 999;
+}
+.tip-cont1- {
+    width: 420px;
+    left: 110px;
+    top: -40px;
+    position: fixed;
+    animation: rotate2D 400ms 2.5;
+    -moz-animation: rotate2D 400ms 2.5;
+    -webkit-animation: rotate2D 400ms 2.5;
+    -o-animation: rotate2D 400ms 2.5;
+}
+.ad_toBTN {
+    width: 100%;
+    height: 70px;
+    color: #fff;
+    position: relative;
+    top: -4px;
+    background-color: #ea461a;
+    display: inline-block;
+    font-size: 25px;
+    line-height: 70px;
+    border-radius: 0 0 10px 10px;
+    font-family: 'Microsoft YaHei';
+    text-align: center;
+    text-decoration: none;
+}
+.ad_little_img {
+    text-align: center;
+    margin: 50px 0;
+}
+@-webkit-keyframes rotate2D {
+    0% {
+        -webkit-transform: translateY(-20px);
 
+    }
+    25% {
+        -webkit-transform: translateY(0px);
+    }
+    50% {
+        -webkit-transform: translateY(20px);
+    }
+    75% {
+        -webkit-transform: translateY(0px);
+    }
+    100%{
+        -webkit-transform: translateY(-20px);
+    }
+    125%{
+        -webkit-transform: translateY(0px);
+    }
+    150%{
+        -webkit-transform: translateY(20px);
+    }
+    175%{
+        -webkit-transform: translateY(0px);
+    }
+    200%{
+        -webkit-transform: translateY(20px);
+    }
+}
 
 
 
@@ -1329,4 +1413,3 @@ body {
     top: 40px;
     margin: 1px auto;
 }
-。

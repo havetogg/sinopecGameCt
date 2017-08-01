@@ -20,6 +20,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +43,7 @@ public class PrizeRedeemDaoImpl implements IPrizeRedeemDao {
 
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer.append("insert into t_prize_redeem (user_id ,prize_id ,redeem_code ,winning_time,end_time,status) values");
-        stringBuffer.append(" (?,?,?,now(),date_sub(now(),interval -5 day),0) ");
+        stringBuffer.append(" (?,?,?,now(),date_sub(now(),interval -1 month),0) ");
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(new PreparedStatementCreator() {
@@ -125,14 +127,19 @@ public class PrizeRedeemDaoImpl implements IPrizeRedeemDao {
                 List<PrizeRedeem> list = new ArrayList<PrizeRedeem>();
 
                 while(res.next()){
+                    SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     PrizeRedeem prize = new PrizeRedeem();
                     prize.setId(res.getString("id"));
                     prize.setUserId(res.getString("user_id"));
                     prize.setPrizeId(res.getString("prize_id"));
                     prize.setRedeemCode(res.getString("redeem_code"));
-                    prize.setWinningTime(res.getString("winning_time"));
-                    prize.setEndTime(res.getString("end_time"));
-                    prize.setReceiveTime(res.getString("receive_time"));
+                    try{
+                        prize.setWinningTime(StringUtils.isNotBlank(res.getString("winning_time"))?sDateFormat.format(sDateFormat.parse(res.getString("winning_time"))):" ");
+                        prize.setEndTime(StringUtils.isNotBlank(res.getString("end_time"))?sDateFormat.format(sDateFormat.parse(res.getString("end_time"))):" ");
+                        prize.setReceiveTime(StringUtils.isNotBlank(res.getString("receive_time"))?sDateFormat.format(sDateFormat.parse(res.getString("receive_time"))):" ");
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                     prize.setStatus(res.getString("status"));
                     prize.setRedpkgId(res.getString("redpkg_id"));
                     prize.setOilOpenId(res.getString("oil_open_id"));

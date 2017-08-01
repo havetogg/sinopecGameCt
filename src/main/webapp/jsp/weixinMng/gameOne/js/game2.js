@@ -85,7 +85,7 @@ $(document).ready(function() {
              //调用出错执行的函数
              error: function(XMLHttpRequest, textStatus, errorThrown){
                    //请求出错处理
-                 //alert("系统异常!"+textStatus);
+                 alert("系统异常1[购买车位]!"+textStatus);
              } 
      	});
 
@@ -129,7 +129,7 @@ $(document).ready(function() {
              //调用出错执行的函数
              error: function(XMLHttpRequest, textStatus, errorThrown){
                    //请求出错处理
-                 //alert("系统异常!"+textStatus);
+                 alert("系统异常2[车位购买确认]!"+textStatus);
              } 
      	});
 
@@ -174,7 +174,7 @@ $(document).ready(function() {
              //调用出错执行的函数
              error: function(XMLHttpRequest, textStatus, errorThrown){
                    //请求出错处理
-                 //alert("系统异常!"+textStatus);
+                 alert("系统异常3[购买加油机]!"+textStatus);
              } 
      	});
 		
@@ -215,7 +215,7 @@ $(document).ready(function() {
              //调用出错执行的函数
              error: function(XMLHttpRequest, textStatus, errorThrown){
                    //请求出错处理
-                 //alert("系统异常!"+textStatus);
+                 alert("系统异常4[.buyTank .buy]!"+textStatus);
              } 
      	});
 		
@@ -271,7 +271,7 @@ function Play() {
 			       //调用出错执行的函数
 			       error: function(XMLHttpRequest, textStatus, errorThrown){
 			             //请求出错处理
-			           //alert("系统异常!"+textStatus);
+			           //alert("系统异常5[开始游戏]!"+textStatus);
 			       } 
 				});	
 				
@@ -612,7 +612,7 @@ function gameSubmit(get_diamond,get_gold,gas_times,oper_nice,oper_not_nice,get_s
          //调用出错执行的函数
          error: function(XMLHttpRequest, textStatus, errorThrown){
                //请求出错处理
-             //alert("系统异常!"+textStatus);
+             alert("系统异常6[gameSubmit]!"+textStatus);
          } 
  	});
 }

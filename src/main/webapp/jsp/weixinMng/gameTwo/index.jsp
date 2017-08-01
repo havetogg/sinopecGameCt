@@ -24,7 +24,7 @@
     <!--页面js-->
     <link rel="stylesheet" href="${contentPath }/jsp/weixinMng/gameTwo/css/shake.css" />
     <script type="text/javascript" src="${contentPath }/jsp/weixinMng/gameTwo/js/shake.js" ></script>
-    <title>中石化扭蛋</title>
+    <title>神秘小扭蛋</title>
 </head>
 <script type="text/javascript">
     var websocket = null;

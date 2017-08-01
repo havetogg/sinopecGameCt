@@ -20,7 +20,7 @@ import net.sf.json.JSONObject;
  */
 public class LinkgitfUtil {
 	private static final Logger _LOGGER = Logger.getLogger(LinkgitfUtil.class);
-	// 取得用户的userid
+	// 取得用户的userid 15751349530 o4FD4v0zLYohDPtlt5E7xorezV4w
 	private String geturl ="http://www.linkgift.cn/giftpay_wap/userCenter/getAllUser.htm?openId=%s&phone=%s";
 	// 创建平台用户
 	private String creaturl ="http://www.linkgift.cn/giftpay_wap/userCenter/addAllUser.htm?openId=%s&phone=%s&type=%s";

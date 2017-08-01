@@ -76,7 +76,7 @@ function startGame(usermodetype){
          //调用出错执行的函数
          error: function(XMLHttpRequest, textStatus, errorThrown){
                //请求出错处理
-             alert("系统异常!"+textStatus);
+             alert("系统异常1[startGame]!"+textStatus);
          } 
  	});
 }
@@ -118,7 +118,7 @@ function reloadindex(){
          //调用出错执行的函数
          error: function(XMLHttpRequest, textStatus, errorThrown){
                //请求出错处理
-             alert("系统异常!"+textStatus);
+             alert("系统异常2[reloadindex]!"+textStatus);
          } 
  	});
 }
@@ -164,7 +164,7 @@ function buytimesmoneypay_qinag(usermodetype){
          //调用出错执行的函数
          error: function(XMLHttpRequest, textStatus, errorThrown){
                //请求出错处理
-             alert("系统异常!"+textStatus);
+             alert("系统异常3[buytimesmoneypay_qinag]!"+textStatus);
          } 
  	});
 }
@@ -209,7 +209,7 @@ function buytimesmoneypay(usermodetype) {
        //调用出错执行的函数
        error: function(XMLHttpRequest, textStatus, errorThrown){
              //请求出错处理
-           alert("系统异常!"+textStatus);
+           alert("系统异常4[buytimesmoneypay]!"+textStatus);
        } 
 	});
 }

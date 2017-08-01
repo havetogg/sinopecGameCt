@@ -13,7 +13,7 @@
     <meta content="yes" name="apple-mobile-web-app-capable">
     <meta content="black" name="apple-mobile-web-app-status-bar-style">
     <meta content="telephone=no" name="format-detection">
-    <title>中石化游戏中心</title>
+    <title>游戏中心</title>
     <link type="text/css" href="${contentPath }/jsp/weixinMng/mallMng/css/common/common.css" rel="stylesheet">
     <link type="text/css" href="${contentPath }/jsp/weixinMng/mallMng/css/app.css" rel="stylesheet">
     <link type="text/css" href="${contentPath }/jsp/weixinMng/mallMng/css/liMarquee.css" rel="stylesheet">
@@ -28,7 +28,7 @@
     <script type="text/javascript" src="${contentPath }/jsp/weixinMng/mallMng/js/common/jWeChat-1.0.0.js"></script>
     <script type="text/javascript" src="${contentPath }/jsp/weixinMng/mallMng/js/share.js"></script>
     <script type="text/javascript" src="${contentPath }/jsp/weixinMng/mallMng/js/jquery.liMarquee.js"></script>
-    <script src="https://s22.cnzz.com/z_stat.php?id=1262787846&web_id=1262787846" language="JavaScript"></script>
+    <script src="https://s22.cnzz.com/z_stat.php?id=1263124033&web_id=1263124033" language="JavaScript"></script>
     <style>
         ::-webkit-input-placeholder{
             color: #68b7e9;
@@ -36,6 +36,10 @@
     </style>
     <script>
 	    $(function () {
+            var MOBILE = '${WxloginUser.MOBILE}';
+            if(jxTool.isNull(MOBILE)){
+                denglu();      // 提示登录
+            }
             var isPageHide = false;
             window.addEventListener('pageshow', function () {
                 if (isPageHide) {
@@ -316,13 +320,17 @@
         }
         
         // 去玩游戏
-        function gotoGame(gameurl){
+        function gotoGame(gameurl,id){
             var MOBILE = '${WxloginUser.MOBILE}';
             if(jxTool.isNull(MOBILE)){
                 denglu();      // 提示登录
                 return;
             }
-        	window.location=getRootPath() + gameurl;
+            if(id == 3){
+                window.location=gameurl;
+            }else{
+                window.location=getRootPath() + gameurl;
+            }
         }
         //钻石商城
         function diamodMall() {
@@ -392,7 +400,9 @@
         function closeWebSocket() {
             websocket.close();
         }
-
+        $(function() {
+            ad_tip2('show');
+        });
     </script>
 </head>
 <body>
@@ -505,13 +515,13 @@
         <div class="flexslider">
             <ul class="slides">
                 <li>
-                    <img  src="${contentPath }/jsp/weixinMng/mallMng/img/index_banner.png" alt="1" width="100%"/>
-                </li>
-                <li>
                     <img  src="${contentPath }/jsp/weixinMng/mallMng/img/index_banner2.png" alt="1" width="100%"/>
                 </li>
                 <li>
                     <img  src="${contentPath }/jsp/weixinMng/mallMng/img/index_banner3.png" alt="1" width="100%"/>
+                </li>
+                <li>
+                    <img  src="${contentPath }/jsp/weixinMng/mallMng/img/index_banner.png" alt="1" width="100%"/>
                 </li>
             </ul>
         </div>
@@ -559,7 +569,7 @@
                     <div class="title">
                         ${obj.GAME_NAME }
                     </div>
-                    <div onclick="gotoGame('${obj.GAME_URL }')">
+                    <div onclick="gotoGame('${obj.GAME_URL }','${obj.ID }')">
                         <img src="${contentPath }/${obj.GAME_IMG_URL }" alt="" class="banner1">
                     </div>
                     <div class="title1">

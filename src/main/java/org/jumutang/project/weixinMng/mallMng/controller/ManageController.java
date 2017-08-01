@@ -3,10 +3,7 @@ package org.jumutang.project.weixinMng.mallMng.controller;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +16,8 @@ import org.apache.log4j.Logger;
 import org.jumutang.basicbox.model.JSONResultModel;
 import org.jumutang.project.base.BaseController;
 import org.jumutang.project.tools.*;
+import org.jumutang.project.weixinMng.gameTwo.model.T2GameRecordMode;
+import org.jumutang.project.weixinMng.gameTwo.service.IGameTwoService;
 import org.jumutang.project.weixinMng.mallMng.model.GameMngMode;
 import org.jumutang.project.weixinMng.mallMng.model.MallUserMode;
 import org.jumutang.project.weixinMng.mallMng.model.RegistCodeMode;
@@ -64,6 +63,9 @@ public class ManageController extends BaseController {
 	
 	@Autowired
 	private IUser_gameMngService user_gameMngService;
+
+	@Autowired
+	private IGameTwoService gameTwoService;
 
 	@Autowired
 	private IPrizeRedeemService iPrizeRedeemService;
@@ -383,9 +385,22 @@ public class ManageController extends BaseController {
 		List<GameMngMode> mycollectionList = gameMngService.find_MycollectionList(queryParam);
 		view.addObject("MYCOLLECTIONLIST", mycollectionList); //用户的收藏数
 		
-		
+		//用户玩过的游戏
+		List<GameMngMode> userGameDList = new ArrayList<>();
+		//是否玩过游戏1
 		List<User_gameMngMode> findUserGameDList = user_gameMngService.findUserGameDList(queryParam);
-		view.addObject("USERGAMEDLIST", findUserGameDList); //用户玩过的游戏
+		if(findUserGameDList.size()>0){
+			GameMngMode gameMngMode = findUserGameDList.get(0).getGAMEMNGMODE();
+			userGameDList.add(gameMngMode);
+		}
+		//是否玩过游戏2
+		List<T2GameRecordMode> t2GameRecordModes = gameTwoService.listT2GameRecordMode(userbean);
+		if(t2GameRecordModes.size()>0){
+			GameMngMode gameMngMode = gameMngService.findInfo(2);
+			userGameDList.add(gameMngMode);
+		}
+
+		view.addObject("USERGAMEDLIST", userGameDList); //用户玩过的游戏
 		return view;
 	}
 	
@@ -411,7 +426,7 @@ public class ManageController extends BaseController {
 		
 		ModelAndView view = new ModelAndView("/jsp/weixinMng/mallMng/gameTop.jsp");
 		Map<String,String> queryParam = new HashMap<>();
-		 queryParam.put("GAME_ID", super.getStr(request, "GAME_ID"));
+		queryParam.put("GAME_ID", super.getStr(request, "GAME_ID"));
 		List<User_gameMngMode> rankdetaillist = gameMngService.find_rand_byGameId(queryParam);
 		view.addObject("RANKDETAILLIST", rankdetaillist); //游戏的排行详细
 		
@@ -525,7 +540,6 @@ public class ManageController extends BaseController {
 		return JSON.toJSONString(jsonObject);
 	}
 
-	
 	/*
 	 * 取得用户信息
 	 */

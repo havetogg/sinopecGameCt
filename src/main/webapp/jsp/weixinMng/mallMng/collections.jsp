@@ -223,20 +223,20 @@
             <c:forEach items="${USERGAMEDLIST}" var="obj" varStatus="status">
                 <li>
                     <div class="title">
-                        ${obj.GAMEMNGMODE.GAME_NAME }
+                        ${obj.GAME_NAME }
                     </div>
-                    <div onclick="gotoGame('${obj.GAMEMNGMODE.GAME_URL }')">
-                        <img src="${contentPath }/${obj.GAMEMNGMODE.GAME_IMG_URL }" alt="" class="banner1">
+                    <div onclick="gotoGame('${obj.GAME_URL }')">
+                        <img src="${contentPath }/${obj.GAME_IMG_URL }" alt="" class="banner1">
                     </div>
                     <div class="title1">
-                          ${obj.GAMEMNGMODE.GAME_DETAIL }
+                          ${obj.GAME_DETAIL }
                     </div>
 				<c:choose>
-				    <c:when test="${obj.GAMEMNGMODE.USER_COLLECTION_FLAG==1}">
-				        <img src="${contentPath }/jsp/weixinMng/mallMng/img/haveCollect.png" alt="" gameid="${obj.GAMEMNGMODE.ID }" class="rankTip1" onclick="collectCommand_del(this)">
+				    <c:when test="${obj.USER_COLLECTION_FLAG==1}">
+				        <img src="${contentPath }/jsp/weixinMng/mallMng/img/haveCollect.png" alt="" gameid="${obj.ID }" class="rankTip1" onclick="collectCommand_del(this)">
 				    </c:when>
 				    <c:otherwise>
-				       <img src="${contentPath }/jsp/weixinMng/mallMng/img/collectbtn.png" alt="" gameid="${obj.GAMEMNGMODE.ID }" class="rankTip1" onclick="collectCommand(this)">
+				       <img src="${contentPath }/jsp/weixinMng/mallMng/img/collectbtn.png" alt="" gameid="${obj.ID }" class="rankTip1" onclick="collectCommand(this)">
 				    </c:otherwise>
 				</c:choose>
                 </li>

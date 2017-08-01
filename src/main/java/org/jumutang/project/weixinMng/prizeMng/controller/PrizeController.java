@@ -179,6 +179,12 @@ public class PrizeController extends BaseController{
                 prizePool.setUserId(userbean.getID());
                 prizePool.setUsedPool(prize1.getGrade());
                 iPrizePoolService.updatePrizePool(prizePool);
+
+                PrizePool prizePool1 = new PrizePool();
+                prizePool1.setId("1");
+                prizePool1.setUsedPool(prize1.getGrade());
+                iPrizePoolService.updatePrizePool(prizePool1);
+
                 jsonObject.put("result",true);
                 jsonObject.put("prize",true);
                 jsonObject.put("prizeName",prize1.getPrizeName());
@@ -201,10 +207,17 @@ public class PrizeController extends BaseController{
                     //更新暴击
                     gameTwoService.updateUserGameEnergyNum(userbean,0);
                 }
+
                 PrizePool prizePool = new PrizePool();
                 prizePool.setUserId(userbean.getID());
                 prizePool.setUsedPool(prize1.getGrade());
                 iPrizePoolService.updatePrizePool(prizePool);
+
+                PrizePool prizePool1 = new PrizePool();
+                prizePool1.setId("1");
+                prizePool1.setUsedPool(prize1.getGrade());
+                iPrizePoolService.updatePrizePool(prizePool1);
+
                 jsonObject.put("result",true);
                 jsonObject.put("prize",true);
                 jsonObject.put("prizeName",prize1.getPrizeName());
@@ -222,7 +235,7 @@ public class PrizeController extends BaseController{
             }
         }else if(prizes.size()==0&&canGetMoney>0){
             int random = (int) (Math.random() * 100);
-            if(random>=0&&random<5){
+            if(random>=0&&random<3){
                 //中了额外奖励
                 List<Prize> prizes1 = iPrizeService.listPrize(new Prize());
                 Prize prize1 = null;
@@ -267,10 +280,17 @@ public class PrizeController extends BaseController{
                     t2GameRecordMode.setRefId(String.valueOf(refId));
                     gameTwoService.updateUserGameTwoRecord(t2GameRecordMode);
                 }
+
                 PrizePool prizePool = new PrizePool();
                 prizePool.setUserId(userbean.getID());
                 prizePool.setUsedPool(prize1.getGrade());
                 iPrizePoolService.updatePrizePool(prizePool);
+
+                PrizePool prizePool1 = new PrizePool();
+                prizePool1.setId("1");
+                prizePool1.setUsedPool(prize1.getGrade());
+                iPrizePoolService.updatePrizePool(prizePool1);
+
                 jsonObject.put("result",true);
                 jsonObject.put("prize",true);
                 jsonObject.put("prizeName",prize1.getPrizeName());
@@ -311,6 +331,15 @@ public class PrizeController extends BaseController{
     @RequestMapping(value = "/singlePrize")
     @ResponseBody
     public String  singlePrize(HttpServletRequest request , HttpServletResponse response , HttpSession session){
+        //设置方法返回
+        JSONObject returnObj = new JSONObject();
+        String prizeId = request.getParameter("prizeId");
+        if(StringUtils.isBlank(prizeId)){
+            returnObj.put("result",false);
+            returnObj.put("message","参数错误");
+            return JSON.toJSONString(returnObj);
+        }
+
         return null;
     }
 

@@ -24,7 +24,9 @@ import net.sf.json.JSONObject;
 public class SessionInterceptor implements HandlerInterceptor{
 	
 	private List<String> filterUrl=new ArrayList<String>();                 //过滤不check
-	private List<String> filterUrlNeedLogin=new ArrayList<String>();        //需要登录
+	private List<String> filterAppUrl=new ArrayList<>();
+
+
 	// 手机端
 	private final String _STWEINXIN="/weixinMng/";
 	// 后台管理
@@ -36,16 +38,10 @@ public class SessionInterceptor implements HandlerInterceptor{
 		filterUrl.add("/weChatJSConfigC");
 		filterUrl.add("/weixinMng/ManageC/toPayPage_return.htm");
 		filterUrl.add("/websocket");
+		filterUrl.add("/weixinMng/api");
 
-		
-		filterUrlNeedLogin.add("/weixinMng/Manage/addressManager");
-		filterUrlNeedLogin.add("/weixinMng/Manage/merchanttypelist.htm");
-		filterUrlNeedLogin.add("/weixinMng/supervise/paniBuy.htm");
-		filterUrlNeedLogin.add("/weixinMng/GroupBuy");
-
-		
-		
-//		filterUrlNeedLogin.add("/weixinMng/DrawMng/gotoDrawPage");
+		filterAppUrl.add("/weixinMng/ManageC/rechargeIn.htm");
+		filterAppUrl.add("/weixinMng/ManageC/prizeList.htm");
 	}
 
 	@Override
@@ -89,25 +85,11 @@ public class SessionInterceptor implements HandlerInterceptor{
 
 		
 		// 手机前台的过滤器
-		if(COMPARE_URL.startsWith(_STWEINXIN)||COMPARE_URL.equals("/getPrize/prizeIn.htm")){
- 			if(COMPARE_URL.startsWith("/weixinMng/ManageC/wxLogin")){
-				return true;
-			}
-			for(String s:filterUrl){
-				if(COMPARE_URL.startsWith(s)){
-					return true;
-				}
-			}
-			
+		if(COMPARE_URL.startsWith(_STWEINXIN)){
+
 			MallUserMode userBean=(MallUserMode)request.getSession().getAttribute("WxloginUser");
 			if(userBean==null||StringUtil.isEmpty(userBean.getOPEN_ID())){
-				System.out.println(userBean);
-				if(userBean!=null){
-					System.out.println(userBean.getOPEN_ID());
-				}else{
-					System.out.println("-------");
-					
-				}
+
 				String REDIRECT_URL=URL.substring(PROJECT_NAME.length());
 				String paramStr=request.getQueryString();
 		    	if(!StringUtil.isEmpty(paramStr)){
@@ -121,15 +103,7 @@ public class SessionInterceptor implements HandlerInterceptor{
 	    			responseOutWithJson(response,aMap);
 	                return false;
 	    		}
-		    	
-/*				String conf_appId=WeixinUtil.getAppId();
-				String domain_name=PropertiesUtil.get("DOMAIN.WEB_SERVER");
-				String target=domain_name+PROJECT_NAME+"/weixinMng/ManageC/wxLogin.htm?redirectUrl="+URLEncoder.encode(REDIRECT_URL);
-								
-				final String reVisitUrl="https://open.weixin.qq.com/connect/oauth2/authorize?appid="+conf_appId+"&redirect_uri="+URLEncoder.encode(target)+"&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
-				
-				response.sendRedirect(reVisitUrl);
-				return false;*/
+
 	    		String domain_name=PropertiesUtil.get("DOMAIN.WEB_SERVER");
 	    		String local_target=domain_name+PROJECT_NAME+"/weixinMng/ManageC/wxLogin.htm?redirectUrl="+URLEncoder.encode(REDIRECT_URL);
 
@@ -147,10 +121,28 @@ public class SessionInterceptor implements HandlerInterceptor{
 	    		response.sendRedirect(reVisitUrl);
 	    		return false;
 			}else{
-				return true;
+				boolean appFlag = false;
+				for(String s:filterAppUrl){
+					if(COMPARE_URL.startsWith(s)){
+						appFlag =  true;
+					}
+				}
+				if(appFlag){
+					String entryType = (String)request.getSession().getAttribute("enterType");
+					if("app".equals(entryType)){
+						String path = request.getContextPath();
+						String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+						final String redirectUrl = basePath+"/jsp/weixinMng/wx_error.jsp";
+						response.sendRedirect(redirectUrl);
+						return false;
+					}else{
+						return true;
+					}
+				}else{
+					return true;
+				}
 			}
 		}
-		
 		return true;
 		
 	}

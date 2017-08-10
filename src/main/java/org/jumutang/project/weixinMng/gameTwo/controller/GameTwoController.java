@@ -122,7 +122,7 @@ public class GameTwoController extends BaseController {
             gameTwoService.updateUserGameTwo(userbean);
             //增加游戏记录
             int recordId = gameTwoService.saveUserGameTwoRecord(userbean);
-            response.sendRedirect(request.getContextPath()+"/getPrize/randomPrize.htm?recordId="+recordId);
+            response.sendRedirect(request.getContextPath()+"/weixinMng/getPrize/randomPrize.htm?gameId=2&recordId="+recordId);
         }//2.如果免费次数用完了则 看是否允许使用 如果允许 更新数据库 跳转链接
         else if(Integer.parseInt(userbean.getREMAIN_DIAMOND())>=10){
             userbean.setUSED_DIAMOND(String.valueOf(Integer.parseInt(userbean.getUSED_DIAMOND())+10));
@@ -134,7 +134,7 @@ public class GameTwoController extends BaseController {
             gameTwoService.updateUserGameTwo(userbean);
             //增加游戏记录
             int recordId = gameTwoService.saveUserGameTwoRecord(userbean);
-            response.sendRedirect(request.getContextPath()+"/getPrize/randomPrize.htm?recordId="+recordId);
+            response.sendRedirect(request.getContextPath()+"/weixinMng/getPrize/randomPrize.htm?gameId=2&recordId="+recordId);
         }//3.如果不允许，或者钻石数量不够 返回无法抽奖信息
         else{
             JSONObject jsonObject = new JSONObject();
@@ -167,7 +167,7 @@ public class GameTwoController extends BaseController {
         GameTwoMode gameTwoMode = refreshGameTwo(request);
         if(Integer.parseInt(gameTwoMode.getEnergyNum())==5){
             int recordId = gameTwoService.saveUserGameTwoRecord(userbean);
-            response.sendRedirect(request.getContextPath()+"/getDiamonds/diamondsPrize.htm?gameId=2&recordId="+recordId);
+            response.sendRedirect(request.getContextPath()+"/weixinMng/getDiamonds/diamondsPrize.htm?gameId=2&recordId="+recordId);
         }else{
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("result",false);

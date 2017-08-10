@@ -13,7 +13,7 @@ public class T3GameRecordMode {
     private String userId;
 
     private String gameTime;
-
+    // 10 初级 30 中级 50 高级 1钻石
     private String gameType;
 
     private String refId;

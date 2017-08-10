@@ -167,9 +167,7 @@
                         var url=getRootPath() + "/weixinMng/ManageC/userIn.htm";
                		 	var form = $('<form id="submitForm" action="" method="POST">');
             			form.attr("action",url);
-            			
-            			form.submit(); 
-                          
+            			form.submit();
    						} else {
    							alerw(data.msg);
    						}
@@ -238,7 +236,7 @@
 	             //调用出错执行的函数
 	             error: function(XMLHttpRequest, textStatus, errorThrown){
 	                   //请求出错处理
-	                 alert("系统异常!"+textStatus);
+                     alerw("系统异常!"+textStatus);
 	             } 
 	     	});
         	
@@ -339,7 +337,8 @@
                 denglu();      // 提示登录
                 return;
             }
-            $('.mall_block_bg').show();
+        window.location.href='https://prodone.juxinbox.com/sinopecGameCt/weixinMng/activity/getOilDropReward.htm';
+            <%--$('.mall_block_bg').show();--%>
         }
         //钻石商城隐藏
         function hideDiamodMall() {
@@ -483,10 +482,8 @@
             <label>${WxloginUser.ALL_DIAMOND-WxloginUser.USED_DIAMOND}</label>
         </li>
         <li style="width: 20px;"></li>
-        <li class="index_diamond" style="font-size: 50px;line-height: 15px;" onclick="tip2()">
-            <a></a>
-            <a></a>
-            <a></a>
+    <li class="index_diamond" style="    font-size: 15px;line-height: 28px;width: 90px;" onclick="tip2()">
+            个人中心
              <c:if test="${MSGLIST_SIZE>0||PRIZELIST_SIZE>0}">
                   <label></label>
 			 </c:if>
@@ -507,6 +504,9 @@
                         <span class="red_number_">${PRIZELIST_SIZE}</span>
                     </c:if>
                     我的奖品
+                </div>
+                <div style="border-top: 1px solid #cccccc;text-align: center;position: relative;" onclick="javascript:window.location.href='https://sms.linkgift.cn/giftpay_socket/loginIndexBase.htm'">
+                    我的油库
                 </div>
             </div>
         </li>
@@ -543,8 +543,8 @@
             <li class="flex-1 jmt_center" onclick="diamodMall()">
                 <div><img src="${contentPath }/jsp/weixinMng/mallMng/img/index_icon3.png" alt="" class="icons_index"></div>
                 <div class="icon_bg">
-                    <div class="indexIcon_text1">钻石商城</div>
-                    <div class="indexIcon_text2">兑超值好礼</div>
+                <div class="indexIcon_text1">领油滴</div>
+                <div class="indexIcon_text2">领100油滴</div>
                 </div>
             </li>
             <li class="flex-1 jmt_center" onclick="gotomyGame()">

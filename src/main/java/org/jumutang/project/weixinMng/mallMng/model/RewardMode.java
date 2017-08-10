@@ -12,6 +12,7 @@ public class RewardMode {
 
     private String userId;
 
+    //0 首充10元奖励 1 充值奖励 2 油滴奖励
     private String rewardType;
 
     private String rewardName;

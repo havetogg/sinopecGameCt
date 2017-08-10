@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.jumutang.project.appMng.mallMng.model.AppModel;
 import org.jumutang.project.sys.model.SysLoginUserBean;
 import org.jumutang.project.tools.StringUtil;
 import org.jumutang.project.weixinMng.mallMng.model.MallUserMode;
@@ -29,6 +30,8 @@ public abstract class BaseController {
 	private final String CURRENT_USER="currUser";
 	
 	private final String CURRENT_WXUSER="WxloginUser";
+
+	private final String CURRENT_APPUSER="AppUser";
 	
 	public Page getPage(HttpServletRequest request){
 		Page page=new Page();
@@ -112,6 +115,21 @@ public abstract class BaseController {
 			return null;
 		}else{
 			MallUserMode bean= (MallUserMode) request.getSession().getAttribute(CURRENT_WXUSER);
+			return bean;
+		}
+	}
+
+	// app端
+	protected void setAppUser(HttpServletRequest request,AppModel appModel){
+		request.getSession().setAttribute(CURRENT_APPUSER, appModel);
+	}
+	// app端
+	@SuppressWarnings("unchecked")
+	protected AppModel getAppUser(HttpServletRequest request){
+		if(request.getSession().getAttribute(CURRENT_APPUSER)==null){
+			return null;
+		}else{
+			AppModel bean= (AppModel) request.getSession().getAttribute(CURRENT_APPUSER);
 			return bean;
 		}
 	}

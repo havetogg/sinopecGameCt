@@ -1,0 +1,368 @@
+@charset "utf-8";
+/*CSS Reset*/
+*{margin:0;padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+h1,h2,h3,h4,h5,h6{font-size:100%;}
+ul,ol,li{list-style:none; margin: 0; padding: 0;}
+em,i{font-style:normal;}
+img{border:none;}
+a,a:hover{text-decoration:none;/*transition: all 0.2s linear;*/}
+a,input{-webkit-tap-highlight-color:rgba(255,0,0,0);}
+input,img {vertical-align: middle;}
+.clearfix:after{display:block;content:'';clear:both;visibility:hidden;}
+.none{display:none;}
+.no-spacing{margin:0;padding:0;}
+.margin-center{margin:0 auto;text-align:center;}
+body{font-family: "微软雅黑";width: 100%;}
+body,html{ height: 100%; background: #0d041b;}
+*{box-sizing: border-box;}
+/*1rem=40px*/
+
+/*公共部分*/
+.claw{ width: 16rem; height: 100%; position: relative;}
+header{ width: 16rem; height: 2.9rem; position: absolute; top: 0; left: 0;z-index: 10;}
+header img{ width: 16rem; height: 2.9rem; display: block;}
+header img.junior{ display: block;}
+header img.medium{ display: none;}
+header img.senior{ display: none;}
+
+footer{ width: 16rem; height: 3.2rem; background: url(../img/footer.png) no-repeat; background-size: 16rem 3.2rem; position: absolute; left: 0; bottom:0; padding: 0 0.3rem; z-index: 10;}
+footer .btn1{ width: 2.4rem; height: 2.55rem; float: left; margin-left: 0.6rem;}
+footer .btn1 img{ width: 2.4rem; height: 2.55rem; display: block;}
+footer .btn1 img.up{ display: block;}
+footer .btn1 img.down{ display: none;}
+footer .btn1.cur img.up{ display: none;}
+footer .btn1.cur img.down{ display: block;}
+
+footer .btn2{ width: 5.2rem; height: 2.9rem; float: left; margin-top: -0.35rem; margin-left: 0.8rem; background: url(../img/btn_go.png) no-repeat; background-size: 5.2rem 2.9rem;}
+footer .btn2 img{ width: 5.2rem; height: 2.9rem; display: block;}
+footer .btn2.cur{ animation: toPlay 0.1s linear;}
+@keyframes toPlay
+{
+0% { background: url(../img/btn_go.png) no-repeat; background-size: 5.2rem 2.9rem;}
+100%{ background: url(../img/btn_go-2.png) no-repeat; background-size: 5.2rem 2.9rem;}
+}
+
+.ruleButton{ width: 2rem; height: 2.5rem; position: absolute; top: 0; right: 1.2rem; z-index: 15;}
+.ruleButton img{ width: 2rem; height: 2.5rem; display: block;}
+.jewel{ width: 4.25rem; height: 0.8rem; background: #b52152; border-radius: 0.5rem; overflow: hidden; position: absolute; top: 0.6rem; left: 0.6rem; z-index: 15;}
+.jewel .diamond{ width: 0.75rem; height: 0.6rem; margin: 0.1rem 0.3rem; float: left; display: block;}
+.jewel label{ float: left; color: #fff; font-size: 0.5rem; line-height: 0.8rem; display: block;}
+.jewel .add{ width: 0.6rem; height: 0.6rem; display: block; float: right; margin: 0.1rem;}
+
+.main{ width: 16rem; height: 100%; position: relative;}
+.main.junior{ background: url(../img/junior.jpg) no-repeat; background-size: 16rem 25.7rem;}
+.main.medium{ background: url(../img/medium.jpg) no-repeat; background-size: 16rem 25.7rem;}
+.main.senior{ background: url(../img/senior.jpg) no-repeat; background-size: 16rem 25.7rem;}
+.main .left{ width: 1.1rem; height: 100%; position: absolute; left: 0; top: 0; background: url(../img/main_left.png) no-repeat; background-size: 1.1rem 25.7rem; z-index: 6;}
+.main .right{ width: 1.1rem; height: 100%; position: absolute; right: 0; top: 0; background: url(../img/main_right.png) no-repeat; background-size: 1.1rem 25.7rem; z-index: 6;}
+
+/*抓娃娃主体部分*/
+.arm{ width: 16rem; height: calc(100% - 2.3rem); background: url(../img/arm.png) no-repeat left top; background-size: 16rem 0.7rem; position: absolute; left: 0; top: 2.3rem;}
+.machine{ width: 100%; position: absolute; left: 0; top: 0; bottom: 6rem;}
+.machine .top{ width: 2rem; height: 1.5rem; background: url(../img/machine_top_junior.png) no-repeat; background-size: 2rem 1.5rem; display: block; margin: 0 auto;}
+.machine .line_height{ height: calc(100% - 6.6em);}
+.machine .line{ width: 0.2rem; height: 2rem; background: url(../img/machine_line.png) no-repeat; background-size: 0.2rem 100%; display: block; margin: 0 auto;}
+.machine .line.down{ animation: toDown 3s linear;}
+@keyframes toDown
+{
+0% { height: 2rem;}
+40% { height: 100%;}
+60% { height: 100%;}
+100%{  height: 2rem;}
+}
+.machine .hideCar{ width: 5.1rem; height: 3.8rem; margin-left:4.75rem; margin-top: -2.2rem; position: relative; z-index: 7; opacity: 0;}
+.machine .hideCar.cur{ opacity: 1;}
+.machine .hideCar.down{ animation: lostPrize 1s linear;}
+@keyframes lostPrize
+{
+ 0% {top: 0; opacity: 1;}
+100%{top: 12rem; opacity: 0;}
+}
+.machine .hideCar li{ width: 5.1rem; height: 4.8rem; float: left; margin:0 auto; font-size: 0.6rem; color: #fff; text-align: center; line-height: 0.8rem; transform-origin: top 3.25rem;}
+.machine .hideCar li.sway{ animation: sway 1s linear;}
+@keyframes sway
+{
+ 0% {transform: rotate(0deg)}
+10% {transform: rotate(5deg)}
+20% {transform: rotate(0deg)}
+30% {transform: rotate(-5deg)}
+40% {transform: rotate(0deg)}
+50% {transform: rotate(0deg)}
+60% {transform: rotate(5deg)}
+70% {transform: rotate(0deg)}
+80% {transform: rotate(-5deg)}
+90% {transform: rotate(0deg)}
+100%{transform: rotate(0deg)}
+}
+
+.machine .hideCar li.car1{ background: url(../img/car1.png) no-repeat center bottom; background-size: 5.1rem 4.8rem; padding: 1.6rem 0.4rem 1.3rem 1.8rem;}
+.machine .hideCar li.car2{ background: url(../img/car2.png) no-repeat center bottom; background-size: 5.1rem 4.8rem; padding: 1.6rem 0.4rem 1.3rem 1.8rem;}
+.machine .hideCar li.car3{ background: url(../img/car3.png) no-repeat center bottom; background-size: 5.1rem 4.8rem; padding: 1.6rem 0.4rem 1.3rem 1.8rem;}
+.machine .hideCar li.car4{ background: url(../img/car4.png) no-repeat center bottom; background-size: 5.1rem 4.8rem; padding: 1.6rem 1rem 0.4rem 2.4rem;}
+.machine .hideCar li.car5{ background: url(../img/car5.png) no-repeat center bottom; background-size: 5.1rem 4.8rem; padding: 1.6rem 1.1rem 0.4rem 2.3rem;}
+.machine .hideCar li label{ display: block; font-size: 0.75rem; font-weight: bold; height: 1.1rem; line-height: 1.1rem;}
+.machine .hideCar li.car3 label{ display: block; font-size: 0.6rem; font-weight: bold;}
+
+.machine .handle{ width: 3.5rem; height: 3rem; position: relative; margin: 0 auto; z-index: 5;}
+.machine .handle .origin{ width: 1.3rem; height: 1.4rem; background: url(../img/machine-origin_junior.png) no-repeat; background-size: 1.3rem 1.4rem; display: block; position: absolute; top: 0; left: 50%; margin-left: -0.65rem; z-index: 7;}
+.machine .handle .left_arm{ width: 1.75rem; height: 2.3rem; background: url(../img/machine_claw_junior_left.png) no-repeat; background-size: 1.75rem 2.3rem; display: block; position: absolute; left: 0; top: 0.7rem; transform-origin: top right; -webkit-transform-origin: top right;}
+.machine .handle .right_arm{ width: 1.75rem; height: 2.3rem; background: url(../img/machine_claw_junior_right.png) no-repeat; background-size: 1.75rem 2.3rem; display: block; position: absolute; left: 50%; top: 0.7rem; transform-origin: top left; -webkit-transform-origin: top left;}
+
+.machine .handle.down .left_arm{ animation: swing-left 3s linear;}
+.machine .handle.down .right_arm{ animation: swing-right 3s linear;}
+@-webkit-keyframes swing-left {
+    10% {
+      -webkit-transform: rotate(0deg)
+    }
+    30% {
+      -webkit-transform: rotate(35deg)
+    }
+    40% {
+      transform: rotate(28deg)
+    }
+    60% {
+      -webkit-transform: rotate(28deg)
+    }
+    100% {
+      -webkit-transform: rotate(28deg)
+    }
+}
+
+@keyframes swing-left {
+    10% {
+      transform: rotate(0deg)
+    }
+    30% {
+      transform: rotate(35deg)
+    }
+    40% {
+      transform: rotate(28deg)
+    }
+    60% {
+      transform: rotate(28deg)
+    }
+    100% {
+      transform: rotate(28deg)
+    }
+}
+
+@-webkit-keyframes swing-right {
+    10% {
+      -webkit-transform: rotate(0deg)
+    }
+    30% {
+      -webkit-transform: rotate(-35deg)
+    }
+    40% {
+      -webkit-transform: rotate(-28deg)
+    }
+    60% {
+      -webkit-transform: rotate(-28deg)
+    }
+    100% {
+      -webkit-transform: rotate(-28deg)
+    }
+}
+
+@keyframes swing-right {
+    10% {
+      transform: rotate(0deg)
+    }
+    30% {
+      transform: rotate(-35deg)
+    }
+    40% {
+      transform: rotate(-28deg)
+    }
+    80% {
+      transform: rotate(-28deg)
+    }
+    100% {
+      transform: rotate(-28deg)
+    }
+}
+
+	/*中级爪子*/
+.machine.medium{}
+.machine.medium .top{ width: 2rem; height: 1.5rem; background: url(../img/machine_top_medium.png) no-repeat; background-size: 2rem 1.5rem; display: block; margin: 0 auto;}
+.machine.medium .handle{ width: 3.5rem; height: 3rem; position: relative; margin: 0 auto;}
+.machine.medium .handle .origin{ width: 1.3rem; height: 1.4rem; background: url(../img/machine-origin_medium.png) no-repeat; background-size: 1.3rem 1.4rem; display: block; position: absolute; top: 0; left: 50%; margin-left: -0.65rem; z-index: 5;}
+.machine.medium .handle .left_arm{ width: 1.75rem; height: 2.3rem; background: url(../img/machine_claw_medium_left.png) no-repeat; background-size: 1.75rem 2.3rem; display: block; position: absolute; left: 0; top: 0.7rem;}
+.machine.medium .handle .right_arm{ width: 1.75rem; height: 2.3rem; background: url(../img/machine_claw_medium_right.png) no-repeat; background-size: 1.75rem 2.3rem; display: block; position: absolute; left: 50%; top: 0.7rem;}
+
+	/*高级爪子*/
+.machine.senior{}
+.machine.senior .top{ width: 2rem; height: 1.5rem; background: url(../img/machine_top_senior.png) no-repeat; background-size: 2rem 1.5rem; display: block; margin: 0 auto;}
+.machine.senior .handle{ width: 3.5rem; height: 3rem; position: relative; margin: 0 auto;}
+.machine.senior .handle .origin{ width: 1.3rem; height: 1.4rem; background: url(../img/machine-origin_senior.png) no-repeat; background-size: 1.3rem 1.4rem; display: block; position: absolute; top: 0; left: 50%; margin-left: -0.65rem; z-index: 5;}
+.machine.senior .handle .left_arm{ width: 1.75rem; height: 2.3rem; background: url(../img/machine_claw_senior_left.png) no-repeat; background-size: 1.75rem 2.3rem; display: block; position: absolute; left: 0; top: 0.7rem;}
+.machine.senior .handle .right_arm{ width: 1.75rem; height: 2.3rem; background: url(../img/machine_claw_senior_right.png) no-repeat; background-size: 1.75rem 2.3rem; display: block; position: absolute; left: 50%; top: 0.7rem;}
+
+.energy{ width: 4rem; height: 2.4rem; position: absolute; left: 1.1rem; top:3.1rem;}
+.energy .img{ width: 2.8rem; height: 1.5rem; display: block;}
+.energy .hand{ width: 0.5rem; height: 1.2rem; display: block; position: absolute; top: 0.3rem; left: 0.7rem; transform-origin: bottom right; -webkit-transform-origin: bottom right; transform: rotate(-70deg); -webkit-transform: rotate(-70deg);}
+.energy .hand.lost1{ transform: rotate(-40deg); -webkit-transform: rotate(-40deg);}
+.energy .hand.lost2{ transform: rotate(0deg); -webkit-transform: rotate(0deg);}
+.energy .hand.lost3{ transform: rotate(30deg); -webkit-transform: rotate(30deg);}
+.energy .hand.lost4{ transform: rotate(60deg); -webkit-transform: rotate(60deg);}
+.energy .hand.lost5{ transform: rotate(95deg); -webkit-transform: rotate(95deg);}
+.energy p{ width: 100%; font-size: 0.45rem; color: #fff; height: 0.9rem; line-height: 0.9rem;}
+
+.before{ width: 16rem; height: 5.2rem; position: absolute; left: 0; bottom: 5.1rem; z-index: 5; background: url(../img/road.png) no-repeat center bottom; background-size: 16rem 1.25rem; overflow: hidden;}
+.before .removeCar{ opacity: 0;}
+.before ul{ width: 50rem; height: 4.8rem; overflow: hidden; position: absolute; top: 0;}
+.before ul.tip1{ left: 0; animation: toLeft 48s linear infinite;}
+.before ul.tip2{ left: 16rem; animation: toLeft2 48s linear infinite;}
+.before li{ width: 5.1rem; height: 4.8rem; float: left; margin-left: 1.15rem; font-size: 0.6rem; color: #fff; text-align: center; position: relative; line-height: 0.8rem;}
+.before li.car1{ background: url(../img/car1.png) no-repeat center bottom; background-size: 5.1rem 4.8rem; padding: 1.6rem 0.4rem 1.3rem 1.8rem;}
+.before li.car2{ background: url(../img/car2.png) no-repeat center bottom; background-size: 5.1rem 4.8rem; padding: 1.6rem 0.4rem 1.3rem 1.8rem;}
+.before li.car3{ background: url(../img/car3.png) no-repeat center bottom; background-size: 5.1rem 4.8rem; padding: 1.6rem 0.4rem 1.3rem 1.8rem;}
+.before li.car4{ background: url(../img/car4.png) no-repeat center bottom; background-size: 5.1rem 4.8rem; padding:  1.6rem 1rem 0.4rem 2.4rem;}
+.before li.car5{ background: url(../img/car5.png) no-repeat center bottom; background-size: 5.1rem 4.8rem; padding: 1.6rem 1.1rem 0.4rem 2.3rem;}
+.before li label{ display: block; font-size: 0.75rem; font-weight: bold; height: 1.1rem; line-height: 1.1rem;}
+.before li.car3 label{ display: block; font-size: 0.6rem; font-weight: bold;}
+
+@keyframes toLeft
+{
+0% { left: 0%; opacity: 1;}
+50%{ left: -312.5%; opacity: 1;}
+50.01%{ left: 100%; opacity: 0;}
+83.99%{ left: 100%; opacity: 0;}
+84%{ left: 100%; opacity: 1;}
+100%{ left: 0%; opacity: 1;}
+}
+
+@keyframes toLeft2
+{
+0% { left: 100%;}
+34% { left: 100%;}
+84%{ left: -212.5%;}
+100%{ left: -312.5%;}
+}
+
+/*@keyframes toLeft
+{
+0% { left: 0rem; opacity: 1;}
+50%{ left: -50rem; opacity: 1;}
+50.01%{ left: 16rem; opacity: 0;}
+83.99%{ left: 16rem; opacity: 0;}
+84%{ left: 16rem; opacity: 1;}
+100%{ left: 0rem; opacity: 1;}
+}
+
+@keyframes toLeft2
+{
+0% { left: 16rem;}
+34% { left: 16rem;}
+84%{ left: -34rem;}
+100%{ left: -50rem;}
+}*/
+
+.after{ width: 16rem; height: 5.2rem; position: absolute; left: 0; bottom: 7rem; background: url(../img/road.png) no-repeat center bottom; background-size: 16rem 1rem; overflow: hidden;}
+.after ul{ width: 50rem; height: 4.8rem; overflow: hidden; position: absolute; top: 0; margin-top: 1rem;}
+.after ul.tip1{ right: 0; animation: toRight 48s linear infinite;}
+.after ul.tip2{ right: 16rem; animation: toRight2 48s linear infinite;}
+.after li{ width: 5.1rem; height: 4.8rem; float: right; margin-right: 1.15rem; font-size: 0.6rem; color: #fff; text-align: center; position: relative; line-height: 0.8rem; transform:scale(0.6,0.6);}
+.after li.car1{ background: url(../img/car1-2.png) no-repeat center bottom; background-size: 5.1rem 4.8rem; padding: 1.6rem 1.8rem 1.3rem 0.4rem;}
+.after li.car2{ background: url(../img/car2-2.png) no-repeat center bottom; background-size: 5.1rem 4.8rem; padding: 1.6rem 1.8rem 1.3rem 0.4rem;}
+.after li.car3{ background: url(../img/car3-2.png) no-repeat center bottom; background-size: 5.1rem 4.8rem; padding: 1.6rem 1.8rem 1.3rem 0.4rem;}
+.after li.car4{ background: url(../img/car4-2.png) no-repeat center bottom; background-size: 5.1rem 4.8rem; padding:  1.6rem 2.4rem 0.4rem 1rem;}
+.after li.car5{ background: url(../img/car5-2.png) no-repeat center bottom; background-size: 5.1rem 4.8rem; padding: 1.6rem 2.3rem 0.4rem 1.1rem;}
+.after li label{ display: block; font-size: 0.75rem; font-weight: bold; height: 1.1rem; line-height: 1.1rem;}
+.after li.car3 label{ display: block; font-size: 0.6rem; font-weight: bold;}
+
+@keyframes toRight
+{
+0% { right: 0%; opacity: 1;}
+50%{ right: -312.5%; opacity: 1;}
+50.01%{ right: 100%; opacity: 0;}
+83.99%{ right: 100%; opacity: 0;}
+84%{ right: 100%; opacity: 1;}
+100%{ right: 0%; opacity: 1;}
+}
+
+@keyframes toRight2
+{
+0% { right: 100%;}
+34% { right: 100%;}
+84%{ right: -212.5%;}
+100%{ right: -312.5%;}
+}
+
+.prize{ width: 100%; height: 20px !important; background: rgba(0,0,0,0.3); position: absolute; left: 0; bottom:3.8rem;}
+.prize li{ height: 20px; line-height: 20px; margin: 0 15px; display: inline-block; color: #fff; font-size: 12px;}
+
+/*弹窗*/
+.pop{ width: 100%; height: 100%; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); display: none; z-index: 100;}
+
+.loading{}
+.loading img{ width: 2rem; height: 2rem; display: block; position: absolute; top: 50%; left: 50%; margin: -1rem 0 0 -1rem; animation: toRotate 1.8s linear; animation-iteration-count:infinite;}
+@keyframes toRotate
+{
+from {transform:rotate(0deg);}
+to {transform:rotate(360deg);}
+}
+
+.win{}
+.win .centerDiv{ width: 11.5rem; height: 15rem; background: #fff8f9; position: absolute; top: 50%; left: 50%; margin-left: -5.75rem; margin-top: -7.5rem; border-radius: 0.2rem; overflow: hidden;}
+.win .centerDiv h1{ width: 100%; height: 2.25rem; background: #f24831 url(../img/titile.png) no-repeat center center; background-size: 11.5rem 2.25rem; text-align: center; line-height: 2.25rem; font-size: 0.75rem; font-weight: normal; color: #fff; margin-bottom: 0.9rem;}
+.win .centerDiv h2{ font-size: 0.6rem; color: #757575; line-height: 1rem; font-weight: normal; padding: 0 1.9rem; text-align: center;}
+.win .centerDiv .text{ width: 7.5rem; height: 2.75rem; margin: 1rem auto;background: url(../img/prize.png) no-repeat; background-size: 7.5rem 2.75rem; text-align: center; color: #fff; padding: 0.3rem 1rem; line-height: 1rem; font-size: 0.6rem;}
+.win .centerDiv .text label{ width: 100%; height: 1.1rem; line-height: 1.1rem; font-size: 0.75rem; font-weight: bold; display: block;}
+.win .centerDiv .btn{ width: 9.5rem; height: 1.625rem; line-height: 1.4rem; background: url(../img/btn.png) no-repeat; background-size: 9.5rem 1.625rem; display: block; margin: 15px auto 0; font-size: 0.6rem; color: #f9390c; text-align: center;}
+
+.impact{}
+.impact .centerDiv{ width: 11.5rem; height: 12rem; background: #fff8f9; position: absolute; top: 50%; left: 50%; margin-left: -5.75rem; margin-top: -6rem; border-radius: 0.2rem; overflow: hidden;}
+.impact .centerDiv h1{ width: 100%; height: 2.25rem; background: #f24831 url(../img/titile.png) no-repeat center center; background-size: 11.5rem 2.25rem; text-align: center; line-height: 2.25rem; font-size: 0.75rem; font-weight: normal; color: #fff; margin-bottom: 0.9rem;}
+.impact .centerDiv h2{ font-size: 0.6rem; color: #757575; line-height: 1rem; font-weight: normal; padding: 0 1.9rem; text-align: center;}
+.impact .centerDiv .text{ width: 7.5rem; height: 2.75rem; margin: 1rem auto;background: url(../img/prize.png) no-repeat; background-size: 7.5rem 2.75rem; text-align: center; color: #fff; padding: 0.3rem 1rem; line-height: 1rem; font-size: 0.6rem;}
+.impact .centerDiv .text label{ width: 100%; height: 1.1rem; line-height: 1.1rem; font-size: 0.75rem; font-weight: bold; display: block;}
+.impact .centerDiv .btn{ width: 9.5rem; height: 1.625rem; line-height: 1.4rem; background: url(../img/btn.png) no-repeat; background-size: 9.5rem 1.625rem; display: block; margin: 15px auto 0; font-size: 0.6rem; color: #f9390c; text-align: center;}
+
+.lost{}
+.lost .centerDiv{ width: 11.5rem; height: 15rem; background: #fff8f9; position: absolute; top: 50%; left: 50%; margin-left: -5.75rem; margin-top: -7.5rem; border-radius: 0.2rem; overflow: hidden;}
+.lost .centerDiv h1{ width: 100%; height: 2.25rem; background: #f24831 url(../img/titile.png) no-repeat center center; background-size: 11.5rem 2.25rem; text-align: center; line-height: 2.25rem; font-size: 0.75rem; font-weight: normal; color: #fff; margin-bottom: 0.9rem;}
+.lost .centerDiv h2{ font-size: 0.6rem; color: #757575; line-height: 1rem; font-weight: normal; padding: 0 1.8rem; text-align: center;}
+.lost .centerDiv .text{ width: 6rem; height: 3.55rem; margin: 0.8rem auto; background: url(../img/lost.png) no-repeat; background-size: 6rem 3.55rem; text-align: center; color: #fff;}
+.lost .centerDiv .btn{ width: 9.5rem; height: 1.625rem; line-height: 1.4rem; background: url(../img/btn.png) no-repeat; background-size: 9.5rem 1.625rem; display: block; margin: 15px auto 0; font-size: 0.6rem; color: #f9390c; text-align: center;}
+
+.no_money{}
+.no_money .centerDiv{ width: 11.5rem; height: 15rem; background: #fff8f9; position: absolute; top: 50%; left: 50%; margin-left: -5.75rem; margin-top: -7.5rem; border-radius: 0.2rem; overflow: hidden;}
+.no_money .centerDiv h1{ width: 100%; height: 2.25rem; background: #f24831 url(../img/titile.png) no-repeat center center; background-size: 11.5rem 2.25rem; text-align: center; line-height: 2.25rem; font-size: 0.75rem; font-weight: normal; color: #fff; margin-bottom: 0.9rem;}
+.no_money .centerDiv h2{ font-size: 0.6rem; color: #757575; line-height: 1rem; font-weight: normal; padding: 0 1.9rem; text-align: center;}
+.no_money .centerDiv .text{ width: 6rem; height: 3.55rem; margin: 0.8rem auto; background: url(../img/no_money.png) no-repeat; background-size: 6rem 3.55rem;}
+.no_money .centerDiv .btn{ width: 9.5rem; height: 1.625rem; line-height: 1.4rem; background: url(../img/btn.png) no-repeat; background-size: 9.5rem 1.625rem; display: block; margin: 15px auto 0; font-size: 0.6rem; color: #f9390c; text-align: center;}
+
+.recharge{}
+.recharge .centerDiv{ width: 11.5rem; height: 15rem; background: #fff8f9; position: absolute; top: 50%; left: 50%; margin-left: -5.75rem; margin-top: -7.5rem; border-radius: 0.2rem; overflow: hidden;}
+.recharge .centerDiv h1{ width: 100%; height: 2.25rem; background: #f24831 url(../img/titile.png) no-repeat center center; background-size: 11.5rem 2.25rem; text-align: center; line-height: 2.25rem; font-size: 0.75rem; font-weight: normal; color: #fff; margin-bottom: 0.9rem;}
+.recharge .centerDiv h2{ font-size: 0.6rem; color: #757575; line-height: 1rem; font-weight: normal; padding: 0 1.9rem; text-align: center;}
+.recharge .centerDiv .text{ width: 6rem; height: 3.55rem; margin: 1rem auto; background: url(../img/no_money.png) no-repeat; background-size: 6rem 3.55rem;}
+.recharge .centerDiv .btn{ width: 9.5rem; height: 1.625rem; line-height: 1.4rem; background: url(../img/btn.png) no-repeat; background-size: 9.5rem 1.625rem; display: block; margin: 15px auto 0; font-size: 0.6rem; color: #f9390c; text-align: center;}
+
+.rule{}
+.rule .centerDiv{ width: 11.5rem; height: 17rem; background: #fff8f9; position: absolute; top: 50%; left: 50%; margin-left: -5.75rem; margin-top: -8.5rem; border-radius: 0.2rem; overflow: hidden;}
+.rule .centerDiv h1{ width: 100%; height: 2.25rem; background: #f24831 url(../img/titile.png) no-repeat center center; background-size: 11.5rem 2.25rem; text-align: center; line-height: 2.25rem; font-size: 0.75rem; font-weight: normal; color: #fff; margin-bottom: 0.9rem;}
+.rule .centerDiv p{ width: 100%; padding: 0 0.9rem; font-size: 0.6rem; color: #757575; line-height: 0.9rem; text-align: justify;}
+.rule .centerDiv label{ width: 100%; padding: 0 0.9rem; font-size: 0.6rem; color: #757575; line-height: 0.9rem; margin-top: 1rem; display: block; text-align: justify;}
+.rule .centerDiv .btn{ width: 9.5rem; height: 1.625rem; line-height: 1.4rem; background: url(../img/btn.png) no-repeat; background-size: 9.5rem 1.625rem; display: block; margin: 15px auto 0; font-size: 0.6rem; color: #f9390c; text-align: center;}
+
+/*引导页*/
+.guide{ width: 100%; height: 100%; position: absolute; top: 0; left: 0; background: rgba(0,0,0,0.5); z-index: 100; padding-top: 5.4rem; display: block;}
+.guide h1{ width: 100%; text-align: center; font-size: 0.75rem; color: #fff;}
+.guide .text{ width: 14.5rem; height: auto; display: block; background: rgba(0,0,0,0.6); margin: 1rem auto 0; border-radius: 0.3rem; padding: 0.5rem;}
+.guide .text p{ width: 100%; line-height: 0.9rem; color: #fff; font-size: 0.6rem; margin: 0.4rem 0;}
+.guide .text p i{ width: 1.8rem; height: 1rem; background: url(../img/btn_go.png) no-repeat; background-size: 1.8rem 1rem; display: inline-block; margin: 0 0.5rem; margin-bottom: -0.3rem;}
+.guide .driver{ width: 100%; text-align: center; line-height: 0.6rem; position: absolute; left: 0; bottom: 3.75rem; padding-left: 5rem;}
+.guide .driver input{ width: 0.6rem; height: 0.6rem; border: 1px solid #888; background: #fff; border-radius: 0.2rem; outline: none; float: left; margin-right: 0.2rem;}
+.guide .driver label{ font-size: 0.5rem; color: #fff; float: left;}
+.guide .know{ width: 10.35rem; height: 1.6rem; line-height: 1.5rem; text-align: center; border: 1px solid #fff; color: #fff; font-size: 0.6rem; position: absolute; bottom: 1.5rem; left: 50%; margin-left: -5.2rem; border-radius: 0.2rem;}
+
+
+
+
+
+
+
+

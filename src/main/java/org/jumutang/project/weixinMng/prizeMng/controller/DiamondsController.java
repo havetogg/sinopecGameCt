@@ -6,6 +6,10 @@ import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.jumutang.project.base.BaseController;
+import org.jumutang.project.weixinMng.gameThree.model.T3GameRecordMode;
+import org.jumutang.project.weixinMng.gameThree.model.T3UserGameMode;
+import org.jumutang.project.weixinMng.gameThree.service.IT3GameRecordService;
+import org.jumutang.project.weixinMng.gameThree.service.IT3UserGameService;
 import org.jumutang.project.weixinMng.gameTwo.model.GameTwoMode;
 import org.jumutang.project.weixinMng.gameTwo.model.T2GameRecordMode;
 import org.jumutang.project.weixinMng.gameTwo.service.IGameTwoService;
@@ -35,7 +39,7 @@ import java.util.*;
 
 //钻石
 @Controller
-@RequestMapping(value = "/getDiamonds" ,method = {RequestMethod.GET,RequestMethod.POST})
+@RequestMapping(value = "/weixinMng/getDiamonds" ,method = {RequestMethod.GET,RequestMethod.POST})
 public class DiamondsController extends BaseController {
 
     private Logger logger = Logger.getLogger(DiamondsController.class);
@@ -52,6 +56,12 @@ public class DiamondsController extends BaseController {
 
     @Autowired
     private IManageService manageService;
+
+    @Autowired
+    private IT3UserGameService t3UserGameService;
+
+    @Autowired
+    private IT3GameRecordService t3GameRecordService;
 
     //调用接口获取钻石
     @RequestMapping(value = "/diamondsPrize")
@@ -171,6 +181,51 @@ public class DiamondsController extends BaseController {
                 jsonObject.put("message","能量不足无法暴击");
             }
             return JSON.toJSONString(jsonObject);
+        }else if("3".equals(gameId)){ //扭蛋机
+            // 取得用户登陆信息
+            MallUserMode userbean = refreshtWxLoginUser(request);
+            // 用户游戏2的相关信息
+            T3UserGameMode t3UserGameMode = new T3UserGameMode();
+            t3UserGameMode.setUserId(userbean.getID());
+            t3UserGameMode = t3UserGameService.list(t3UserGameMode).get(0);
+            if(Integer.parseInt(t3UserGameMode.getEnergyNum())==5) {
+
+                //钻石记录表插入数据
+                //当前随机获取钻石
+                String  diamondCountRand = String.valueOf(diamond.random_Diamond());
+                DiamondRecord diamondRecord = new DiamondRecord();
+                diamondRecord.setGameId(gameId); //游戏gameId
+                diamondRecord.setUserId(userId); //用户userId
+                diamondRecord.setDiamonds(diamondCountRand);
+                int refId = diamondRecordService.saveDiamondRecord(diamondRecord);
+
+                String recordId = request.getParameter("recordId");
+                if(StringUtils.isNotBlank(recordId)){
+                    T3GameRecordMode t3GameRecordMode = new T3GameRecordMode();
+                    t3GameRecordMode.setId(recordId);
+                    t3GameRecordMode.setPrizeType(String.valueOf("1"));
+                    t3GameRecordMode.setRefId(String.valueOf(refId));
+                    t3GameRecordService.updateT3GameRecord(t3GameRecordMode);
+                }
+
+                //修改用户当前钻石总额
+                MallUserMode mallUserMode = new MallUserMode();
+                mallUserMode.setOPEN_ID(openId);
+                mallUserMode.setALL_DIAMOND(diamondCountRand);
+                manageService.UpdateDiamond(mallUserMode);
+
+                //能量设为0
+                t3UserGameMode.setEnergyNum("0");
+                t3UserGameService.updateT3UserGame(t3UserGameMode);
+
+                jsonObject.put("result",true);
+                jsonObject.put("diamond",diamondCountRand);
+
+            }else{
+                jsonObject.put("result",false);
+                jsonObject.put("message","能量不足无法暴击");
+            }
+            return JSON.toJSONString(jsonObject);
         }
         return JSON.toJSONString(jsonObject);
     }
@@ -191,13 +246,31 @@ public class DiamondsController extends BaseController {
 
         if(rand_count<2){
             logger.info("未中奖---20%");
-            modelAndView.setViewName("forward:/getDiamonds/losePrize.htm");
+            modelAndView.setViewName("forward:/weixinMng/getDiamonds/losePrize.htm");
         }else if (rand_count>=2 && rand_count<5){
             logger.info("礼品---抽奖---30%");
-            modelAndView.setViewName("forward:/getPrize/randomPrize.htm");
+            modelAndView.setViewName("forward:/weixinMng/getPrize/randomPrize.htm");
         }else {
             logger.info("钻石---抽奖---50%");
-            modelAndView.setViewName("forward:/getDiamonds/diamondsPrize.htm");
+            modelAndView.setViewName("forward:/weixinMng/getDiamonds/diamondsPrize.htm");
+        }
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/randomDiamonds")
+    public ModelAndView randomDiamonds(HttpServletRequest request ,HttpServletResponse response ,HttpSession session){
+        ModelAndView modelAndView = new ModelAndView();
+
+        Random random = new Random();
+        int rand_count  = random.nextInt(10);
+
+        if(rand_count<7){
+            logger.info("未中奖---20%");
+            modelAndView.setViewName("forward:/weixinMng/getDiamonds/losePrize.htm");
+        }else {
+            logger.info("钻石---抽奖---50%");
+            modelAndView.setViewName("forward:/weixinMng/getDiamonds/diamondsPrize.htm");
         }
 
         return modelAndView;

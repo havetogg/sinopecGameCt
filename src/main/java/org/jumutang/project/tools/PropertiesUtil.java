@@ -15,8 +15,8 @@ public class PropertiesUtil {
 	private static void init(){
 		InputStream is=null;
 		try {
-			//is=PropertiesUtil.class.getClassLoader().getResourceAsStream("conf/deve/common.properties");
-			is=PropertiesUtil.class.getClassLoader().getResourceAsStream("conf/produ/common.properties");
+			is=PropertiesUtil.class.getClassLoader().getResourceAsStream("conf/deve/common.properties");
+			//is=PropertiesUtil.class.getClassLoader().getResourceAsStream("conf/produ/common.properties");
 			prop.load(is);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

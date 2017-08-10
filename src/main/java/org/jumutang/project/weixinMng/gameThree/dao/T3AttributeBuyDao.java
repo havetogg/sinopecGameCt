@@ -11,8 +11,8 @@ import java.util.List;
  * @Modified By:
  */
 public interface T3AttributeBuyDao {
-    int saveT3AttributeMode(T3AttributeBuyMode t3AttributeBuyMode);
 
+    int saveT3AttributeMode(T3AttributeBuyMode t3AttributeBuyMode);
 
     List<T3AttributeBuyMode> list(T3AttributeBuyMode t3AttributeBuyMode);
 }

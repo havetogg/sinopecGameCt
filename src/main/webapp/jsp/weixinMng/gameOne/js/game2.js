@@ -421,7 +421,7 @@ function randomGetGift(){
     //每次只有抽奖一次[每次进行游戏中只能获得一次抽奖机会]
     if(isExits==0){
             $.ajax({
-                url:"/sinopecGameCt/getDiamonds/diamondsPrize.htm",
+                url:"/sinopecGameCt/weixinMng/getDiamonds/diamondsPrize.htm",
                 type: 'post',
                 async:false,
                 data:{

@@ -13,6 +13,9 @@ public interface IManageDao {
 	
 	// 查询用户的信息(根据openid)
 	public MallUserMode queryMallUserInfo(String openid);
+
+	// 查询用户的信息(根据phone)
+	public MallUserMode queryMallUserInfoByMobile(String Phone);
 	
 	// 查询用户的信息(根据ID)
 	public MallUserMode queryMallUserInfo_byId(String ID);

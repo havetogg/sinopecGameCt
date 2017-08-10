@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import net.sf.json.JSONObject;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.jumutang.basicbox.model.JSONResultModel;
 import org.jumutang.project.base.BaseController;
@@ -180,6 +181,13 @@ public class ManageController extends BaseController {
 	// 用户进入首页
 	@RequestMapping(value = "/userIn", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView userIn(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws UnsupportedEncodingException {
+
+		if(StringUtils.isBlank(request.getParameter("enterType"))){
+			request.getSession().setAttribute("enterType","weixin");
+		}else{
+			request.getSession().setAttribute("enterType",request.getParameter("enterType"));
+		}
+
 		// 取得最新的用户信息
 		MallUserMode userbean = refreshtWxLoginUser(request);
 		
@@ -231,10 +239,15 @@ public class ManageController extends BaseController {
 	public String sendRegistCode(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		JSONResultModel<HashMap<String, String>> jsonResultModel = new JSONResultModel<HashMap<String, String>>();
 		try {
+
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 			String randomdate = sdf.format(new Date());
 			int numb = 4;
 			String tel = super.getStr(request, "tel");
+			if(manageService.queryMallUserInfoByMobile(tel)!=null){
+				jsonResultModel.setCode(0).setMsg("该手机号已被注册!");
+				return JSONObject.fromObject(jsonResultModel).toString();
+			}
 			String randomCode = randomdate.substring(randomdate.length() - numb, randomdate.length());
 			PhoneMsgSendUtil phonemsgsendutil = new PhoneMsgSendUtil();
 			JSONObject sendMessage = phonemsgsendutil.sendMessage(tel, randomCode);
@@ -288,11 +301,15 @@ public class ManageController extends BaseController {
 				jsonResultModel.setResultObject(resultmap);
 				return JSONObject.fromObject(jsonResultModel).toString();
 			}
-			
 			String userbean_mobile = userbean.getMOBILE();
 			if(!StringUtil.isEmpty(userbean_mobile)){
 				// 已经登录过
 				jsonResultModel.setCode(1).setMsg("登录成功!");
+				jsonResultModel.setResultObject(resultmap);
+				return JSONObject.fromObject(jsonResultModel).toString();
+			}
+			if(manageService.queryMallUserInfoByMobile(MOBILE)!=null){
+				jsonResultModel.setCode(0).setMsg("该手机号已被注册!");
 				jsonResultModel.setResultObject(resultmap);
 				return JSONObject.fromObject(jsonResultModel).toString();
 			}
@@ -308,8 +325,10 @@ public class ManageController extends BaseController {
 				jsonResultModel.setResultObject(resultmap);
 				return JSONObject.fromObject(jsonResultModel).toString();
 			}
-			
-			userbean.setMOBILE(MOBILE);
+
+				userbean.setMOBILE(MOBILE);
+
+
 
 			manageService.update_UserInfo_login(userbean);
 			
@@ -413,7 +432,7 @@ public class ManageController extends BaseController {
 		ModelAndView view = new ModelAndView("/jsp/weixinMng/mallMng/rank.jsp");
 		Map<String,String> queryParam = new HashMap<>();
 		List<GameMngMode> list_userin = gameMngService.findList_UserIN(queryParam,userbean);
-		view.addObject("RANKLIST", list_userin); //用户的收藏数
+		view.addObject("RANKLIST", list_userin);
 		
 		return view;
 	}
@@ -487,31 +506,33 @@ public class ManageController extends BaseController {
 		PrizeRedeem prizeRedeem  = new PrizeRedeem();
 		prizeRedeem.setUserId(userbean.getID());
 		List<PrizeRedeem> prizeRedeems = iPrizeRedeemService.list(prizeRedeem);
+		PrizeRedeem prizeRedeem2 = new PrizeRedeem();
+		prizeRedeem2.setUserId(userbean.getID());
+		prizeRedeem2.setStatus("0");
+		prizeRedeem2.setEndTime("123");
+		List<PrizeRedeem> prizeRedeemList = iPrizeRedeemService.list(prizeRedeem2);
+		List<Prize> prizeList = iPrizeService.listPrize(new Prize());
 		JSONArray prizeArray = new JSONArray();
 		for(PrizeRedeem prizeRedeem1:prizeRedeems){
 			JSONObject jsonObject = new JSONObject();
-			PrizeRedeem prizeRedeem2 = new PrizeRedeem();
-			prizeRedeem2.setUserId(userbean.getID());
-			prizeRedeem2.setStatus("0");
-			prizeRedeem2.setEndTime("123");
-			List<PrizeRedeem> prizeRedeemList = iPrizeRedeemService.list(prizeRedeem2);
 			boolean flag = true;
 			for(PrizeRedeem prizeRedeem3:prizeRedeemList){
 				if(prizeRedeem3.getId().equals(prizeRedeem1.getId())){
 					flag = false;
 				}
 			}
-			if(flag&&"0".equals(prizeRedeem1.getStatus())){
+			if(flag){
 				jsonObject.put("isOut",0);
 			}else{
 				jsonObject.put("isOut",1);
 			}
-			Prize prize = new Prize();
-			prize.setId(prizeRedeem1.getPrizeId());
-			Prize prize1 = iPrizeService.listPrize(prize).get(0);
-			jsonObject.put("prizeName",prize1.getPrizeName());
-			jsonObject.put("prizeId",prize1.getId());
-			jsonObject.put("imgUrl",prize1.getImgUrl());
+			for(Prize prize:prizeList){
+				if(prize.getId().equals(prizeRedeem1.getPrizeId())){
+					jsonObject.put("prizeName",prize.getPrizeName());
+					jsonObject.put("prizeId",prize.getId());
+					jsonObject.put("imgUrl",prize.getImgUrl());
+				}
+			}
 			jsonObject.put("prizeRedeemId",prizeRedeem1.getId());
 			jsonObject.put("winningTime",prizeRedeem1.getWinningTime());
 			jsonObject.put("endTime",prizeRedeem1.getEndTime());
@@ -522,22 +543,6 @@ public class ManageController extends BaseController {
 
 		view.addObject("prizeArray", prizeArray);
 		return view;
-	}
-
-	//进入我的奖品详细
-	@RequestMapping(value = "/getPriceDetail", method = { RequestMethod.GET, RequestMethod.POST })
-	@ResponseBody
-	public String getPriceDetail(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		MallUserMode userbean =	refreshtWxLoginUser(request);// 取得最新的用户信息
-		String prizeId = request.getParameter("prizeId");
-		Prize prize = new Prize();
-		prize.setId(prizeId);
-		Prize prize1 = iPrizeService.listPrize(prize).get(0);
-		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("prizeName",prize1.getPrizeName());
-		jsonObject.put("prizeId",prize1.getId());
-		jsonObject.put("imgUrl",prize1.getImgUrl());
-		return JSON.toJSONString(jsonObject);
 	}
 
 	/*

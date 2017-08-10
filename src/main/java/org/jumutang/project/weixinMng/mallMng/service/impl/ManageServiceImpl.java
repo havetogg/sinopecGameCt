@@ -29,7 +29,14 @@ public class ManageServiceImpl implements IManageService {
 		MallUserMode userbean = manageDao.queryMallUserInfo(openid);
 		return userbean;
 	}
-	
+
+	@Override
+	@Transactional
+	public MallUserMode queryMallUserInfoByMobile(String mobile) {
+		MallUserMode userbean = manageDao.queryMallUserInfoByMobile(mobile);
+		return userbean;
+	}
+
 	// 插入数据
 	@Override
 	@Transactional

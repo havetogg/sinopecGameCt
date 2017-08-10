@@ -40,7 +40,16 @@
 
                     <li class="flex">
                         <div>
-                            <img src="${contentPath }/jsp/weixinMng/mallMng/img/tel.png" alt="" class="goodsImg">
+                            <c:choose>
+                                <c:when test="${obj.prizeId==1||obj.prizeId==2}">
+                                    <img src="${contentPath }/jsp/weixinMng/mallMng/img/oilRed.png" alt="" class="goodsImg">
+                                </c:when>
+                                <c:when test="${obj.prizeId==3}">
+                                    <img src="${contentPath }/jsp/weixinMng/mallMng/img/oil.png" alt="" class="goodsImg">
+                                </c:when>
+                                <c:otherwise>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
 
                         <c:choose>
@@ -61,16 +70,23 @@
                         </c:choose>
 
                         <div>
-                    <c:choose>
-                        <c:when test="${obj.status==0&&obj.isOut==1}">
-                            <img class="exchange" src="${contentPath }/jsp/weixinMng/mallMng/img/exchangeBtn2.png" alt="" onclick="javascript:window.location.href=getRootPath()+'/getPrize/exchangeRed.htm?prizeId=${obj.prizeId}&prizeRedeemId=${obj.prizeRedeemId}&imgUrl=${obj.imgUrl}&redeemCode=${obj.redeemCode}'">
-                        </c:when>
-                        <c:when test="${obj.status==0&&obj.isOut==0}">
-                        </c:when>
-                        <c:otherwise>
-                            <img class="exchanged" src="${contentPath }/jsp/weixinMng/mallMng/img/exchanged.png" alt="">
-                        </c:otherwise>
-                    </c:choose>
+                            <c:choose>
+                                <c:when test="${obj.status==0&&obj.isOut==1}">
+                                    <c:choose>
+                                        <c:when test="${obj.prizeId==3}">
+                                            <img class="exchange" src="${contentPath }/jsp/weixinMng/mallMng/img/exchangeBtn2.png" alt="" onclick="javascript:window.location.href=getRootPath()+'/weixinMng/getPrize/exchangeOilDrop.htm?prizeId=${obj.prizeId}&prizeRedeemId=${obj.prizeRedeemId}&imgUrl=${obj.imgUrl}&redeemCode=${obj.redeemCode}'">
+                                        </c:when>
+                                        <c:otherwise>
+                                            <img class="exchange" src="${contentPath }/jsp/weixinMng/mallMng/img/exchangeBtn2.png" alt="" onclick="javascript:window.location.href=getRootPath()+'/weixinMng/getPrize/exchangeRed.htm?prizeId=${obj.prizeId}&prizeRedeemId=${obj.prizeRedeemId}&imgUrl=${obj.imgUrl}&redeemCode=${obj.redeemCode}'">
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:when>
+                                <c:when test="${obj.status==1}">
+                                    <img class="exchanged" src="${contentPath }/jsp/weixinMng/mallMng/img/exchanged.png" alt="">
+                                </c:when>
+                                <c:otherwise>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </li>
 

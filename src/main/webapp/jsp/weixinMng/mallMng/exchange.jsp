@@ -29,14 +29,14 @@
 			$("#activate").bind("click",function () {
                 $(".loading").fadeIn();
                     $.ajax({
-                        url: getRootPath() + "/getPrize/activateRed.htm",
+                        url: getRootPath() + "/weixinMng/getPrize/activateCode.htm",
                         data: {"redeemCode": $("#code").val()},
                         dataType: "json",
                         type: "post",
                         success: function (data) {
                             $(".loading").fadeOut();
                             if(data.result){
-                                exchangeSuccess();
+                                exchangeSuccess(data.type);
                             }else{
                                 exchangeFailure();
                             }
@@ -46,8 +46,13 @@
         })
 
         //验证成功
-        function exchangeSuccess(){
-            window.location.href=getRootPath()+"/jsp/weixinMng/mallMng/exchangeSuccess.html";
+        function exchangeSuccess(type){
+		    if(type==0){
+                window.location.href=getRootPath()+"/jsp/weixinMng/mallMng/exchangeSuccess.html";
+			}else if(type==1){
+                window.location.href=getRootPath()+"/jsp/weixinMng/mallMng/exchangeSuccess_oil.html";
+            }
+
         }
 
         //验证不成功

@@ -34,19 +34,6 @@
                     TipShow('已复制',1000);
                 }, 300);
             });
-
-            //获取商品名字
-            var prizeId = '${prizeId}';
-            /*$.ajax({
-                url: getRootPath() + "/weixinMng/ManageC/getPriceDetail.htm",
-                data: {"prizeId": prizeId},
-                dataType: "json",
-                type: "post",
-                success: function (data) {
-                    $("#prizeName").html(data.prizeName);
-                    $("#prizeName1").html(data.prizeName);
-                }
-            })*/
         });
     </script>
 </head>
@@ -60,7 +47,14 @@
             <ul class="game_myPrize_Prize">
                 <li class="flex">
                     <div>
-                        <img src="${contentPath }/jsp/weixinMng/mallMng/img/tel.png" alt="" class="goodsImg">
+                        <c:choose>
+                            <c:when test="${prizeId==1||prizeId==2}">
+                                <img src="${contentPath }/jsp/weixinMng/mallMng/img/oilRed.png" alt="" class="goodsImg">
+                            </c:when>
+                            <c:when test="${prizeId==3}">
+                                <img src="${contentPath }/jsp/weixinMng/mallMng/img/oil.png" alt="" class="goodsImg">
+                            </c:when>
+                        </c:choose>
                     </div>
                     <div class="flex-1 prize_info" >
                             <div class="prize_name" id="prizeName">${prizeName}</div>

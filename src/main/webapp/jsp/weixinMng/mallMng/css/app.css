@@ -969,8 +969,8 @@ body {
     line-height: 20px;
     border-radius: 50%;
     position: absolute;
-    right: 15px;
-    top: 10px;
+    right: 16px;
+    top: 20px;
     text-align: center;
 }
 .index_diamond label{
@@ -1050,15 +1050,15 @@ body {
     left: 70px;
 }
 .index_tip2{
-    width: 150px;
+    width: 180px;
     position: absolute;
-    font-size: 20px;
+    font-size: 22px;
     right: 0px;
     background-color: #fff;
-    color: #000;
+    color: #0d1826;
     padding: 10px;
-    border-radius: 10px;
-    line-height: 40px;
+    border-radius: 5px;
+    line-height: 60px;
     top: 50px;
     display: none;
 }
@@ -1083,7 +1083,7 @@ body {
     border-radius: 50%;
     position: absolute;
     text-align: center;
-    left: 120px;
+    right:10px;
 }
 .index_login_tip1{
     font-size: 24px;
@@ -1136,7 +1136,7 @@ body {
     font-size: 18px;
     color: #fff;
     display: list-item;
-    margin: 10px 10px 10px 0px;
+    margin: 5px 10px 10px 0px;
 }
 .index_range{
     width: 90%;
@@ -1395,8 +1395,122 @@ body {
         -webkit-transform: translateY(20px);
     }
 }
-
-
+.gameTop_top{
+    text-align: center;
+    margin: 20px 0 0px;
+    font-size: 24px;
+    color: #3ee8df;
+    font-family: 'Microsoft YaHei';
+    line-height: 40px;
+}
+/*金牌*/
+.gameTop_top1{
+    background: url(../img/top3.png);
+    height: 130px;
+    width: 365px;
+    background-repeat: no-repeat;
+    font-size: 24px;
+    margin: 0px auto;
+    padding: 16px 0;
+}
+.gameTop_top1 div{
+    line-height: 60px;
+    height: 40px;
+    color: #fff;
+}
+.gameTop_top1 a{
+    display: inline-block;
+    color: #ffdc1c;
+    font-size: 40px;
+    font-family: '微软雅黑';
+    background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(rgba(255, 255, 255, 1)), to(rgba(255, 220, 28, 1)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+}
+.gameTop_top1 label{
+    display: inline-block;
+    color: #ffdc1c;
+    font-size: 24px;
+    font-family: '微软雅黑';
+    background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(rgba(255, 220, 28, 1)), to(rgba(255, 255, 255, 1)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    margin-right: 10px;
+}
+/*银牌*/
+.gameTop_top2{
+    background: url(../img/top2.png);
+    height: 130px;
+    width: 365px;
+    background-repeat: no-repeat;
+    font-size: 24px;
+    margin: 0px auto;
+    padding: 16px 0;
+}
+.gameTop_top2 div{
+    line-height: 60px;
+    height: 40px;
+    color: #fff;
+}
+.gameTop_top2 a{
+    display: inline-block;
+    color: #b7b7b7;
+    font-size: 40px;
+    font-family: '微软雅黑';
+    background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(rgba(237, 237, 237, 1)), to(rgba(183, 183, 183, 1)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+}
+.gameTop_top2 label{
+    display: inline-block;
+    color: #b7b7b7;
+    font-size: 24px;
+    font-family: '微软雅黑';
+    background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(rgba(237, 237, 237, 1)), to(rgba(183, 183, 183, 1)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    margin-right: 10px;
+}
+/*铜牌*/
+.gameTop_top3{
+    background: url(../img/top1.png);
+    height: 130px;
+    width: 365px;
+    background-repeat: no-repeat;
+    font-size: 24px;
+    margin: 0px auto;
+    padding: 16px 0;
+}
+.gameTop_top3 div{
+    line-height: 60px;
+    height: 35px;
+    color: #fff;
+}
+.gameTop_top3 a{
+    display: inline-block;
+    color: #ff8661;
+    font-size: 40px;
+    font-family: '微软雅黑';
+    background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(rgba(255, 195, 176, 1)), to(rgba(255, 134, 97, 1)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+}
+.gameTop_top3 label{
+    display: inline-block;
+    color: #ff8661;
+    font-size: 24px;
+    font-family: '微软雅黑';
+    background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(rgba(255, 195, 176, 1)), to(rgba(255, 134, 97, 1)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    margin-right: 10px;
+}
 
 
 

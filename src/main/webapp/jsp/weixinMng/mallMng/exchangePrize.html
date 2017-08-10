@@ -29,7 +29,6 @@
                     TipShow('已复制',1000);
                 }, 300);
             });
-            console.log(getUrlParam("imgUrl"));
             $("#redeemCode").html(getUrlParam("redeemCode"));
 
             //获取商品名字
@@ -46,7 +45,7 @@
             })
 
             $.ajax({
-                url: getRootPath() + "/getPrize/exchangeRed.htm",
+                url: getRootPath() + "/weixinMng/getPrize/exchangeRed.htm",
                 data: {"prizeRedeemId": getUrlParam("prizeRedeemId")},
                 dataType: "json",
                 type: "post",

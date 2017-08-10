@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.jumutang.project.tools.DateUtil;
+import org.jumutang.project.tools.RandomTool;
 import org.jumutang.project.weixinMng.mallMng.dao.*;
 import org.jumutang.project.weixinMng.mallMng.model.*;
 import org.jumutang.project.weixinMng.mallMng.service.ITchangeOrderService;
@@ -185,9 +186,9 @@ public class TchangeOrderServiceImpl implements ITchangeOrderService{
 				 PrizeRedeem prizeRedeem1 = new PrizeRedeem();
 				 prizeRedeem1.setUserId(tchangeordermode.getUSER_ID());
 				 prizeRedeem1.setPrizeId("2");
-				 prizeRedeem1.setRedeemCode(PrizeController.getRandomString(10));
+				 prizeRedeem1.setRedeemCode(RandomTool.getRandomString(10));
 				 prizeRedeemDao.savePrizeRedeem(prizeRedeem1);
-				 prizeRedeem1.setRedeemCode(PrizeController.getRandomString(10));
+				 prizeRedeem1.setRedeemCode(RandomTool.getRandomString(10));
 				 prizeRedeemDao.savePrizeRedeem(prizeRedeem1);
 			 }else if(Double.parseDouble(tchangeordermode.getPAY_MONEY().trim())==190){
 				 //充值190元奖励
@@ -222,11 +223,11 @@ public class TchangeOrderServiceImpl implements ITchangeOrderService{
 				 PrizeRedeem prizeRedeem1 = new PrizeRedeem();
 				 prizeRedeem1.setUserId(tchangeordermode.getUSER_ID());
 				 prizeRedeem1.setPrizeId("2");
-				 prizeRedeem1.setRedeemCode(PrizeController.getRandomString(10));
+				 prizeRedeem1.setRedeemCode(RandomTool.getRandomString(10));
 				 prizeRedeemDao.savePrizeRedeem(prizeRedeem1);
-				 prizeRedeem1.setRedeemCode(PrizeController.getRandomString(10));
+				 prizeRedeem1.setRedeemCode(RandomTool.getRandomString(10));
 				 prizeRedeemDao.savePrizeRedeem(prizeRedeem1);
-				 prizeRedeem1.setRedeemCode(PrizeController.getRandomString(10));
+				 prizeRedeem1.setRedeemCode(RandomTool.getRandomString(10));
 				 prizeRedeemDao.savePrizeRedeem(prizeRedeem1);
 			 }else if(Double.parseDouble(tchangeordermode.getPAY_MONEY().trim())==330){
 				 //充值330元奖励
@@ -261,17 +262,17 @@ public class TchangeOrderServiceImpl implements ITchangeOrderService{
 				 PrizeRedeem prizeRedeem1 = new PrizeRedeem();
 				 prizeRedeem1.setUserId(tchangeordermode.getUSER_ID());
 				 prizeRedeem1.setPrizeId("2");
-				 prizeRedeem1.setRedeemCode(PrizeController.getRandomString(10));
+				 prizeRedeem1.setRedeemCode(RandomTool.getRandomString(10));
 				 prizeRedeemDao.savePrizeRedeem(prizeRedeem1);
-				 prizeRedeem1.setRedeemCode(PrizeController.getRandomString(10));
+				 prizeRedeem1.setRedeemCode(RandomTool.getRandomString(10));
 				 prizeRedeemDao.savePrizeRedeem(prizeRedeem1);
-				 prizeRedeem1.setRedeemCode(PrizeController.getRandomString(10));
+				 prizeRedeem1.setRedeemCode(RandomTool.getRandomString(10));
 				 prizeRedeemDao.savePrizeRedeem(prizeRedeem1);
-				 prizeRedeem1.setRedeemCode(PrizeController.getRandomString(10));
+				 prizeRedeem1.setRedeemCode(RandomTool.getRandomString(10));
 				 prizeRedeemDao.savePrizeRedeem(prizeRedeem1);
-				 prizeRedeem1.setRedeemCode(PrizeController.getRandomString(10));
+				 prizeRedeem1.setRedeemCode(RandomTool.getRandomString(10));
 				 prizeRedeemDao.savePrizeRedeem(prizeRedeem1);
-				 prizeRedeem1.setRedeemCode(PrizeController.getRandomString(10));
+				 prizeRedeem1.setRedeemCode(RandomTool.getRandomString(10));
 				 prizeRedeemDao.savePrizeRedeem(prizeRedeem1);
 			 }
 

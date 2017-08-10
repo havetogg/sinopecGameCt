@@ -1,5 +1,6 @@
 package org.jumutang.project.weixinMng.mallMng.service;
 
+import com.alibaba.fastjson.JSONObject;
 import org.jumutang.project.weixinMng.mallMng.model.MallUserMode;
 /**
  * 主service
@@ -19,7 +20,12 @@ public interface IManageService {
 	 * @return
 	 */
 	public MallUserMode queryMallUserInfo(String openid);
-	
+
+	/**
+	 * 通过手机查询用户的绑定信息
+	 * @return
+	 */
+	public MallUserMode queryMallUserInfoByMobile(String phone);
 	
 	/**
 	 * 更新用户login时的信息

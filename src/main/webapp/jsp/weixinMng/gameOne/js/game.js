@@ -598,7 +598,7 @@ function randomGetGift(){
         // }
 
         $.ajax({
-			url:"/sinopecGameCt/getDiamonds/diamondsOrRedGift.htm",
+			url:"/sinopecGameCt/weixinMng/getDiamonds/diamondsOrRedGift.htm",
 			type: 'post',
 			data:{
 				gameId:1

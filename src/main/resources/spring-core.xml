@@ -48,8 +48,8 @@
 		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 		<property name="locations">
 			<list>
-				<value>classpath:conf/produ/jdbc.properties</value>
-				<value>classpath:conf/produ/common.properties</value>
+				<value>classpath:conf/deve/jdbc.properties</value>
+				<value>classpath:conf/deve/common.properties</value>
 			</list>
 		</property>
 	</bean>

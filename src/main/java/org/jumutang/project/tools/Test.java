@@ -1,6 +1,7 @@
 package org.jumutang.project.tools;
 
 import java.lang.reflect.Array;
+import java.net.URLEncoder;
 import java.text.MessageFormat;
 import java.util.SortedMap;
 import java.util.TreeMap;
@@ -10,7 +11,7 @@ public class Test {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		String url ="http://api.juxinbox.com/jxapi/sendMsm_doSendMessage";
+		/*String url ="http://api.juxinbox.com/jxapi/sendMsm_doSendMessage";*/
 /*		
 //		String url ="http://v.juhe.cn/sms/send";
 		String formattest="您的短信验证码是：{0,number,#.#}，该验证码5分钟内有效。【江苏有线微信公众号】";
@@ -23,10 +24,10 @@ public class Test {
 		String format = MessageFormat.format(formattest,99.99);
 		System.out.println(format);*/
 		
-		String   Plain = "transId=IPER~|~merchantId=370310000004~|~orderId=13000000000000010009~|~transAmt=0.01~|~transDateTime=20120518171805~|~currencyType=01~|~customerName=~|~productInfo=~|~customerEMail=~|~transSeqNo=901239294263~|~ppDateTime=20120518~|~clearingDate=20120518~|~respCode=~|~msgExt=~|~&ResponseCode=0000";
+		/*String   Plain = "transId=IPER~|~merchantId=370310000004~|~orderId=13000000000000010009~|~transAmt=0.01~|~transDateTime=20120518171805~|~currencyType=01~|~customerName=~|~productInfo=~|~customerEMail=~|~transSeqNo=901239294263~|~ppDateTime=20120518~|~clearingDate=20120518~|~respCode=~|~msgExt=~|~&ResponseCode=0000";
 		   
 		String[] split = Plain.split("~\\u007C~");
-		System.out.println("\\u007C");
+		System.out.println("\\u007C");*/
 
 /*		
 		String createSign;
@@ -42,7 +43,7 @@ public class Test {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/
-		switch ("3333") {
+		/*switch ("3333") {
 		case "333":
 			System.out.println(333);
 			break;
@@ -51,6 +52,12 @@ public class Test {
 			System.out.println(222);
 			break;
 		}
+	}*/
+
+		String url1 = "www.baidu.com";
+		System.out.println(URLEncoder.encode(url1));
+		String url2 = "www.abc.com?par1=123&par2="+URLEncoder.encode(url1);
+		System.out.println(URLEncoder.encode(url2));
 	}
 
 }

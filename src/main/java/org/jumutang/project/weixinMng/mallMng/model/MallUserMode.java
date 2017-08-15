@@ -30,6 +30,9 @@ public class MallUserMode implements Serializable {
 	private String USER_RANK_ID;
 	private String USER_MAX_RANK_ID;
 	private String THIRD_PART_ID;
+
+	private String JS_USER_ID;
+
 	private String DELETE_FLAG;
 	
 	private RankMode RANKMODE;     //关联的用户等信息,用于每周利
@@ -171,6 +174,12 @@ public class MallUserMode implements Serializable {
 	}
 	public void setTHIRD_PART_ID(String THIRD_PART_ID){
 		this.THIRD_PART_ID=THIRD_PART_ID;
+	}
+	public String getJS_USER_ID() {
+		return JS_USER_ID;
+	}
+	public void setJS_USER_ID(String JS_USER_ID) {
+		this.JS_USER_ID = JS_USER_ID;
 	}
 	public String getDELETE_FLAG(){
 		return this.DELETE_FLAG;

@@ -29,10 +29,7 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 
 /**
@@ -319,16 +316,30 @@ public class HttpClientUtil {
     }
 
     public static void main(String[] args) throws Exception {
-        Map<String, String> paramMap = new HashMap<String, String>();
+        /*Map<String, String> paramMap = new HashMap<String, String>();
         paramMap.put("openId","o4FD4v_VSL8r87LR713h4s_ywo1Y");
         paramMap.put("oilNum","100");
         //成功
         for(;;){
             String resul=HttpClientUtil.doHttpsPost("https://sms.linkgift.cn/giftpay_socket/interface/exchangeOil.htm", paramMap);
             System.out.println(resul);
-        }
+        }*/
         //失败
         //HttpClientUtil.doHttpPost("https://prod1.juxinbox.com/njvote_spring/workList.do", paramMap);
+
+        String apiSecret = "zxcQWE123asd0987";
+        String timestamp = String.valueOf(Calendar.getInstance().getTimeInMillis());
+        String  sysGenSign = MD5Util.getUpperCaseMD5For32("zsh.integral.api" + "qaz123!@#" + apiSecret + timestamp);
+        Map<String, String> paramMap = new HashMap<String, String>();
+        paramMap.put("username","zsh.integral.api");
+        paramMap.put("password","qaz123!@#");
+        paramMap.put("timestamp",timestamp);
+        paramMap.put("sign", sysGenSign);
+        String token = HttpClientUtil.doHttpPost("https://prod1.juxinbox.com/zsh.integral/api/v1/auth/login.htm", paramMap);
+        Map<String, String> paramMap2 = new HashMap<String, String>();
+        paramMap2.put("token",token);
+        String returnStr2 = HttpClientUtil.doHttpPost("https://prod1.juxinbox.com/zsh.integral/api/v1/user/integral/1.htm", paramMap2);
+
 
     }
 }

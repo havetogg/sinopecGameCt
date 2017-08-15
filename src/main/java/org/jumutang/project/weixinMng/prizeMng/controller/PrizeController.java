@@ -624,9 +624,11 @@ public class PrizeController extends BaseController{
                 }else if(activatePrizeRedeem.getRedeemCode().startsWith("01")){
                     String uptUrl = exchange_oil_url;
                     _LOGGER.info("uptUrl"+uptUrl);
+                    Prize prize = new Prize();
+                    prize.setId(activatePrizeRedeem.getPrizeId());
                     Map<String, String> paramMap = new HashMap<String, String>();
                     paramMap.put("openId",userbean.getOPEN_ID());
-                    paramMap.put("oilNum","100");
+                    paramMap.put("oilNum",iPrizeService.listPrize(prize).get(0).getGrade());
                     String oilDropResult = HttpClientUtil.doHttpsPost(uptUrl,paramMap);
                     _LOGGER.info("--------------------oilDropResult"+oilDropResult);
                     JSONObject oilDropResultObj = (JSONObject) JSONObject.parse(oilDropResult);

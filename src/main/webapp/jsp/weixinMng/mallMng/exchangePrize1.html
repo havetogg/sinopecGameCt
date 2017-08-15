@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=0.5,maximum-scale=0.5,minimum-scale=0.5, width=640, target-densitydpi=device-dpi">
+    <meta http-eqiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>游戏中心</title>
+    <link type="text/css" href="css/common/common.css" rel="stylesheet">
+    <link type="text/css" href="css/app.css" rel="stylesheet">
+    <script type="text/javascript" src="js/common/jQuery-1.11.3.js"></script>
+    <script type="text/javascript" src="js/common/common.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/common/jWeChat-Adaptive.js"></script>
+    <script type="text/javascript" src="js/fastclick.min.js"></script>
+    <script type="text/javascript" src="js/clip.js"></script>
+    <script>
+        $(function () {
+            var codeText=$('.r_bg').html();
+            $('.copyCodeBtn').on('click', function () {
+                new Clipboard('.btn', {
+                    text: function () {
+                        return codeText.replace(/<br\/>/g, "");
+                    }
+                });
+                setTimeout(function () {
+                    TipShow('已复制',1000);
+                }, 300);
+            });
+            $("#redeemCode").html(getUrlParam("redeemCode"));
+
+            //获取商品名字
+            $.ajax({
+                url: getRootPath() + "/weixinMng/ManageC/getPriceDetail.htm",
+                data: {"prizeId": getUrlParam("prizeId")},
+                dataType: "json",
+                type: "post",
+                success: function (data) {
+                    $("#prizeName").html(data.prizeName);
+                    $("#prizeName1").html(data.prizeName);
+
+                }
+            })
+
+            $.ajax({
+                url: getRootPath() + "/weixinMng/getPrize/exchangeRed.htm",
+                data: {"prizeRedeemId": getUrlParam("prizeRedeemId")},
+                dataType: "json",
+                type: "post",
+                success: function (data) {
+
+
+                }
+            })
+        });
+        function hsBack() {
+            history.back()
+        }
+    </script>
+</head>
+<body>
+<div class="zoomer">
+    <div class="game_myPrize">
+            <div class="game_myPrize_banner">
+             <!--<img src="img/back_arrow.png" alt="" onclick="hsBack()">-->
+                兑换奖品
+            </div>
+            <ul class="game_myPrize_Prize">
+                <li class="flex">
+                    <div>
+                        <img src="img/wash.png" alt="" class="goodsImg">
+                    </div>
+                    <div class="flex-1 prize_info" >
+                            <div class="prize_name" id="prizeName">易捷进口商城代金劵</div>
+                            <div class="prize_name1" id="prizeName1">订单满百元，可以抵扣10元</div>
+                            <div class="prize_limit">有效期：2017/07/12~2017/07/31 </div>
+                    </div>
+                    <div>
+                    </div>
+                </li>
+            </ul>
+        <div class="down_arrow">
+            <img src="img/down_arrow.png" alt="">
+        </div>
+        <div class="w_bg">
+                <div class="exchange_w_title">兑换码</div>
+                <div class="r_bg" id="redeemCode"></div>
+                <div class="btn copyCodeBtn">
+                    <img src="img/copyCode.png" alt="">
+                </div>
+                <div class="jmt_center"><img src="img/erCode.png" alt=""></div>
+                <div class="exchange_w_title">长按进入”有礼付go”进行兑换</div>
+                <ul class="exchange_rules">
+                    <li>兑换规则:</li>
+                    <li>1.关注“有礼付go”微信公众号</li>
+                    <li>2.点击“发现福利--进口商城”进入到易捷进口商场中</li>
+                    <li>3.点击“我的--我的钱包--优惠券”进入到优惠券界面</li>
+                    <li>4、输入复制的兑换码，并点击兑换。</li>
+                    <li>5、兑换成功，优惠券出现在优惠券列表中</li>
+                </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

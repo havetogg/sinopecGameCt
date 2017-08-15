@@ -24,6 +24,19 @@
        <script type="text/javascript" src="${contentPath }/jsp/weixinMng/mallMng/js/common/jWeChat-1.0.0.js"></script>
     <script type="text/javascript" src="${contentPath }/jsp/weixinMng/mallMng/js/share.js"></script>
     <script>
+        $(function () {
+            $.ajax({
+                url : "https://prod1.juxinbox.com/zsh.integral/api/v1/user/integral/1.htm",
+                data : {
+                    "token" : "jIY+H6bxNGDgilpzdK5KGBhG3tFesCc0mf8rvg0rJZsR1aBg6VxvjRJJLjuWJcU3C8dmxXRK84a6Qjs1CzqA/kBDtx/VFWVpuK5tL1nTkNM0B9fWvDT45YxvcpyF9EyMGeEl5RcarE08o7xtYRIFezu0jqA2pucErdCh15V+mAw="
+                },
+                dataType : "jsonp",
+                type : "post",
+                success : function(data) {
+                    console.log(data);
+                }
+            });
+        })
         function switchTab(type) {
             if(type==1){
                 $('#tab1').attr('class','flex-1 selected');

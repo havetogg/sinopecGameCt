@@ -305,7 +305,7 @@ to {transform:rotate(360deg);}
 }
 
 .win{}
-.win .centerDiv{ width: 11.5rem; height: 15rem; background: #fff8f9; position: absolute; top: 50%; left: 50%; margin-left: -5.75rem; margin-top: -7.5rem; border-radius: 0.2rem; overflow: hidden;}
+.win .centerDiv{ width: 11.5rem; height: 13rem; background: #fff8f9; position: absolute; top: 50%; left: 50%; margin-left: -5.75rem; margin-top: -6.5rem; border-radius: 0.2rem; overflow: hidden;}
 .win .centerDiv h1{ width: 100%; height: 2.25rem; background: #f24831 url(../img/titile.png) no-repeat center center; background-size: 11.5rem 2.25rem; text-align: center; line-height: 2.25rem; font-size: 0.75rem; font-weight: normal; color: #fff; margin-bottom: 0.9rem;}
 .win .centerDiv h2{ font-size: 0.6rem; color: #757575; line-height: 1rem; font-weight: normal; padding: 0 1.9rem; text-align: center;}
 .win .centerDiv .text{ width: 7.5rem; height: 2.75rem; margin: 1rem auto;background: url(../img/prize.png) no-repeat; background-size: 7.5rem 2.75rem; text-align: center; color: #fff; padding: 0.3rem 1rem; line-height: 1rem; font-size: 0.6rem;}
@@ -321,7 +321,7 @@ to {transform:rotate(360deg);}
 .impact .centerDiv .btn{ width: 9.5rem; height: 1.625rem; line-height: 1.4rem; background: url(../img/btn.png) no-repeat; background-size: 9.5rem 1.625rem; display: block; margin: 15px auto 0; font-size: 0.6rem; color: #f9390c; text-align: center;}
 
 .lost{}
-.lost .centerDiv{ width: 11.5rem; height: 15rem; background: #fff8f9; position: absolute; top: 50%; left: 50%; margin-left: -5.75rem; margin-top: -7.5rem; border-radius: 0.2rem; overflow: hidden;}
+.lost .centerDiv{ width: 11.5rem; height: 13rem; background: #fff8f9; position: absolute; top: 50%; left: 50%; margin-left: -5.75rem; margin-top: -6.5rem; border-radius: 0.2rem; overflow: hidden;}
 .lost .centerDiv h1{ width: 100%; height: 2.25rem; background: #f24831 url(../img/titile.png) no-repeat center center; background-size: 11.5rem 2.25rem; text-align: center; line-height: 2.25rem; font-size: 0.75rem; font-weight: normal; color: #fff; margin-bottom: 0.9rem;}
 .lost .centerDiv h2{ font-size: 0.6rem; color: #757575; line-height: 1rem; font-weight: normal; padding: 0 1.8rem; text-align: center;}
 .lost .centerDiv .text{ width: 6rem; height: 3.55rem; margin: 0.8rem auto; background: url(../img/lost.png) no-repeat; background-size: 6rem 3.55rem; text-align: center; color: #fff;}

@@ -2,10 +2,7 @@ package org.jumutang.project.weixinMng.mallMng.controller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -84,7 +81,7 @@ public class ChangeMngController extends BaseController {
 		MallUserMode userbean = refreshtWxLoginUser(request);
 		try {
              int gold_id = super.getInt(request, "gold_id");
-			
+
 			Change_goldMngMode findInfo_gold = changeMngService.findInfo_gold(gold_id);
 			String pay_DIAMOND_NUMB = findInfo_gold.getPAY_DIAMOND_NUMB();  //要兑换需要的钻石
 			String remain_DIAMOND = userbean.getREMAIN_DIAMOND();
@@ -93,7 +90,7 @@ public class ChangeMngController extends BaseController {
 				jsonResultModel.setCode(2).setMsg("您的钻石不足！");
 				return JSONObject.fromObject(jsonResultModel).toString();
 			}
-			
+
 			// 更新后的钻石和金币
 			String change_gold = findInfo_gold.getGOLD();  //要兑换需要的钻石
 			String used_DIAMOND = userbean.getUSED_DIAMOND();
@@ -111,19 +108,53 @@ public class ChangeMngController extends BaseController {
 		}
 	}
 
-    //跳转支付页面链接
-    static String proUrl="http://www.linkgift.cn/giftpay_wap/giftpay/liftpayment/orderPay.html";
+
+
+	//获取中石化用户的uesrid
+	@RequestMapping(value = "/toOilPage", method = { RequestMethod.GET, RequestMethod.POST })
+	public void toOilPage(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception{
+		_LOGGER.error("获取中石化sbxUserId开始");
+		/*String apiSecret = "zxcQWE123asd0987";
+		String timestamp = String.valueOf(Calendar.getInstance().getTimeInMillis());
+		String  sysGenSign = MD5Util.getUpperCaseMD5For32("zsh.integral.api" + "qaz123!@#" + apiSecret + timestamp);
+		Map<String, String> paramMap = new HashMap<String, String>();
+		paramMap.put("username","zsh.integral.api");
+		paramMap.put("password","qaz123!@#");
+		paramMap.put("timestamp",timestamp);
+		paramMap.put("sign", sysGenSign);
+		String token = HttpClientUtil.doHttpPost("https://prod1.juxinbox.com/zsh.integral/api/v1/auth/login.htm", paramMap);
+		_LOGGER.error("token为"+token);*/
+		String redirectUrl = getBasePath(request)+"/weixinMng/ManageC/toPayPage.htm";
+		_LOGGER.error("回调地址为:"+redirectUrl);
+		String redirect = "https://prod1.juxinbox.com/zsh.integral/api/v1/user/integral/1.htm?redirectUrl="+redirectUrl;
+		_LOGGER.error("跳转地址为:"+redirect);
+		response.sendRedirect(redirect);
+	}
+
+	//跳转支付页面链接
+	static String proUrl="http://www.linkgift.cn/giftpay_wap/giftpay/liftpayment/orderPay.html";
 
 	@ResponseBody
 	@RequestMapping(value = "/toPayPage", method = { RequestMethod.GET, RequestMethod.POST })
-    public void toPayPage(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException {
+    public void toPayPage(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
+		//获取oil用户
+		String codeNum = request.getParameter("codeNum");
+		_LOGGER.error("codeNum:"+codeNum);
+		String data = request.getParameter("data");
+		_LOGGER.error("data:"+data);
+		String msg = request.getParameter("msg");
+		_LOGGER.error("msg:"+msg);
+		String result = request.getParameter("result");
+		_LOGGER.error("result:"+result);
+
+		//当前用户购买信息
 		MallUserMode userbean = refreshtWxLoginUser(request);
 		
         int diamond_id = super.getInt(request, "diamond_id");
 		
         ChangeMngMode changeMngMode = changeMngService.findInfo(diamond_id);
-       TchangeOrderMode tchangeOrderMode = new TchangeOrderMode();
-       String order_no = TenpayUtil.getOrder_no();
+        TchangeOrderMode tchangeOrderMode = new TchangeOrderMode();
+        String order_no = TenpayUtil.getOrder_no();
        
 		tchangeOrderMode.setUSER_ID(userbean.getID());
 		tchangeOrderMode.setCHANGE_ID(changeMngMode.getID());
@@ -143,27 +174,7 @@ public class ChangeMngController extends BaseController {
     	String payamount=tchangeOrderMode.getPAY_MONEY();//订单支付金额
         String userId=userbean.getTHIRD_PART_ID();//有礼付userId
         String openId=userbean.getOPEN_ID();//有礼付openId
-        
-        // 方便测试,把这几个参数换成测试的了
-        /*String TEST_FLAG =PropertiesUtil.get("TEST_FLAG");
-        if("1".equals(TEST_FLAG)){
-        	if("o4FD4vxoK4fkzzis0R9QoVF-RxFQ".equals(userbean.getOPEN_ID())){
-        		// 朱
-                payamount="0.01";//订单支付金额
-                userId="d5fc2bfae80340a7b3b8cd4927f15f55";//有礼付userId
-                openId="oUAows-oUAows_GZaNL5p2asd2S6D80dcV0";//有礼付openId
-        	}else if("o4FD4v9l4Wnqi2YFJWatxb_WhlII".equals(userbean.getOPEN_ID())){
-        		// 冯
-                payamount="0.01";//订单支付金额
-                userId="4741b9d371c5413eb737e2ea8c75ef2c";//有礼付userId
-                openId="oUAows-fINrQorHuKVEXiU9zn3kY";//有礼付openId
-        	}else{
-            	payamount=tchangeOrderMode.getPAY_MONEY();//订单支付金额
-                userId=userbean.getTHIRD_PART_ID();//有礼付userId
-                openId=userbean.getOPEN_ID();//有礼付openId
-            }
-        }*/
-        
+
         String redPkgId="";//红包ID
         String redPkgValue="";//红包面额
         

@@ -53,7 +53,8 @@ public class WeChatJSConfigController extends BaseController{
 			_LOGGER.error(e.getMessage(), e);
 			jsonResultModel.setCode(0).setMsg("获取微信shareconfig失败！");
 		}
-		return JSONSerializer.toJSON(jsonResultModel).toString();
+		String returnStr = JSONSerializer.toJSON(jsonResultModel).toString();
+		return returnStr;
 	}
 	
 }

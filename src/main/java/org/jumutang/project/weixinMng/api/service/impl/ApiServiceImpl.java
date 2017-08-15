@@ -21,7 +21,14 @@ public class ApiServiceImpl implements IApiService{
     private IApiDao apiDao;
 
     @Override
-    public List<JSONObject> queryAllUserApi() {
-        return apiDao.queryAllUserApi();
+    public JSONObject queryAllUserApi() {
+        List<JSONObject> userList= apiDao.queryAllUserApi();
+        JSONObject total = apiDao.queryTotalApi();
+        JSONObject today = apiDao.queryTodayApi();
+        JSONObject returnObj = new JSONObject();
+        returnObj.put("userList",userList);
+        returnObj.put("total",total);
+        returnObj.put("today",today);
+        return returnObj;
     }
 }

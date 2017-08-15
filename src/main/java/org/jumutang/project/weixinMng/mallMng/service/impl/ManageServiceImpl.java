@@ -37,6 +37,12 @@ public class ManageServiceImpl implements IManageService {
 		return userbean;
 	}
 
+	@Override
+	public MallUserMode queryMallUserInfo_byJSUSERID(String jsUserId) {
+		MallUserMode userbean = manageDao.queryMallUserInfo_byJSUSERID(jsUserId);
+		return userbean;
+	}
+
 	// 插入数据
 	@Override
 	@Transactional

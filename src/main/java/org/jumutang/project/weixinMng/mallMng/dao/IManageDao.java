@@ -19,6 +19,9 @@ public interface IManageDao {
 	
 	// 查询用户的信息(根据ID)
 	public MallUserMode queryMallUserInfo_byId(String ID);
+
+	// 查询用户的信息(根据JSUSERID)
+	public MallUserMode queryMallUserInfo_byJSUSERID(String jsUserId);
 	
 	// 更新用户login时的信息
 	public void update_UserInfo_login(MallUserMode bean);

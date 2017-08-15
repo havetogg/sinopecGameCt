@@ -13,4 +13,8 @@ import java.util.List;
 public interface IApiDao {
 
     List<JSONObject> queryAllUserApi();
+
+    JSONObject queryTotalApi();
+
+    JSONObject queryTodayApi();
 }

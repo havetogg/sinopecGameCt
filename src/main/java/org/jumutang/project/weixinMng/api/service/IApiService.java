@@ -14,5 +14,5 @@ import java.util.List;
 public interface IApiService {
 
     //所有用户信息 openid mobile prize_pool used_pool
-    List<JSONObject> queryAllUserApi();
+    JSONObject queryAllUserApi();
 }

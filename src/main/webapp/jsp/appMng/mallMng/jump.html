@@ -12,10 +12,10 @@
     <script type="text/javascript" src="./js/common/common.js"></script>
     <script>
         $(function () {
-            /*setCookie("jfuserid","e1jMvLT4I8vtHzoiR6ZSDA%3D%3D");
+            setCookie("jfuserid","e1jMvLT4I8vtHzoiR6ZSDA%3D%3D");
             setCookie("timestamp","olwuNL1OPvBf0H8Z1A1oQq9BuOyR64TeR2vHP%2FapN0k%3D");
             setCookie("usercode","xKh0SRv%2BP9oj21lylN%2FbJQ%3D%3D");
-            setCookie("appsign","FA9F6C87639A743EA2B5B0A9B10B078A");*/
+            setCookie("appsign","FA9F6C87639A743EA2B5B0A9B10B078A");
             initSinopecUser();
         });
 
@@ -26,7 +26,9 @@
             var usercode = getCookie("usercode");
             var appsign = getCookie("appsign");
             if(isBlank(jfuserid)||isBlank(timestamp)||isBlank(usercode)||isBlank(appsign)){
-                window.location.reload();
+                setTimeout(function () {
+                    window.location.reload();
+                },1000);
             }else{
                 window.location.href=getRootPath()+"/appMng/ManageC/userIn.htm?jfuserid="+jfuserid+"&timestamp="+timestamp+"&usercode="+usercode+"&appsign="+appsign;
             }

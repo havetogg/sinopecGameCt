@@ -35,8 +35,8 @@ public class ManageDaoImpl implements IManageDao {
 	public int insertMallUserInfoVolume(final MallUserMode bean) {
 		int result = 0;
 		final StringBuffer sqlBuffer = new StringBuffer();
-		sqlBuffer.append(" INSERT INTO t_mall_user (OPEN_ID, NICK_NAME, HEAD_IMG, MOBILE, NAME, CREAT_TIME, USED_DIAMOND, ALL_DIAMOND, USED_GOLD, ALL_GOLD, USER_RANK_ID, USER_MAX_RANK_ID, THIRD_PART_ID, DELETE_FLAG)");
-		sqlBuffer.append(" VALUES (?, ?, ?, ?, ?, current_timestamp, ?, ?, ?, ?, ?, ?, ?, ?) ");
+		sqlBuffer.append(" INSERT INTO t_mall_user (OPEN_ID, NICK_NAME, HEAD_IMG, MOBILE, NAME, CREAT_TIME, USED_DIAMOND, ALL_DIAMOND, USED_GOLD, ALL_GOLD, USER_RANK_ID, USER_MAX_RANK_ID, THIRD_PART_ID, JS_USER_ID, DELETE_FLAG)");
+		sqlBuffer.append(" VALUES (?, ?, ?, ?, ?, current_timestamp, ?, ?, ?, ?, ?, ?, ?, ?, ?) ");
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		result = jdbcTemplate.update(new PreparedStatementCreator() {
 
@@ -61,7 +61,8 @@ public class ManageDaoImpl implements IManageDao {
 				ps.setString(i++, "0");	
 				ps.setString(i++, "0");	
 				ps.setString(i++, null);	
-				ps.setString(i++, "0");	
+				ps.setString(i++, null);
+				ps.setString(i++, "0");
 				return ps;
 			}
 		}, keyHolder);
@@ -73,7 +74,7 @@ public class ManageDaoImpl implements IManageDao {
 	@Override
 	public MallUserMode queryMallUserInfo(final String openid) {
 		StringBuffer sqlBuffer = new StringBuffer();
-		sqlBuffer.append("  SELECT t_mall_user.ID, OPEN_ID, NICK_NAME, HEAD_IMG, MOBILE, NAME, t_mall_user.CREAT_TIME, USED_DIAMOND, ALL_DIAMOND, USED_GOLD, ALL_GOLD, USER_RANK_ID, USER_MAX_RANK_ID, THIRD_PART_ID, t_mall_user.DELETE_FLAG ,SELF_CHANGED_ALL_DIAMOND,USER_LEVEL_SCORE,t_level.ID USER_LEVEL_ID,t_level.LEVEL_TO CURRENT_LEVEL_MAXSCORE");
+		sqlBuffer.append("  SELECT t_mall_user.ID, OPEN_ID, NICK_NAME, HEAD_IMG, MOBILE, NAME, t_mall_user.CREAT_TIME, USED_DIAMOND, ALL_DIAMOND, USED_GOLD, ALL_GOLD, USER_RANK_ID, USER_MAX_RANK_ID, THIRD_PART_ID, JS_USER_ID, t_mall_user.DELETE_FLAG ,SELF_CHANGED_ALL_DIAMOND,USER_LEVEL_SCORE,t_level.ID USER_LEVEL_ID,t_level.LEVEL_TO CURRENT_LEVEL_MAXSCORE");
 		sqlBuffer.append("  FROM t_mall_user ,t_level ");
 		sqlBuffer.append("  WHERE OPEN_ID = ? ");
 		sqlBuffer.append("  AND USER_LEVEL_SCORE>=t_level.LEVEL_FROM  ");
@@ -106,7 +107,8 @@ public class ManageDaoImpl implements IManageDao {
 					bean.setSELF_CHANGED_ALL_DIAMOND(rs.getString("SELF_CHANGED_ALL_DIAMOND"));	
 					bean.setUSER_RANK_ID(rs.getString("USER_RANK_ID"));	
 					bean.setUSER_MAX_RANK_ID(rs.getString("USER_MAX_RANK_ID"));	
-					bean.setTHIRD_PART_ID(rs.getString("THIRD_PART_ID"));	
+					bean.setTHIRD_PART_ID(rs.getString("THIRD_PART_ID"));
+					bean.setJS_USER_ID(rs.getString("JS_USER_ID"));
 					bean.setDELETE_FLAG(rs.getString("DELETE_FLAG"));	
 					bean.setUSER_LEVEL_SCORE(rs.getString("USER_LEVEL_SCORE"));	
 					
@@ -126,7 +128,7 @@ public class ManageDaoImpl implements IManageDao {
 	@Override
 	public MallUserMode queryMallUserInfoByMobile(String mobile) {
 		StringBuffer sqlBuffer = new StringBuffer();
-		sqlBuffer.append("  SELECT t_mall_user.ID, OPEN_ID, NICK_NAME, HEAD_IMG, MOBILE, NAME, t_mall_user.CREAT_TIME, USED_DIAMOND, ALL_DIAMOND, USED_GOLD, ALL_GOLD, USER_RANK_ID, USER_MAX_RANK_ID, THIRD_PART_ID, t_mall_user.DELETE_FLAG ,SELF_CHANGED_ALL_DIAMOND,USER_LEVEL_SCORE,t_level.ID USER_LEVEL_ID,t_level.LEVEL_TO CURRENT_LEVEL_MAXSCORE");
+		sqlBuffer.append("  SELECT t_mall_user.ID, OPEN_ID, NICK_NAME, HEAD_IMG, MOBILE, NAME, t_mall_user.CREAT_TIME, USED_DIAMOND, ALL_DIAMOND, USED_GOLD, ALL_GOLD, USER_RANK_ID, USER_MAX_RANK_ID, THIRD_PART_ID, JS_USER_ID, t_mall_user.DELETE_FLAG ,SELF_CHANGED_ALL_DIAMOND,USER_LEVEL_SCORE,t_level.ID USER_LEVEL_ID,t_level.LEVEL_TO CURRENT_LEVEL_MAXSCORE");
 		sqlBuffer.append("  FROM t_mall_user ,t_level ");
 		sqlBuffer.append("  WHERE MOBILE = ? ");
 		sqlBuffer.append("  AND USER_LEVEL_SCORE>=t_level.LEVEL_FROM  ");
@@ -160,6 +162,7 @@ public class ManageDaoImpl implements IManageDao {
 					bean.setUSER_RANK_ID(rs.getString("USER_RANK_ID"));
 					bean.setUSER_MAX_RANK_ID(rs.getString("USER_MAX_RANK_ID"));
 					bean.setTHIRD_PART_ID(rs.getString("THIRD_PART_ID"));
+					bean.setJS_USER_ID(rs.getString("JS_USER_ID"));
 					bean.setDELETE_FLAG(rs.getString("DELETE_FLAG"));
 					bean.setUSER_LEVEL_SCORE(rs.getString("USER_LEVEL_SCORE"));
 
@@ -179,9 +182,11 @@ public class ManageDaoImpl implements IManageDao {
 	@Override
 	public MallUserMode queryMallUserInfo_byId(final String id) {
 		StringBuffer sqlBuffer = new StringBuffer();
-		sqlBuffer.append(" SELECT ID, OPEN_ID, NICK_NAME, HEAD_IMG, MOBILE, NAME, CREAT_TIME, USED_DIAMOND, ALL_DIAMOND, USED_GOLD, ALL_GOLD, USER_RANK_ID, USER_MAX_RANK_ID, THIRD_PART_ID, DELETE_FLAG ,SELF_CHANGED_ALL_DIAMOND,USER_LEVEL_SCORE");
-		sqlBuffer.append(" FROM t_mall_user ");
-		sqlBuffer.append(" WHERE ID = ? ");
+		sqlBuffer.append("  SELECT t_mall_user.ID, OPEN_ID, NICK_NAME, HEAD_IMG, MOBILE, NAME, t_mall_user.CREAT_TIME, USED_DIAMOND, ALL_DIAMOND, USED_GOLD, ALL_GOLD, USER_RANK_ID, USER_MAX_RANK_ID, THIRD_PART_ID, JS_USER_ID, t_mall_user.DELETE_FLAG ,SELF_CHANGED_ALL_DIAMOND,USER_LEVEL_SCORE,t_level.ID USER_LEVEL_ID,t_level.LEVEL_TO CURRENT_LEVEL_MAXSCORE");
+		sqlBuffer.append("  FROM t_mall_user ,t_level ");
+		sqlBuffer.append("  WHERE ID = ? ");
+		sqlBuffer.append("  AND USER_LEVEL_SCORE>=t_level.LEVEL_FROM  ");
+		sqlBuffer.append("  AND USER_LEVEL_SCORE<t_level.LEVEL_TO ");
 		return this.jdbcTemplate.query(sqlBuffer.toString(), new PreparedStatementSetter() {
 
 			@Override
@@ -196,24 +201,83 @@ public class ManageDaoImpl implements IManageDao {
 			public MallUserMode extractData(ResultSet rs) throws SQLException, DataAccessException {
 				if (rs.next()) {
 					MallUserMode bean = new MallUserMode();
-					bean.setID(rs.getString("ID"));	
-					bean.setOPEN_ID(rs.getString("OPEN_ID"));	
-					bean.setNICK_NAME(rs.getString("NICK_NAME"));	
-					bean.setHEAD_IMG(rs.getString("HEAD_IMG"));	
-					bean.setMOBILE(rs.getString("MOBILE"));	
-					bean.setNAME(rs.getString("NAME"));	
-					bean.setCREAT_TIME(rs.getString("CREAT_TIME"));	
-					bean.setUSED_DIAMOND(rs.getString("USED_DIAMOND"));	
-					bean.setALL_DIAMOND(rs.getString("ALL_DIAMOND"));	
-					bean.setUSED_GOLD(rs.getString("USED_GOLD"));	
-					bean.setALL_GOLD(rs.getString("ALL_GOLD"));	
-					bean.setSELF_CHANGED_ALL_DIAMOND(rs.getString("SELF_CHANGED_ALL_DIAMOND"));	
-					bean.setUSER_RANK_ID(rs.getString("USER_RANK_ID"));	
-					bean.setUSER_MAX_RANK_ID(rs.getString("USER_MAX_RANK_ID"));	
-					bean.setTHIRD_PART_ID(rs.getString("THIRD_PART_ID"));	
-					bean.setDELETE_FLAG(rs.getString("DELETE_FLAG"));	
-					bean.setUSER_LEVEL_SCORE(rs.getString("USER_LEVEL_SCORE"));	
-					
+					bean.setID(rs.getString("ID"));
+					bean.setOPEN_ID(rs.getString("OPEN_ID"));
+					bean.setNICK_NAME(rs.getString("NICK_NAME"));
+					bean.setHEAD_IMG(rs.getString("HEAD_IMG"));
+					bean.setMOBILE(rs.getString("MOBILE"));
+					bean.setNAME(rs.getString("NAME"));
+					bean.setCREAT_TIME(rs.getString("CREAT_TIME"));
+					bean.setUSED_DIAMOND(rs.getString("USED_DIAMOND"));
+					bean.setALL_DIAMOND(rs.getString("ALL_DIAMOND"));
+					bean.setUSED_GOLD(rs.getString("USED_GOLD"));
+					bean.setALL_GOLD(rs.getString("ALL_GOLD"));
+					bean.setSELF_CHANGED_ALL_DIAMOND(rs.getString("SELF_CHANGED_ALL_DIAMOND"));
+					bean.setUSER_RANK_ID(rs.getString("USER_RANK_ID"));
+					bean.setUSER_MAX_RANK_ID(rs.getString("USER_MAX_RANK_ID"));
+					bean.setTHIRD_PART_ID(rs.getString("THIRD_PART_ID"));
+					bean.setJS_USER_ID(rs.getString("JS_USER_ID"));
+					bean.setDELETE_FLAG(rs.getString("DELETE_FLAG"));
+					bean.setUSER_LEVEL_SCORE(rs.getString("USER_LEVEL_SCORE"));
+
+					bean.setCURRENT_LEVEL_MAXSCORE(rs.getString("CURRENT_LEVEL_MAXSCORE"));
+					bean.setUSER_LEVEL_ID(rs.getString("USER_LEVEL_ID"));
+
+
+					bean.setREMAIN_DIAMOND(null); // 剩余钻石
+					bean.setREMAIN_GOLD(null);    // 剩余金币
+					return bean;
+				}
+				return null;
+			}
+		});
+	}
+
+	@Override
+	public MallUserMode queryMallUserInfo_byJSUSERID(final String jsUserId) {
+		StringBuffer sqlBuffer = new StringBuffer();
+		sqlBuffer.append("  SELECT t_mall_user.ID, OPEN_ID, NICK_NAME, HEAD_IMG, MOBILE, NAME, t_mall_user.CREAT_TIME, USED_DIAMOND, ALL_DIAMOND, USED_GOLD, ALL_GOLD, USER_RANK_ID, USER_MAX_RANK_ID, THIRD_PART_ID, JS_USER_ID, t_mall_user.DELETE_FLAG ,SELF_CHANGED_ALL_DIAMOND,USER_LEVEL_SCORE,t_level.ID USER_LEVEL_ID,t_level.LEVEL_TO CURRENT_LEVEL_MAXSCORE");
+		sqlBuffer.append("  FROM t_mall_user ,t_level ");
+		sqlBuffer.append("  WHERE JS_USER_ID = ? ");
+		sqlBuffer.append("  AND USER_LEVEL_SCORE>=t_level.LEVEL_FROM  ");
+		sqlBuffer.append("  AND USER_LEVEL_SCORE<t_level.LEVEL_TO ");
+		return this.jdbcTemplate.query(sqlBuffer.toString(), new PreparedStatementSetter() {
+
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				int i = 1;
+				ps.setString(i++, jsUserId);
+			}
+
+		}, new ResultSetExtractor<MallUserMode>() {
+
+			@Override
+			public MallUserMode extractData(ResultSet rs) throws SQLException, DataAccessException {
+				if (rs.next()) {
+					MallUserMode bean = new MallUserMode();
+					bean.setID(rs.getString("ID"));
+					bean.setOPEN_ID(rs.getString("OPEN_ID"));
+					bean.setNICK_NAME(rs.getString("NICK_NAME"));
+					bean.setHEAD_IMG(rs.getString("HEAD_IMG"));
+					bean.setMOBILE(rs.getString("MOBILE"));
+					bean.setNAME(rs.getString("NAME"));
+					bean.setCREAT_TIME(rs.getString("CREAT_TIME"));
+					bean.setUSED_DIAMOND(rs.getString("USED_DIAMOND"));
+					bean.setALL_DIAMOND(rs.getString("ALL_DIAMOND"));
+					bean.setUSED_GOLD(rs.getString("USED_GOLD"));
+					bean.setALL_GOLD(rs.getString("ALL_GOLD"));
+					bean.setSELF_CHANGED_ALL_DIAMOND(rs.getString("SELF_CHANGED_ALL_DIAMOND"));
+					bean.setUSER_RANK_ID(rs.getString("USER_RANK_ID"));
+					bean.setUSER_MAX_RANK_ID(rs.getString("USER_MAX_RANK_ID"));
+					bean.setTHIRD_PART_ID(rs.getString("THIRD_PART_ID"));
+					bean.setJS_USER_ID(rs.getString("JS_USER_ID"));
+					bean.setDELETE_FLAG(rs.getString("DELETE_FLAG"));
+					bean.setUSER_LEVEL_SCORE(rs.getString("USER_LEVEL_SCORE"));
+
+					bean.setCURRENT_LEVEL_MAXSCORE(rs.getString("CURRENT_LEVEL_MAXSCORE"));
+					bean.setUSER_LEVEL_ID(rs.getString("USER_LEVEL_ID"));
+
+
 					bean.setREMAIN_DIAMOND(null); // 剩余钻石
 					bean.setREMAIN_GOLD(null);    // 剩余金币
 					return bean;
@@ -389,7 +453,7 @@ public class ManageDaoImpl implements IManageDao {
 	@Override
 	public List<MallUserMode> findUserList(final Map<String, String> amap) {
 		StringBuffer sqlBuffer = new StringBuffer();
-		sqlBuffer.append(" SELECT TA.ID TAID,TA.OPEN_ID TAOPEN_ID,TA.NICK_NAME TANICK_NAME,TA.HEAD_IMG TAHEAD_IMG,TA.MOBILE TAMOBILE,TA.NAME TANAME,TA.CREAT_TIME TACREAT_TIME,TA.USED_DIAMOND TAUSED_DIAMOND,TA.ALL_DIAMOND TAALL_DIAMOND,TA.USED_GOLD TAUSED_GOLD,TA.ALL_GOLD TAALL_GOLD,TA.USER_RANK_ID TAUSER_RANK_ID,TA.USER_MAX_RANK_ID TAUSER_MAX_RANK_ID,TA.THIRD_PART_ID TATHIRD_PART_ID,TA.DELETE_FLAG TADELETE_FLAG,TA.SELF_CHANGED_ALL_DIAMOND TASELF_CHANGED_ALL_DIAMOND,TA.USER_LEVEL_SCORE TAUSER_LEVEL_SCORE");
+		sqlBuffer.append(" SELECT TA.ID TAID,TA.OPEN_ID TAOPEN_ID,TA.NICK_NAME TANICK_NAME,TA.HEAD_IMG TAHEAD_IMG,TA.MOBILE TAMOBILE,TA.NAME TANAME,TA.CREAT_TIME TACREAT_TIME,TA.USED_DIAMOND TAUSED_DIAMOND,TA.ALL_DIAMOND TAALL_DIAMOND,TA.USED_GOLD TAUSED_GOLD,TA.ALL_GOLD TAALL_GOLD,TA.USER_RANK_ID TAUSER_RANK_ID,TA.USER_MAX_RANK_ID TAUSER_MAX_RANK_ID,TA.THIRD_PART_ID TATHIRD_PART_ID, TA.JS_USER_ID JS_USER_ID,TA.DELETE_FLAG TADELETE_FLAG,TA.SELF_CHANGED_ALL_DIAMOND TASELF_CHANGED_ALL_DIAMOND,TA.USER_LEVEL_SCORE TAUSER_LEVEL_SCORE");
 		sqlBuffer.append(" ,TB.ID TBID,TB.RANK_NAME TBRANK_NAME,TB.RETURN_DIAMOND TBRETURN_DIAMOND,TB.RETURN_GOLD TBRETURN_GOLD,TB.CREAT_TIME TBCREAT_TIME,TB.DELETE_FLAG TBDELETE_FLAG ");
 		sqlBuffer.append(" FROM t_mall_user TA ");
 		sqlBuffer.append(" inner JOIN t_rank TB ON  TA.USER_RANK_ID=TB.ID ");
@@ -429,7 +493,8 @@ public class ManageDaoImpl implements IManageDao {
 					bean1.setSELF_CHANGED_ALL_DIAMOND(rs.getString("TASELF_CHANGED_ALL_DIAMOND"));	
 					bean1.setUSER_RANK_ID(rs.getString("TAUSER_RANK_ID"));	
 					bean1.setUSER_MAX_RANK_ID(rs.getString("TAUSER_MAX_RANK_ID"));	
-					bean1.setTHIRD_PART_ID(rs.getString("TATHIRD_PART_ID"));	
+					bean1.setTHIRD_PART_ID(rs.getString("TATHIRD_PART_ID"));
+					bean1.setJS_USER_ID(rs.getString("JS_USER_ID"));
 					bean1.setDELETE_FLAG(rs.getString("TADELETE_FLAG"));	
 					bean1.setUSER_LEVEL_SCORE(rs.getString("TAUSER_LEVEL_SCORE"));	
 					

@@ -132,7 +132,7 @@ public class SessionInterceptor implements HandlerInterceptor{
 					if("app".equals(entryType)){
 						String path = request.getContextPath();
 						String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-						final String redirectUrl = basePath+"/jsp/weixinMng/wx_error.jsp";
+						final String redirectUrl = basePath+"/jsp/appMng/app_error.jsp";
 						response.sendRedirect(redirectUrl);
 						return false;
 					}else{
@@ -185,7 +185,6 @@ public class SessionInterceptor implements HandlerInterceptor{
 		try {
 			byteArray = sourceStr.getBytes("UTF-8");
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         byte[] md5Bytes = md5.digest(byteArray);

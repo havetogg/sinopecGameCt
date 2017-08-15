@@ -87,7 +87,7 @@ public class ManageController extends BaseController {
 		String redictUrl = getStr(request, "redirectUrl");
 
 		if (StringUtil.isEmpty(openId) || "null".equals(openId) ) {
-			return "redirect:/jsp/weixinMng/wx_error.jsp";
+			return "redirect:/jsp/weixinMng/app_error.jsp";
 		} else {
 			MallUserMode bean = manageService.queryMallUserInfo(openId);
 			if (null == bean) {

@@ -2,17 +2,22 @@
 var lost=0;
 
 $(function(){
-	//初始化循环判断奖品
-	setInterval(function(){
+	ref = setInterval(function(){
 	   findCar();
 	   //console.log($(".thisCar").offset().left);
 	},300);
+	//findCar();
 	
 	//点击开始游戏
 	$("footer .btn2").on("click",function(){
 		if (!$(this).hasClass("cur")) {
-			Play();
-			ClearPlay();
+			//钻石
+			if(parseInt($(".jewel label").text())>=10){
+                Play();
+                ClearPlay();
+			}else{
+				$(".no_money").fadeIn();
+			}
 		}
 	});
 	
@@ -45,82 +50,18 @@ $(function(){
 	//切换金额
 	$("footer .btn1").on("click",function(){
 		if(!$("footer .btn2").hasClass("cur")){
-            $(".loading").fadeIn();
 			var index = $(this).index();
 			$(this).addClass("cur").siblings().removeClass("cur")
 			//console.log(index);
-			var level = "";
 			if (index == 0) {
 				toJunior();
-				level = "primary";
 			} else if (index == 1) {
 				toMedium();
-                level = "middle";
 			}else{
 				toSenior();
-                level = "high";
 			}
-            $.ajax({
-                type : 'post',
-                url : getRootPath() + "/weixinMng/GameThreeC/switchLevel.htm",
-                data: {level:level},
-                dataType : 'json',
-                timeout : 10000000,
-                success : function(data, textStatus) {
-                    $(".loading").fadeOut();
-                }
-            });
 		}
 	})
-
-	//我知道了
-    $("#iknow").on("click", function () {
-        var $this  = $("#know");
-        if($this.is(":checked")){
-            //选中的时候你的操作
-            $.ajax({
-                type : 'post',
-                url : getRootPath() + "/weixinMng/GameThreeC/iKnow.htm",
-                data: {},
-                dataType : 'json',
-                timeout : 10000000,
-                success : function(data, textStatus) {
-                	alert(data);
-                }
-            });
-        }
-        $(".guide").hide();
-    });
-
-	//暴击点击
-	$(".energy").on("click",function () {
-		if(lost == 5){
-            $(".loading").fadeIn();
-            $.ajax({
-                type : 'post',
-                url : getRootPath() + "/weixinMng/GameThreeC/getDiamond.htm",
-                data: {},
-                dataType : 'json',
-                timeout : 10000000,
-                success : function(data, textStatus) {
-                	if(data.result){
-                        $(".loading").fadeOut();
-                        $("#diamond").html(data.diamond);
-                        $(".impact").fadeIn();
-                        hitClear();
-					}else{
-                		alert(data.message);
-					}
-
-                }
-            });
-
-		}
-
-    });
-
-    var energyNum = parseInt($("#energyNum").val());
-    show_energy(energyNum);
 		
 })
 
@@ -299,6 +240,32 @@ function Play(){
 				//奖品抖动
 				$(".machine .hideCar li").addClass("sway");
 				//判断概率
+                $.ajax({
+                    type : 'post',
+                    url : getRootPath() + "/weixinMng/GameThreeC/getPrize.htm",
+                    data: {},
+                    dataType : 'json',
+                    timeout : 10000000,
+                    beforeSend: function () {
+                        $(".loading").fadeIn();
+                    },
+                    complete: function (XMLHttpRequest) {
+                        $(".loading").fadeOut();
+                    },
+                    success : function(data, textStatus) {
+                    	console.log(data);
+                        if(data.result==true){
+
+                        }else{
+
+                        }
+                    },
+                    //调用出错执行的函数
+                    error: function(XMLHttpRequest, textStatus, errorThrown){
+                        //请求出错处理
+                        alert("系统异常!"+textStatus);
+                    }
+                });
 					//成功
 				setTimeout(function () {
 					$(".win").fadeIn();
@@ -326,12 +293,11 @@ function Play(){
 function ClearPlay(){
 	//延迟清除状态
 	setTimeout(function () {
-		$("footer .btn2").removeClass("cur");
         $(".machine .line").removeClass("down");
         $(".machine .handle").removeClass("down");
-        
     }, 3000);
     setTimeout(function(){
+        $("footer .btn2").removeClass("cur");
     	$(".machine .hideCar").removeClass("cur");
     	$(".removeCar").removeClass("removeCar");
     	$(".machine .hideCar li").removeClass("sway");
@@ -339,29 +305,22 @@ function ClearPlay(){
     }, 5000)
 }
 
-
-//能量初始化
-function show_energy(initNum){
-    lost = initNum;
-    var num = "lost"+lost;
-    $(".energy .hand").removeClass("lost1 lost2 lost3 lost4 lost5").addClass(num);
-}
-
 //暴击记次
 function hit(){
 	if (lost <5) {
 		lost +=1;
+		console.log(lost);
 		var num = "lost"+lost;
 		$(".energy .hand").removeClass("lost1 lost2 lost3 lost4 lost5").addClass(num);
 	}
 }
 
-//暴击清空
-function hitClear(){
-	lost = 0;
-	$(".energy .hand").removeClass("lost1 lost2 lost3 lost4 lost5");
-
+//去充值
+function gotoCharge() {
+    window.location=getRootPath() + "/weixinMng/ManageC/rechargeIn.htm";
 }
+
+
 
 
 

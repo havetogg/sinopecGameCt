@@ -26,6 +26,12 @@ public interface IManageService {
 	 * @return
 	 */
 	public MallUserMode queryMallUserInfoByMobile(String phone);
+
+	/**
+	 * 通过手机查询用户的绑定信息
+	 * @return
+	 */
+	public MallUserMode queryMallUserInfo_byJSUSERID(String jsUserId);
 	
 	/**
 	 * 更新用户login时的信息

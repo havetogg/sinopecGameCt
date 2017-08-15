@@ -113,7 +113,7 @@ public class GameThreeController extends BaseController {
     }
 
     //检查是否有资格抽奖
-    @RequestMapping(value = "/canPrize", method = { RequestMethod.GET, RequestMethod.POST })
+    /*@RequestMapping(value = "/canPrize", method = { RequestMethod.GET, RequestMethod.POST })
     @ResponseBody
     public String canPrize(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception{
         JSONObject jsonObject = new JSONObject();
@@ -134,7 +134,7 @@ public class GameThreeController extends BaseController {
             jsonObject.put("message","钻石数不够");
         }
         return JSON.toJSONString(jsonObject);
-    }
+    }*/
 
     //抽奖
     @RequestMapping(value = "/getPrize", method = { RequestMethod.GET, RequestMethod.POST })
@@ -149,6 +149,7 @@ public class GameThreeController extends BaseController {
             jsonObject.put("message","无法获取session");
             return JSON.toJSONString(jsonObject);
         }
+
         int userDiamond = Integer.parseInt(String.valueOf(request.getSession().getAttribute("game3Level")));
         if(Integer.parseInt(userbean.getREMAIN_DIAMOND())>=userDiamond){
             userbean.setUSED_DIAMOND(String.valueOf(Integer.parseInt(userbean.getUSED_DIAMOND())+userDiamond));
@@ -164,12 +165,11 @@ public class GameThreeController extends BaseController {
             //增加游戏记录
             T3GameRecordMode t3GameRecordMode = new T3GameRecordMode();
             t3GameRecordMode.setUserId(userbean.getID());
-            t3GameRecordMode.setGameType(String.valueOf(userDiamond));
+            //t3GameRecordMode.setGameType(String.valueOf(userDiamond));
             int recordId = t3GameRecordService.saveT3GameRecord(t3GameRecordMode);
             //response.sendRedirect(request.getContextPath()+"/weixinMng/getPrize/randomPrize.htm?recordId="+recordId);
-
+            request.getRequestDispatcher(request.getContextPath()+"/weixinMng/getPrize/randomPrize.htm?recordId="+recordId).forward(request,response);
         }else{
-
 
             jsonObject.put("result",false);
             jsonObject.put("message","钻石数不够");

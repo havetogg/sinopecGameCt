@@ -21,7 +21,7 @@
 	    <script type="text/javascript" src="${contentPath }/jsp/weixinMng/gameOne/js/common/m.tool.juxinbox.com.js"></script>
 		    <script type="text/javascript" src="${contentPath }/jsp/weixinMng/mallMng/js/common/jWeChat-1.0.0.js"></script>
     <script type="text/javascript" src="${contentPath }/jsp/weixinMng/mallMng/js/share.js"></script>
-		<title>加油达人-高手模式</title>
+		<title>训练营-高手模式</title>
 <script type="text/javascript">
 var needRefresh = sessionStorage.getItem("need-refresh-game1");
 if(needRefresh){

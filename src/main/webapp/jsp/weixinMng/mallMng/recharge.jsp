@@ -92,7 +92,7 @@
         
         // 钻石充值
         function exchangeBtn(id) {
-        	window.location = getRootPath() + "/weixinMng/ManageC/toPayPage.htm?diamond_id="+id;
+        	window.location = getRootPath() + "/weixinMng/ManageC/toOilPage.htm?diamond_id="+id;
         }
     </script>
 </head>

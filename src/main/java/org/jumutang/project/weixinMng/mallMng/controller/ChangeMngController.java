@@ -2,12 +2,15 @@ package org.jumutang.project.weixinMng.mallMng.controller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import org.apache.log4j.Logger;
 import org.jumutang.basicbox.model.JSONResultModel;
 import org.jumutang.project.base.BaseController;
@@ -22,13 +25,14 @@ import org.jumutang.project.weixinMng.mallMng.service.IRegistCodeService;
 import org.jumutang.project.weixinMng.mallMng.service.ISysMsgService;
 import org.jumutang.project.weixinMng.mallMng.service.ITchangeOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import net.sf.json.JSONObject;
 
 /**
  * 充值
@@ -53,6 +57,9 @@ public class ChangeMngController extends BaseController {
 	
 	@Autowired
 	private ITchangeOrderService tchangeOrderService;
+
+	@Value(value = "#{propertyFactoryBean['proUrl']}")
+	private String proUrl;
 	
 	
 	// 进入充值首页
@@ -88,7 +95,7 @@ public class ChangeMngController extends BaseController {
 			int compare = BigDecimalTool.compare(pay_DIAMOND_NUMB, remain_DIAMOND);
 			if(1==compare){
 				jsonResultModel.setCode(2).setMsg("您的钻石不足！");
-				return JSONObject.fromObject(jsonResultModel).toString();
+				return JSON.toJSONString(jsonResultModel);
 			}
 
 			// 更新后的钻石和金币
@@ -100,11 +107,11 @@ public class ChangeMngController extends BaseController {
 			changeMngService.update_UserInfo_ToGold(userbean,change_gold);
 
 			jsonResultModel.setCode(1).setMsg("兑换成功！");
-			return JSONObject.fromObject(jsonResultModel).toString();
+			return JSON.toJSONString(jsonResultModel);
 		} catch (Exception e) {
 			_LOGGER.error(e.getMessage(), e);
 			jsonResultModel.setCode(0).setMsg("兑换失败！");
-			return JSONObject.fromObject(jsonResultModel).toString();
+			return JSON.toJSONString(jsonResultModel);
 		}
 	}
 
@@ -114,79 +121,81 @@ public class ChangeMngController extends BaseController {
 	@RequestMapping(value = "/toOilPage", method = { RequestMethod.GET, RequestMethod.POST })
 	public void toOilPage(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception{
 		_LOGGER.error("获取中石化sbxUserId开始");
-		/*String apiSecret = "zxcQWE123asd0987";
-		String timestamp = String.valueOf(Calendar.getInstance().getTimeInMillis());
-		String  sysGenSign = MD5Util.getUpperCaseMD5For32("zsh.integral.api" + "qaz123!@#" + apiSecret + timestamp);
-		Map<String, String> paramMap = new HashMap<String, String>();
-		paramMap.put("username","zsh.integral.api");
-		paramMap.put("password","qaz123!@#");
-		paramMap.put("timestamp",timestamp);
-		paramMap.put("sign", sysGenSign);
-		String token = HttpClientUtil.doHttpPost("https://prod1.juxinbox.com/zsh.integral/api/v1/auth/login.htm", paramMap);
-		_LOGGER.error("token为"+token);*/
-		String redirectUrl = getBasePath(request)+"/weixinMng/ManageC/toPayPage.htm";
+		int diamond_id = super.getInt(request, "diamond_id");
+		//当前用户购买信息
+		MallUserMode userbean = refreshtWxLoginUser(request);
+		String redirectUrl = getBasePath(request)+"/weixinMng/ManageC/toPayPage.htm?diamond_id="+diamond_id+"&openId="+userbean.getOPEN_ID();
 		_LOGGER.error("回调地址为:"+redirectUrl);
-		String redirect = "https://prod1.juxinbox.com/zsh.integral/api/v1/user/integral/1.htm?redirectUrl="+redirectUrl;
-		_LOGGER.error("跳转地址为:"+redirect);
+		String redirect = "https://prod1.juxinbox.com/zsh.integral/api/v1/user/integral/1.htm?redirectUrl="+URLEncoder.encode(redirectUrl,"utf-8");
+		_LOGGER.error("跳转地址为:"+ redirect);
 		response.sendRedirect(redirect);
 	}
-
-	//跳转支付页面链接
-	static String proUrl="http://www.linkgift.cn/giftpay_wap/giftpay/liftpayment/orderPay.html";
 
 	@ResponseBody
 	@RequestMapping(value = "/toPayPage", method = { RequestMethod.GET, RequestMethod.POST })
     public void toPayPage(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
 		//获取oil用户
-		String codeNum = request.getParameter("codeNum");
-		_LOGGER.error("codeNum:"+codeNum);
-		String data = request.getParameter("data");
-		_LOGGER.error("data:"+data);
-		String msg = request.getParameter("msg");
-		_LOGGER.error("msg:"+msg);
-		String result = request.getParameter("result");
-		_LOGGER.error("result:"+result);
+		String param = super.getStr(request, "param");
+		_LOGGER.error("param:"+param);
+		if(!StringUtils.isEmpty(param)){
+			JSONObject jsonObject = JSON.parseObject(param);
+			if("success".equals(jsonObject.getString("msg"))&&"true".equals(jsonObject.getString("result"))){
+				JSONObject dataObj = jsonObject.getJSONObject("data");
+				_LOGGER.error("data:"+dataObj.toJSONString());
+				String sbxUserId = dataObj.getString("sbxUserId");
+				_LOGGER.error("sbxUserId:"+sbxUserId);
+				String openId = super.getStr(request, "openId");
+				_LOGGER.error("openId:"+openId);
+				//当前用户购买信息
+				MallUserMode userbean = manageService.queryMallUserInfo(openId);
+				int diamond_id = super.getInt(request, "diamond_id");
+				_LOGGER.error("diamond_id:"+diamond_id);
 
-		//当前用户购买信息
-		MallUserMode userbean = refreshtWxLoginUser(request);
-		
-        int diamond_id = super.getInt(request, "diamond_id");
-		
-        ChangeMngMode changeMngMode = changeMngService.findInfo(diamond_id);
-        TchangeOrderMode tchangeOrderMode = new TchangeOrderMode();
-        String order_no = TenpayUtil.getOrder_no();
-       
-		tchangeOrderMode.setUSER_ID(userbean.getID());
-		tchangeOrderMode.setCHANGE_ID(changeMngMode.getID());
-		tchangeOrderMode.setORDER_NO(order_no);
-		tchangeOrderMode.setMONEY(changeMngMode.getMONEY());
-		tchangeOrderMode.setCREAT_TIME(DateUtil.get4yMdHms(new Date()));
-		tchangeOrderMode.setPAYED_FLAG("0");
-		tchangeOrderMode.setPAY_MONEY(changeMngMode.getPAY_MONEY());
-		tchangeOrderMode.setPAYED_TIME(null);
-		tchangeOrderMode.setDELETE_FLAG("0");
-		tchangeOrderMode.setDIAMOND_NUMB(changeMngMode.getDIAMOND_NUMB());
-        tchangeOrderService.saveInfo(tchangeOrderMode);
-		
-        String rechargeType="zshgame";//商品类型
-        String lifeType="my_buy";//商品名称
-        
-    	String payamount=tchangeOrderMode.getPAY_MONEY();//订单支付金额
-        String userId=userbean.getTHIRD_PART_ID();//有礼付userId
-        String openId=userbean.getOPEN_ID();//有礼付openId
+				ChangeMngMode changeMngMode = changeMngService.findInfo(diamond_id);
+				TchangeOrderMode tchangeOrderMode = new TchangeOrderMode();
+				String order_no = TenpayUtil.getOrder_no();
 
-        String redPkgId="";//红包ID
-        String redPkgValue="";//红包面额
-        
-        String domain_name=PropertiesUtil.get("DOMAIN.WEB_SERVER");
-        String backUrl=domain_name+"/sinopecGameCt/weixinMng/ManageC/userIn.htm";//点击"返回首页"跳转页面
-        String redirectUrl=domain_name+"/sinopecGameCt/weixinMng/ManageC/toPayPage_return.htm?ORDER_NO="+order_no;//接收参数方法接口
+				tchangeOrderMode.setUSER_ID(userbean.getID());
+				tchangeOrderMode.setCHANGE_ID(changeMngMode.getID());
+				tchangeOrderMode.setORDER_NO(order_no);
+				tchangeOrderMode.setMONEY(changeMngMode.getMONEY());
+				tchangeOrderMode.setCREAT_TIME(DateUtil.get4yMdHms(new Date()));
+				tchangeOrderMode.setPAYED_FLAG("0");
+				tchangeOrderMode.setPAY_MONEY(changeMngMode.getPAY_MONEY());
+				tchangeOrderMode.setPAYED_TIME(null);
+				tchangeOrderMode.setDELETE_FLAG("0");
+				tchangeOrderMode.setDIAMOND_NUMB(changeMngMode.getDIAMOND_NUMB());
+				int payOrderId = tchangeOrderService.saveInfo(tchangeOrderMode);
 
-        String targetUrl=proUrl+"?payamount="+payamount+"&rechargeType="+
-                rechargeType+"&lifeType="+lifeType+"&redPkgId="+redPkgId+"&redPkgValue="+redPkgValue+
-                "&backUrl="+backUrl+"&redirectUrl="+redirectUrl+"&userId="+userId+"&openId="+openId;
-        _LOGGER.error("跳转支付页面地址:"+targetUrl);
-        response.sendRedirect(response.encodeRedirectURL(targetUrl));
+				String rechargeType="zshgame";//商品类型
+				String lifeType="my_buy";//商品名称
+
+				String payamount=tchangeOrderMode.getPAY_MONEY();//订单支付金额
+				String userId=userbean.getTHIRD_PART_ID();//有礼付userId
+				//String openId=userbean.getOPEN_ID();//有礼付openId
+
+				String redPkgId="";//红包ID
+				String redPkgValue="";//红包面额
+
+				String domain_name=PropertiesUtil.get("DOMAIN.WEB_SERVER");
+				String backUrl=domain_name+"/sinopecGameCt/weixinMng/ManageC/userIn.htm";//点击"返回首页"跳转页面
+				String redirectUrl=domain_name+"/sinopecGameCt/weixinMng/ManageC/toPayPage_return.htm?ORDER_NO="+order_no;//接收参数方法接口
+
+				/*String targetUrl=proUrl+"?payamount="+payamount+"&rechargeType="+
+						rechargeType+"&lifeType="+lifeType+"&redPkgId="+redPkgId+"&redPkgValue="+redPkgValue+
+						"&backUrl="+backUrl+"&redirectUrl="+redirectUrl+"&userId="+userId+"&openId="+openId+"&sbxUserId="+sbxUserId+"&payOrderId="+payOrderId+"&paySource=1&costIntegral="+Integer.parseInt(payamount)*200;*/
+				String targetUrl=proUrl+"?payamount="+payamount+"&rechargeType="+
+						rechargeType+"&lifeType="+lifeType+"&redPkgId="+redPkgId+"&redPkgValue="+redPkgValue+
+						"&backUrl="+backUrl+"&redirectUrl="+redirectUrl+"&userId="+userId+"&openId="+openId+"&sbxUserId="+sbxUserId+"&payOrderId="+payOrderId+"&paySource=1&costIntegral=1";
+				_LOGGER.error("跳转支付页面地址:"+targetUrl);
+				response.sendRedirect(response.encodeRedirectURL(targetUrl));
+			}
+		}else{
+			String path = request.getContextPath();
+			String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+			final String redirectUrl = basePath+"/jsp/weixinMng/mallMng/recharge.jsp";
+			response.sendRedirect(redirectUrl);
+		}
     }
 	
     @RequestMapping(value = "/toPayPage_return",method={RequestMethod.GET,RequestMethod.POST})
